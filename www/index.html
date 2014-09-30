@@ -29,17 +29,26 @@
         <script type="text/javascript">
             app.initialize();
         </script>
+        <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jquerymobile/1.4.3/jquery.mobile.min.css" />
+        <script src="//ajax.googleapis.com/ajax/libs/jquerymobile/1.4.3/jquery.mobile.min.js"></script>
+        <script type="text/javascript">
+            $.support.cors
+            $.mobile.allowCrossDomainPages
+        </script>
     </head>
     <body>
       <div id="topicList">
           <div id="newTopic">
               <button>+ New Topic</button>
           </div>
+          <a href="http://www.bbrennan.info/posted" data-transition="pop">I'll pop</a>
           <div class="topic">
-              Topic 1
+            <div class="topicText">Topic 2</div>
+            <div class="unreadCount">3</div>
           </div>
           <div class="topic">
-              Topic 2
+            <div class="topicText">Topic 2</div>
+            <div class="unreadCount">3</div>
           </div>
       </div>
     </body>
