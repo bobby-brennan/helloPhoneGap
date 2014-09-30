@@ -30,6 +30,7 @@ body {
     margin:0px;
     padding:0px;
     width:100%;
+    background-color: #8CCF69;
 }
 
 /* Portrait layout (default) */
@@ -46,5 +47,8 @@ body {
 
 .topic {
   width: 100%;
-  height: 200px;
+  height: 500px;
+  background-color: #65AE3F;
+  color: #B5E69B;
+  padding: 12px;
 }
