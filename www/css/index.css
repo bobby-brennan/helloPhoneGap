@@ -88,9 +88,14 @@ input {
 }
 
 .rssRow {
-   height: 32px;
-   background-color: #00FF00;
+   height: 70px;
    margin: 12px;
    font-size: 24px;
+   background-color: #65AE3F;
    vertical-align: middle;
+}
+
+a {
+    color: #B5E69B;
+    text-decoration: none;
 }
