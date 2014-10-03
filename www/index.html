@@ -38,6 +38,10 @@
             var newTopic = function() {
                 window.location.href = "newTopic.html";
             }
+            var showTopic = function(topic) {
+                localStorage.curTopic = topic;
+                window.location.href = 'showTopic.html';
+            }
         </script>
     </head>
     <body>
