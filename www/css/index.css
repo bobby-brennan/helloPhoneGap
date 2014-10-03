@@ -55,6 +55,7 @@ body {
   width: 80%;
   height: 15%;
   min-height: 100px;
+  padding-top: 12px;
   background-color: #65AE3F;
   color: #B5E69B;
   vertical-align: middle;
