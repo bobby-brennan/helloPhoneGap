@@ -40,9 +40,11 @@
         </script>
         <script type="text/javascript">
 $(document).ready(function () {
+  $('test').html("hello world!");
   $('#test').rssfeed('http://feeds.reuters.com/reuters/oddlyEnoughNews', {
     limit: 5
   });
+  $('test').html("hello world 2");
 });
         </script>
     </head>
@@ -61,7 +63,7 @@ $(document).ready(function () {
             <div class="topicText">Topic 2</div>
             <div class="unreadCount">3</div>
           </div>
-          <div id="test"></div>
+          <div id="test">hi world</div>
       </div>
     </body>
 </html>
