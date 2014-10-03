@@ -39,9 +39,11 @@ var app = {
     onDeviceReady: function() {
         console.log("devready");
         app.receivedEvent('deviceready');
-        $('#test').html("hello world");
-        $('#test').rssfeed('http://feeds.reuters.com/reuters/oddlyEnoughNews', {
-            limit: 5
+        $(function() {
+            $('#test').html("hello world");
+            $('#test').rssfeed('http://feeds.reuters.com/reuters/oddlyEnoughNews', {
+                limit: 5
+            });
         });
     },
     // Update DOM on a Received Event
