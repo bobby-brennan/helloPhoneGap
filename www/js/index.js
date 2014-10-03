@@ -69,7 +69,7 @@ var app = {
 
         //listeningElement.setAttribute('style', 'display:none;');
         //receivedElement.setAttribute('style', 'display:block;');
-    }
+    },
     
     addTopic: function(term) {
         var curTopics = JSON.parse(localStorage.topics);
