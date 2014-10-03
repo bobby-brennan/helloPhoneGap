@@ -34,7 +34,17 @@
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
             console.log('initting');
-            app.initialize();
+            var showTopics = function() {
+                var topics = localStorage.topics;
+                for (var i = 0; i < topics.length; ++i) {
+                    $('#topicList').append('<div class="topic"><div class="topicText">');
+                    $('#topicList').append(topics[i].topic);
+                    $('#topicList').append('</div><div class="unreadCount>"')
+                    $('#topicList').append('3');
+                    $('#topicList').append('</div></div>');
+                }
+            }
+            app.initialize(showTopics);
         </script>
     </head>
     <body>
@@ -43,14 +53,6 @@
             <form action="indexRedirect.html">
               <input type="submit" class="topic" value="New Topic"></input>
             </form>
-          </div>
-          <div class="topic">
-            <div class="topicText">Topic 2</div>
-            <div class="unreadCount">3</div>
-          </div>
-          <div class="topic">
-            <div class="topicText">Topic 2</div>
-            <div class="unreadCount">3</div>
           </div>
           <div id="test">hi world</div>
       </div>
