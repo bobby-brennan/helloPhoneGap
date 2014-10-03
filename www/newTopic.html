@@ -35,9 +35,17 @@
         <script type="text/javascript">
             console.log('initting');
             app.initialize();
+            var addTopic = function() {
+                app.addTopic($('#topic').value())
+            }
         </script>
     </head>
     <body>
-      new Topic
+      <div class="topic">
+        <input type="text" id="topic" placeholder="Prescription, Disease, or Health Issue"></input>
+      </div>
+      <div class="topic" onclick="addTopic()">
+          Add Topic
+      </div>
     </body>
   </html>
