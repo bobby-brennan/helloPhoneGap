@@ -79,3 +79,8 @@ button {
   text-align: right;
   padding: 4px;
 }
+
+input {
+    height: 100%;
+    width: 100%;
+}
