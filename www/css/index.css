@@ -49,10 +49,6 @@ body {
     }
 }
 
-#newTopic button {
-  
-}
-
 .topic {
   font-size: 48px;
   width: 100%;
@@ -62,6 +58,12 @@ body {
   background-color: #65AE3F;
   color: #B5E69B;
   vertical-align: middle;
+}
+
+
+#newTopic button {
+  color: #000000;
+  background-color: #DDDDDD;
 }
 
 .topic.topicText {
