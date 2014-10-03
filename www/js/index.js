@@ -22,7 +22,7 @@ var showTopics = function() {
     console.log("found " + topics.length + " topics");
     for (var i = 0; i < topics.length; ++i) {
         console.log("i:" + i);
-        console.log("topic:" + topics[i].topic);
+        //console.log("topic:" + topics[i].topic);
         $('#topicList').append('<div class="topic"><div class="topicText">');
         $('#topicList').append(topics[i].topic);
         $('#topicList').append('</div><div class="unreadCount>"')
