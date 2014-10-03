@@ -18,11 +18,16 @@
  */
 var app = {
     // Application Constructor
-    initialize: function() {
+    initialize: function(onload) {
         console.log("init");
         this.bindEvents();
         $.support.cors;
         $.mobile.allowCrossDomainPages;
+        localStorage.topics = [
+            {topic: "foo", unread: 3},
+            {topic: "bar", unread: 7},
+        ];
+        this.onloadFunction = onload;
     },
     // Bind Event Listeners
     //
@@ -40,6 +45,10 @@ var app = {
         console.log("devready");
         app.receivedEvent('deviceready');
         $(function() {
+            if (this.onloadFunction) {
+                console.log("calling onload!");
+                this.onloadFunction();
+            }
             $('#test').html("hello world");
             console.log('set test html');
             $('#test').rssfeed('http://feeds.reuters.com/reuters/oddlyEnoughNews', {
