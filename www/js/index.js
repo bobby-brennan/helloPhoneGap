@@ -21,8 +21,8 @@ var app = {
     initialize: function() {
         console.log("init");
         this.bindEvents();
-        $.support.cors
-        $.mobile.allowCrossDomainPages
+        $.support.cors;
+        $.mobile.allowCrossDomainPages;
     },
     // Bind Event Listeners
     //
