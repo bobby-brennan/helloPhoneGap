@@ -66,4 +66,5 @@ body {
 
 .topic.unreadCount {
   float: right;
+  display: inline;
 }
