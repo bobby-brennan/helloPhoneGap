@@ -35,22 +35,15 @@
         <script type="text/javascript">
             console.log('initting');
             app.initialize();
+            var newTopic = function() {
+                window.location.href = "/newTopic.html";
+            }
         </script>
     </head>
     <body>
       <div id="topicList">
-          <div id="newTopic">
-            <form action="indexRedirect.html">
-              <input type="submit" class="topic" value="New Topic"></input>
-            </form>
-          </div>
-          <div class="topic">
-              <div class="topicText">
-                  flee
-              </div>
-              <div class="unreadCount">
-                  9
-              </div>
+          <div id="newTopic" class="topic" onclick="newTopic()">
+              New Topic
           </div>
       </div>
     </body>
