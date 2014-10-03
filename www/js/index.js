@@ -44,11 +44,11 @@ var app = {
     onDeviceReady: function() {
         console.log("devready");
         app.receivedEvent('deviceready');
+        if (this.onloadFunction) {
+            console.log("calling onload!");
+            this.onloadFunction();
+        }
         $(function() {
-            if (this.onloadFunction) {
-                console.log("calling onload!");
-                this.onloadFunction();
-            }
             $('#test').html("hello world");
             console.log('set test html');
             $('#test').rssfeed('http://feeds.reuters.com/reuters/oddlyEnoughNews', {
