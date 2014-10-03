@@ -24,8 +24,10 @@ var showTopics = function() {
     for (var i = 0; i < topics.length; ++i) {
         console.log("i:" + i);
         //console.log("topic:" + topics[i].topic);
-        var topicHtml = '<div class="topic" onclick="showTopic(\'"';
-        topicHtml += topics[i].topic + '\')"><div class="topicText">';
+        var functionCall = "showTopic('" + topics[i].topic + "\')";
+        console.log("function call:" + functionCall);
+        var topicHtml = '<div class="topic" onclick="' + functionCall + '">';
+        topicHtml +=  '<div class="topicText">';
         topicHtml += topics[i].topic;
         topicHtml += '</div><div class="unreadCount">';
         topicHtml += topics[i].unread;
