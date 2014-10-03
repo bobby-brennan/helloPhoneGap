@@ -16,12 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+var showTopics = function() {
+    var topics = localStorage.topics;
+    for (var i = 0; i < topics.length; ++i) {
+        console.log("topic:" + topics[i].topic);
+        $('#topicList').append('<div class="topic"><div class="topicText">');
+        $('#topicList').append(topics[i].topic);
+        $('#topicList').append('</div><div class="unreadCount>"')
+        $('#topicList').append('3');
+        $('#topicList').append('</div></div>');
+    }
+}
+ 
 var app = {
     // Application Constructor
-    initialize: function(onload) {
+    initialize: function() {
         console.log("init");
-        this.onloadFunction = onload;
-        console.log("onload:" + this.onloadFunction);
         this.bindEvents();
         $.support.cors;
         $.mobile.allowCrossDomainPages;
@@ -47,16 +57,8 @@ var app = {
         app.receivedEvent('deviceready');
         console.log('2' + this.onloadFunction());
         this.onloadFunction();
-        if (this.onloadFunction) {
-            console.log("calling onload!");
-            this.onloadFunction();
-        }
         $(function() {
-            $('#test').html("hello world");
-            console.log('set test html');
-            $('#test').rssfeed('http://feeds.reuters.com/reuters/oddlyEnoughNews', {
-                limit: 5
-            });
+            showTopics();
         });
     },
     // Update DOM on a Received Event
