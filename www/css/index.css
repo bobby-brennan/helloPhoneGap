@@ -62,3 +62,7 @@ body {
   color: #B5E69B;
   vertical-align: middle;
 }
+
+.topic.unreadCount {
+  float: right;
+}
