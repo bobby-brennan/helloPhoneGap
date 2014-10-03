@@ -27,7 +27,7 @@ body {
     font-family:'Verdana', Helvetica, Arial, sans-serif;
     font-size:48px;
     height:100%;
-    margin:0px;
+    margin:12px;
     padding:0px;
     width:100%;
     background-color: #8CCF69;
@@ -53,9 +53,9 @@ body {
 
 .topic {
   width: 80%;
-  height: 12px;
+  height: 15%;
+  min-height: 100px;
   background-color: #65AE3F;
   color: #B5E69B;
-  margin: 100px;
   vertical-align: middle;
 }
