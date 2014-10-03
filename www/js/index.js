@@ -24,11 +24,12 @@ var showTopics = function() {
     for (var i = 0; i < topics.length; ++i) {
         console.log("i:" + i);
         //console.log("topic:" + topics[i].topic);
-        $('#topicList').append('<div class="topic"><div class="topicText">');
-        $('#topicList').append(topics[i].topic);
-        $('#topicList').append('</div><div class="unreadCount">')
-        $('#topicList').append('3');
-        $('#topicList').append('</div></div>');
+        var topicHtml = '<div class="topic"><div class="topicText">';
+        topicHtml += topics[i].topic;
+        topicHtml += '</div><div class="unreadCount">';
+        topicHtml += topics[i].unread;
+        topicHtml += '</div></div>';
+        $('#topicList').append(topicHtml);
     }
 }
  
