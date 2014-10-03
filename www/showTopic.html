@@ -42,13 +42,10 @@
                 url: url,
                 dataType: "xml",
                 success: function(xml) {
-                  $(xml).find('entry').each(function() {
-                    $("#feed").append($(this).find('title').text() + "<br />");
+                  $(xml).find('item').each(function() {
+                    $("#feed").append('<a href="' + $(this).find('link').text() + '">' + $(this).find('title').text() + "</a><br>");
                   });
                 }
-            });
-            $('#feed').rssfeed(url, {
-              limit: 5
             });
           }
           document.addEventListener('deviceready', showTopic, false);
