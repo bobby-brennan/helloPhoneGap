@@ -57,6 +57,8 @@ body {
   background-color: #65AE3F;
   color: #B5E69B;
   vertical-align: middle;
+  border: 2px;
+  border-color: #B5E69B;
 }
 
 
