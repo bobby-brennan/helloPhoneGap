@@ -56,8 +56,6 @@ var app = {
     onDeviceReady: function() {
         console.log("devready");
         app.receivedEvent('deviceready');
-        console.log('2' + this.onloadFunction());
-        this.onloadFunction();
         $(function() {
             showTopics();
         });
