@@ -18,7 +18,7 @@
  */
 var showTopics = function() {
     console.log("showing topics");
-    var topics = localStorage.topics;
+    var topics = JSON.parse(localStorage.topics);
     console.log("found " + topics.length + " topics");
     console.log("topics:" + JSON.stringify(topics));
     for (var i = 0; i < topics.length; ++i) {
@@ -39,10 +39,10 @@ var app = {
         this.bindEvents();
         $.support.cors;
         $.mobile.allowCrossDomainPages;
-        localStorage.topics = [
+        localStorage.topics = JSON.stringify([
             {topic: "foo", unread: 3},
             {topic: "bar", unread: 7},
-        ];
+        ]);
     },
     // Bind Event Listeners
     //
