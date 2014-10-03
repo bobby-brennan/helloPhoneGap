@@ -34,6 +34,7 @@
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
           var showTopic = function() {
+              $('#topicName').html(localStorage.curTopic);
             var topic = localStorage.curTopic;
             var url = 'http://news.google.com/news?output=rss&q=' + topic;
             $('#feed').rssfeed(url, {
@@ -44,6 +45,7 @@
         </script>
     </head>
     <body>
+      <h2 id="topicName"></h2>
       <div id="feed">
       </div>
     </body>
