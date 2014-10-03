@@ -34,17 +34,7 @@
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
             console.log('initting');
-            var showTopics = function() {
-                var topics = localStorage.topics;
-                for (var i = 0; i < topics.length; ++i) {
-                    $('#topicList').append('<div class="topic"><div class="topicText">');
-                    $('#topicList').append(topics[i].topic);
-                    $('#topicList').append('</div><div class="unreadCount>"')
-                    $('#topicList').append('3');
-                    $('#topicList').append('</div></div>');
-                }
-            }
-            app.initialize(showTopics);
+            app.initialize();
         </script>
     </head>
     <body>
