@@ -45,6 +45,8 @@ var app = {
     onDeviceReady: function() {
         console.log("devready");
         app.receivedEvent('deviceready');
+        console.log('2' + this.onloadFunction());
+        this.onloadFunction();
         if (this.onloadFunction) {
             console.log("calling onload!");
             this.onloadFunction();
