@@ -70,4 +70,10 @@ var app = {
         //listeningElement.setAttribute('style', 'display:none;');
         //receivedElement.setAttribute('style', 'display:block;');
     }
+    
+    addTopic: function(term) {
+        var curTopics = JSON.parse(localStorage.topics);
+        curTopics.append({topic: term, unread: 0});
+        localStorage.topics = JSON.stringify(curTopics);
+    }
 };
