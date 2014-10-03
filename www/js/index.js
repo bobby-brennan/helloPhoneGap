@@ -73,7 +73,7 @@ var app = {
     
     addTopic: function(term) {
         var curTopics = JSON.parse(localStorage.topics);
-        curTopics.append({topic: term, unread: 0});
+        curTopics.push({topic: term, unread: 0});
         localStorage.topics = JSON.stringify(curTopics);
     }
 };
