@@ -20,6 +20,8 @@ var app = {
     // Application Constructor
     initialize: function(onload) {
         console.log("init");
+        this.onloadFunction = onload;
+        console.log("onload:" + this.onloadFunction);
         this.bindEvents();
         $.support.cors;
         $.mobile.allowCrossDomainPages;
@@ -27,7 +29,6 @@ var app = {
             {topic: "foo", unread: 3},
             {topic: "bar", unread: 7},
         ];
-        this.onloadFunction = onload;
     },
     // Bind Event Listeners
     //
