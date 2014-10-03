@@ -26,7 +26,7 @@ var showTopics = function() {
         //console.log("topic:" + topics[i].topic);
         $('#topicList').append('<div class="topic"><div class="topicText">');
         $('#topicList').append(topics[i].topic);
-        $('#topicList').append('</div><div class="unreadCount>"')
+        $('#topicList').append('</div><div class="unreadCount">')
         $('#topicList').append('3');
         $('#topicList').append('</div></div>');
     }
@@ -39,10 +39,6 @@ var app = {
         this.bindEvents();
         $.support.cors;
         $.mobile.allowCrossDomainPages;
-        localStorage.topics = JSON.stringify([
-            {topic: "foo", unread: 3},
-            {topic: "bar", unread: 7},
-        ]);
     },
     // Bind Event Listeners
     //
