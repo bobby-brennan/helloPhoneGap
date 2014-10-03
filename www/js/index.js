@@ -41,6 +41,7 @@ var app = {
         app.receivedEvent('deviceready');
         $(function() {
             $('#test').html("hello world");
+            console.log('set test html');
             $('#test').rssfeed('http://feeds.reuters.com/reuters/oddlyEnoughNews', {
                 limit: 5
             });
@@ -48,13 +49,12 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
-
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
         console.log('Received Event: ' + id);
+        //var parentElement = document.getElementById(id);
+        //var listeningElement = parentElement.querySelector('.listening');
+        //var receivedElement = parentElement.querySelector('.received');
+
+        //listeningElement.setAttribute('style', 'display:none;');
+        //receivedElement.setAttribute('style', 'display:block;');
     }
 };
