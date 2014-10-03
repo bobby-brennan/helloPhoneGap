@@ -30,6 +30,7 @@ var showTopics = function() {
         topicHtml += '</div><div class="unreadCount">';
         topicHtml += topics[i].unread;
         topicHtml += '</div></div>';
+        console.log("inserting:" + topicHtml);
         $('#topicList').append(topicHtml);
     }
 }
