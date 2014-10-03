@@ -43,7 +43,7 @@
                 dataType: "xml",
                 success: function(xml) {
                   $(xml).find('item').each(function() {
-                    var link = '<a href="' + $(this).find('link').text() + '">' + $(this).find('title').text() + '</a><br>';
+                    var link = '<a onclick="navigator.app.loadUrl(\'' + $(this).find('link').text() + '\', {openExternal: true})">' + $(this).find('title').text() + '</a><br>';
                     var html = '<div class="rssRow">' + link + '</div>';
                     $("#feed").append(html);
                   });
