@@ -39,6 +39,10 @@
                 app.addTopic($('#topic').val());
                 window.location.href = 'index.html';
             }
+            var showTopic = function(topic) {
+                localStorage.curTopic = topic;
+                window.location.href = 'showTopic.html';
+            }
         </script>
     </head>
     <body>
