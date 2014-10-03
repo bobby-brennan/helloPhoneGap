@@ -20,6 +20,7 @@ var showTopics = function() {
     console.log("showing topics");
     var topics = localStorage.topics;
     console.log("found " + topics.length + " topics");
+    console.log("topics:" + JSON.stringify(topics));
     for (var i = 0; i < topics.length; ++i) {
         console.log("i:" + i);
         //console.log("topic:" + topics[i].topic);
