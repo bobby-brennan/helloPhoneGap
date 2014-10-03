@@ -17,6 +17,7 @@
  * under the License.
  */
 var showTopics = function() {
+    console.log("showing topics");
     var topics = localStorage.topics;
     for (var i = 0; i < topics.length; ++i) {
         console.log("topic:" + topics[i].topic);
