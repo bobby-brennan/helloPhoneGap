@@ -75,6 +75,7 @@ button {
   float: right;
   display: inline;
   width: 20%;
+  height: 100%;
   text-align: right;
   padding: 4px;
 }
