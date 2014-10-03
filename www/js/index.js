@@ -41,6 +41,9 @@ var app = {
     // Application Constructor
     initialize: function() {
         console.log("init");
+        if (!localStorage.topics) {
+            localStorage.topics = [];
+        }
         this.bindEvents();
         $.support.cors;
         $.mobile.allowCrossDomainPages;
