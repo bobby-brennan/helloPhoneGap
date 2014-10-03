@@ -66,13 +66,13 @@ body {
   background-color: #DDDDDD;
 }
 
-.topic.topicText {
+.topicText {
   float: left;
   width: 70%;
   background-color: #00FF00;
 }
 
-.topic.unreadCount {
+.unreadCount {
   float: right;
   display: inline;
   width: 20%;
