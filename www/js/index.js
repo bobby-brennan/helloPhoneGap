@@ -34,6 +34,10 @@ var app = {
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+        $('#test').html("hello world");
+        $('#test').rssfeed('http://feeds.reuters.com/reuters/oddlyEnoughNews', {
+            limit: 5
+        });
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
