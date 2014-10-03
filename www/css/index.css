@@ -94,6 +94,12 @@ input {
    font-size: 24px;
    background-color: #65AE3F;
    vertical-align: middle;
+   
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  overflow: hidden;
+  max-height: 99px;
+  line-height: 33px;
 }
 
 a {
