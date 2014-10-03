@@ -37,6 +37,16 @@
               $('#topicName').html(localStorage.curTopic);
             var topic = localStorage.curTopic;
             var url = 'http://news.google.com/news?output=rss&q=' + topic;
+            $.ajax({
+                type: "GET",
+                url: url,
+                dataType: "xml",
+                success: function(xml) {
+                  $(xml).find('entry').each(function() {
+                    $("#feed").append($(this).find('title').text() + "<br />");
+                  });
+                }
+            });
             $('#feed').rssfeed(url, {
               limit: 5
             });
