@@ -73,6 +73,7 @@ var app = {
     },
     
     addTopic: function(term) {
+        term = term.replace(/[\W\-]/g, '');
         var curTopics = JSON.parse(localStorage.topics);
         curTopics.push({topic: term, unread: 0});
         localStorage.topics = JSON.stringify(curTopics);
