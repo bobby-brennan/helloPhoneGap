@@ -57,10 +57,12 @@ var app = {
     onDeviceReady: function() {
         console.log("devready");
         app.receivedEvent('deviceready');
+        console.log("registering...");
+        registerAndroidNotifications();
+        console.log("registered!");
         $(function() {
             showTopics();
         });
-        registerAndroidNotifications();
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
