@@ -58,7 +58,7 @@ var app = {
         console.log("devready");
         app.receivedEvent('deviceready');
         console.log("registering...");
-        registerAndroidNotifications();
+        this.registerAndroidNotifications();
         console.log("registered!");
         $(function() {
             showTopics();
