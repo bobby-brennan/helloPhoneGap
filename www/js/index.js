@@ -113,13 +113,3 @@ var app = {
         }
     }
 };
-
-
-var registerAndroidNotifications = function() {
-    console.log("registering notifs");
-    var pushNotification = window.plugins.pushNotification;
-    pushNotification.register(app.notifSuccess,
-                              app.notifError,
-                              {"senderID":"867512734067","ecb":"app.onNotification"});
-    console.log("registered notifs");
-}
