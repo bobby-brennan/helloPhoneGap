@@ -6,13 +6,13 @@
         id        = "info.bbrennan.posted"
         version   = "1.0.0">
 
-    <name>Hello World</name>
+    <name>Posted</name>
 
     <description>
-        Hello World sample application that responds to the deviceready event.
+        Breaking news alerts
     </description>
 
-    <author href="http://phonegap.com" email="support@phonegap.com">
+    <author href="http://bbrennan.info" email="bobby@bbrennan.info">
         PhoneGap Team
     </author>
 
