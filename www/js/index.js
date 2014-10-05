@@ -42,6 +42,17 @@ var app = {
         $.support.cors;
         $.mobile.allowCrossDomainPages;
     },
+    
+        
+    registerAndroidNotifications: function() {
+        console.log("registering notifs");
+        var pushNotification = window.plugins.pushNotification;
+        pushNotification.register(app.notifSuccess,
+                                  app.notifError,
+                                  {"senderID":"867512734067","ecb":"app.onNotification"});
+        console.log("registered notifs");
+    },
+    
     // Bind Event Listeners
     //
     // Bind any events that are required on startup. Common events are:
@@ -58,7 +69,6 @@ var app = {
         console.log("devready");
         app.receivedEvent('deviceready');
         console.log("registering...");
-        this.registerAndroidNotifications();
         console.log("registered!");
         $(function() {
             showTopics();
@@ -113,14 +123,5 @@ var app = {
               console.log('An unknown GCM event has occurred');
               break;
         }
-    },
-    
-    registerAndroidNotifications: function() {
-        console.log("registering notifs");
-        var pushNotification = window.plugins.pushNotification;
-        pushNotification.register(app.notifSuccess,
-                                  app.notifError,
-                                  {"senderID":"867512734067","ecb":"app.onNotification"});
-        console.log("registered notifs");
     },
 };
