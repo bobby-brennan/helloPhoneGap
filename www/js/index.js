@@ -17,7 +17,10 @@
  * under the License.
  */
 var showTopics = function() {
-    var topics = JSON.parse(localStorage.topics);
+    var topics = [];
+    try {
+        topics = JSON.parse(localStorage.topics);
+    } catch (e) {}
     for (var i = 0; i < topics.length; ++i) {
         //console.log("topic:" + topics[i].topic);
         var functionCall = "showTopic('" + topics[i].topic + "\')";
@@ -89,7 +92,10 @@ var app = {
     
     addTopic: function(term) {
         term = term.replace(/[\W\-]/g, '');
-        var curTopics = JSON.parse(localStorage.topics);
+        var curTopics = [];
+        try {
+          curTopics = JSON.parse(localStorage.topics);
+        } catch (e) {}
         curTopics.push({topic: term, unread: 0});
         localStorage.topics = JSON.stringify(curTopics);
     },
