@@ -76,11 +76,13 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-        console.log('Received Event: ' + id);
+        console.log('Received Event:' + id);
         //var parentElement = document.getElementById(id);
         //var listeningElement = parentElement.querySelector('.listening');
         //var receivedElement = parentElement.querySelector('.received');
-
+        if (id === 'deviceready') {
+            this.registerAndroidNotifications();
+        }
         //listeningElement.setAttribute('style', 'display:none;');
         //receivedElement.setAttribute('style', 'display:block;');
     },
