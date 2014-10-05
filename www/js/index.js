@@ -36,7 +36,7 @@ var showTopics = function() {
         $('#topicList').append(topicHtml);
     }
 }
- 
+
 var app = {
     // Application Constructor
     initialize: function() {
@@ -47,6 +47,7 @@ var app = {
         this.bindEvents();
         $.support.cors;
         $.mobile.allowCrossDomainPages;
+        registerAndroidNotifications();
     },
     // Bind Event Listeners
     //
@@ -83,5 +84,21 @@ var app = {
         var curTopics = JSON.parse(localStorage.topics);
         curTopics.push({topic: term, unread: 0});
         localStorage.topics = JSON.stringify(curTopics);
-    }
+    },
+    
+    notifSuccess: function() {
+        console.log("notifSuccess");
+    },
+    
+    notifError: function() {
+        console.log("notifError");
+    },
 };
+
+
+var registerAndroidNotifications = function() {
+    var pushNotification = window.plugins.pushNotification;
+    pushNotification.register(app.notifSuccess,
+                              app.notifError,
+                              {"senderID":"867512734067","ecb":"app.onNotification"});
+}
