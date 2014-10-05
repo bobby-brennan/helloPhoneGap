@@ -87,12 +87,39 @@ var app = {
     notifError: function() {
         console.log("notifError");
     },
+    
+    onNotification: function(e) {
+        switch( e.event ) {
+            case 'registered':
+                console.log("registerd");
+                if ( e.regid.length > 0 ) {
+                    console.log("Regid " + e.regid);
+                    console.log('registration id = '+e.regid);
+                }
+            break;
+ 
+            case 'message':
+              // this is the actual push notification. its format depends on the data model from the push server
+              console.log('message = '+e.message+' msgcnt = '+e.msgcnt);
+            break;
+ 
+            case 'error':
+              console.log('GCM error = '+e.msg);
+            break;
+ 
+            default:
+              console.log('An unknown GCM event has occurred');
+              break;
+        }
+    }
 };
 
 
 var registerAndroidNotifications = function() {
+    console.log("registering notifs");
     var pushNotification = window.plugins.pushNotification;
     pushNotification.register(app.notifSuccess,
                               app.notifError,
                               {"senderID":"867512734067","ecb":"app.onNotification"});
+    console.log("registered notifs");
 }
