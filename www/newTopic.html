@@ -36,8 +36,11 @@
             console.log('initting');
             app.initialize();
             var addTopic = function() {
+                console.log("adding topic");
                 app.addTopic($('#topic').val());
+                console.log("added");
                 window.location.href = 'index.html';
+                console.log("set location");
             }
             var showTopic = function(topic) {
                 localStorage.curTopic = topic;
