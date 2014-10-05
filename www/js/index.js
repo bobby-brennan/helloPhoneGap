@@ -29,7 +29,7 @@ var showTopics = function() {
         topicHtml += '</div></div>';
         $('#topicList').append(topicHtml);
     }
-}
+};
 
 var app = {
     // Application Constructor
