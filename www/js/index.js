@@ -17,22 +17,16 @@
  * under the License.
  */
 var showTopics = function() {
-    console.log("showing topics");
     var topics = JSON.parse(localStorage.topics);
-    console.log("found " + topics.length + " topics");
-    console.log("topics:" + JSON.stringify(topics));
     for (var i = 0; i < topics.length; ++i) {
-        console.log("i:" + i);
         //console.log("topic:" + topics[i].topic);
         var functionCall = "showTopic('" + topics[i].topic + "\')";
-        console.log("function call:" + functionCall);
         var topicHtml = '<div class="topic" onclick="' + functionCall + '">';
         topicHtml +=  '<div class="topicText">';
         topicHtml += topics[i].topic;
         topicHtml += '</div><div class="unreadCount">';
         topicHtml += topics[i].unread;
         topicHtml += '</div></div>';
-        console.log("inserting:" + topicHtml);
         $('#topicList').append(topicHtml);
     }
 }
