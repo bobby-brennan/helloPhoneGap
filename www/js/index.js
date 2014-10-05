@@ -41,7 +41,6 @@ var app = {
         this.bindEvents();
         $.support.cors;
         $.mobile.allowCrossDomainPages;
-        registerAndroidNotifications();
     },
     // Bind Event Listeners
     //
