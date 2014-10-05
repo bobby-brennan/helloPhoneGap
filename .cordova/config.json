@@ -1,0 +1,9 @@
+{
+    "lib": {
+        "www": {
+            "id": "info.bbrennan.posted",
+            "version": "1.0.0",
+            "uri": "http://www.bbrennan.info/posted"
+        }
+    }
+}
