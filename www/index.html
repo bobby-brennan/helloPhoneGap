@@ -144,9 +144,9 @@ var showTopic = function(topic) {
     //console.log("topic:" + topics[i].topic);
     var functionCall = "showTopic('" + topic.topic + "\')";
     var deleteCall = "deleteTopic('" + topic.id + "\')";
-    var topicHtml = '<div class="topicLine"><div class="deleteButton">'
-    topicHtml += '<input type="submit" onclick="' + deleteCall + '" value="X">';
-    topicHtml += '</input></div><div class="topic">';
+    var topicHtml = '<div class="topicLine">'
+    topicHtml += '<input type="submit" class="deleteButton" onclick="' + deleteCall + '" value="X">';
+    topicHtml += '</input><div class="topic">';
     topicHtml += '<input type="submit" onclick="' + functionCall + '" value="' + topic.topic + '">';
     topicHtml += '</input></div></div>';
     $('#topicList').append(topicHtml);
