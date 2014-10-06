@@ -94,10 +94,11 @@ input[type="submit"] {
 }
 
 .topicLine {
-    display: inline-block;
+    
 }
 
 .topic {
+    display: inline-block;
     text-align: left;
     text-overflow: ellipsis;
     border-width: 0px;
@@ -109,6 +110,7 @@ input[type="submit"] {
 }
 
 .deleteButton {
+    display: inline-block;
     width: 70px;
     float: right;
     color: #210001;
