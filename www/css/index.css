@@ -113,6 +113,7 @@ input[type="submit"] {
 .deleteButton {
     width: 70px;
     color: #210001;
+    margin-left: 12px;
 }
 
 
