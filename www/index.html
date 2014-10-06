@@ -33,6 +33,65 @@
         <script type="text/javascript" src="PushNotification.js"></script>
         
         <script type="text/javascript">
+        
+var PLACEHOLDERS = [
+  "Ebola",
+  "Hillary Clinton",
+  "Syrian Conflict",
+  "Boston Red Sox",
+  "Lady Gaga",
+  "The Federal Reserve",
+  "Vladimir Putin",
+  "Amazon",
+  "AAPL",
+  "NASA",
+  "Jack White",
+  "Miley Cyrus",
+  "Barack Obama",
+  "Ron Paul",
+  "Ukraine",
+  "iPhone 6",
+  "General Motors",
+  "Space X",
+  "Net Neutrality",
+  "Fracking",
+  "Climate Change",
+  "Johnny Depp",
+  "Jon Stewart",
+  "Ron Paul",
+  "Immigration",
+  "Boko Haram",
+  "European Union",
+  "NYC events",
+  "Kanye West",
+  "Dallas Cowboys",
+  "Derek Jeter",
+  "Enterovirus",
+  "Netflix",
+  "Islamic State",
+  "Diabetes",
+  "Heart Disease",
+  "Childhood Obesity",
+];
+
+var curPlaceholderIdx = Math.floor(Math.random() * PLACEHOLDERS.length);
+var curChar = 0;
+var updatePlaceholder = function() {
+  var curPlaceholder = PLACEHOLDERS[curPlaceholderIdx];
+  if (curChar === curPlaceholder.length) {
+    curChar = 0;
+    var oldIdx = curPlaceholderIdx;
+    while (oldIdx === curPlaceholderIdx) {
+      curPlaceholderIdx = Math.floor(Math.random() * PLACEHOLDERS.length);
+    }
+    setTimeout(updatePlaceholder, 1500);
+  } else {
+    var addedChar = curPlaceholder.substring(curChar, curChar + 1);
+    $("#topicInput").attr('placeholder', curPlaceholder.substring(0, curChar + 1));
+    curChar++;
+    setTimeout(updatePlaceholder, addedChar === ' ' ? 0 : 100);
+  }
+}
 
 var addTopic = function() {
     console.log("adding topic for:" + localStorage.androidId);
@@ -84,7 +143,7 @@ app.initialize();
     <body>
       <div id="topicList">
         <form action="#" onsubmit="addTopic()">
-            <input type="text" id="topic" placeholder=""></input>
+            <input type="text" id="topicInput" placeholder=""></input>
             <input type="submit" class="topic" onclick="addTopic()" value="Add Topic"></input>
         </form>
         <div class="separator"></div>
