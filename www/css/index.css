@@ -89,11 +89,11 @@ input {
 input[type="submit"] {
   border-color: #6D7C99;
   border-size: 2px;
+  border-style: solid;
   background-color: #BBC4D7;
   color: #101D38;
   vertical-align: middle;
   border: 10px;
-  border-color: #6D7C99;
 }
 
 .rssRow {
