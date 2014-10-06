@@ -99,6 +99,9 @@ input[type="submit"] {
 .topic input {
   width: 100%;
   text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 #topicList {
