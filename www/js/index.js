@@ -65,6 +65,9 @@ var app = {
         //var receivedElement = parentElement.querySelector('.received');
         if (id === 'deviceready') {
             this.registerAndroidNotifications();
+            if (app.onDevReady) {
+                app.onDevReady();
+            }
         }
         //listeningElement.setAttribute('style', 'display:none;');
         //receivedElement.setAttribute('style', 'display:block;');
