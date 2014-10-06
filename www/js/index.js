@@ -79,7 +79,7 @@ var app = {
             console.log("no android ID, can't subscribe to:" + topic);
             return;
         }
-        topic = topic.replace(/[\W\-]/g, '');
+        topic = topic.replace(/[^\w\-\s]/g, '');
         $.post("http://www.bbrennan.info/posted/subscribeAndroid", {
             topic: topic,
             androidId: androidId,
