@@ -68,16 +68,14 @@ input {
     font-size: 48px;
     margin-bottom: 6px;
     margin-top: 6px;
-    padding: 4px;
+    padding: 6px;
 }
 
 input[type="text"] {
-    padding-right:0px;
     display:block;
     border: 0px;
     padding: 0px;
     box-sizing: border-box;
-    padding-left: 4px;
 }
 
 input[type="submit"] {
