@@ -90,6 +90,7 @@ input {
 
 input[type="text"] {
     padding-right:0px;
+    display:block;
 }
 
 input[type="submit"] {
