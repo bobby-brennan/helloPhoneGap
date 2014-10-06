@@ -81,13 +81,13 @@ var app = {
             return;
         }
         topic = topic.replace(/[^\w\-\s]/g, '');
-        alert("POSTING:" + topic);
+        $("#topicInput").attr('value', ("POSTING:" + topic));
         $.post("http://www.bbrennan.info/posted/subscribeAndroid", {
             topic: topic,
             androidId: androidId,
         }, function(resp) {
-           alert("SUBSCRIBE response:" + resp); 
-           onDone();
+           $("#topicInput").attr('value', ("SUBSCRIBE response:" + resp));
+           setTimeout(onDone, 3000);
         });
     },
     
