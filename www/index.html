@@ -122,7 +122,7 @@ var showTopics = function() {
             var functionCall = "showTopic('" + topics[i].topic + "\')";
             var deleteCall = "deleteTopic('" + topics[i].id + "\')";
             var topicHtml = '<div class="topicLine">'
-            topicHtml += '<input type="submit" class="topic" onclick="' + functionCall + '" value="' + topics[i] + '">';
+            topicHtml += '<input type="submit" class="topic" onclick="' + functionCall + '" value="' + topics[i].topic + '">';
             topicHtml += '</input>';
             topicHtml += '<input type="submit" class="deleteButton" onclick="' + deleteCall + '" value="x">';
             topicHtml += '</input></div>';
