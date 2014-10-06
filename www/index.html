@@ -34,10 +34,6 @@
         
         <script type="text/javascript">
 
-var newTopic = function() {
-    window.location.href = "newTopic.html";
-};
-
 var addTopic = function() {
     console.log("adding topic for:" + localStorage.androidId);
     app.addTopic($('#topic').val(), function(err){
