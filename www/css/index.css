@@ -68,14 +68,14 @@ input {
     font-size: 36px;
     margin-bottom: 6px;
     margin-top: 6px;
-    padding: 6px;
+    padding-left: 6px;
+    padding-right: 6px;
 }
 
 input[type="text"] {
     display:block;
     border: 0px;
-    padding: 0px;
-    padding-left: 6px;
+    padding-right: 0px;
     box-sizing: border-box;
 }
 
