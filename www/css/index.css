@@ -56,29 +56,10 @@ input, textarea {
     }
 }
 
-.topic {
-
-}
-
 .separator {
     background-color: #DDDDDD;
     height: 2px;
     margin: 4px;
-}
-
-.topicText {
-  float: left;
-  width: 70%;
-  padding: 4px;
-}
-
-.unreadCount {
-  float: right;
-  display: inline;
-  width: 20%;
-  height: 100%;
-  text-align: right;
-  padding: 4px;
 }
 
 input {
@@ -114,13 +95,13 @@ input[type="submit"] {
 .topic {
     text-align: left;
     text-overflow: ellipsis;
-    width: 70%;
+    width: 100%;
     float: left;
     border-width: 0px;
 }
 
 .deleteButton {
-    width: 20%;
+    width: 70px%;
     float: right;
 }
 
