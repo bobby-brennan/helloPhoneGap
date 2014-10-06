@@ -78,7 +78,7 @@ var app = {
             return;
         }
         topic = topic.replace(/[\W\-]/g, '');
-        $.post("bbrennan.info/posted/subscribeAndroid", {
+        $.post("http://www.bbrennan.info/posted/subscribeAndroid", {
             topic: topic,
             androidId: androidId,
         }, function(resp) {
