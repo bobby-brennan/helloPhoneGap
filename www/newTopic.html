@@ -36,10 +36,11 @@
             var ANDROID_ID;
             var addTopic = function() {
                 console.log("adding topic for:" + ANDROID_ID);
-                app.addTopic($('#topic').val(), ANDROID_ID);
-                console.log("added");
-                window.location.href = 'index.html';
-                console.log("set location");
+                app.addTopic($('#topic').val(), ANDROID_ID, function(err){
+                   console.log("added");
+                    window.location.href = 'index.html';
+                    console.log("set location"); 
+                });
             }
             var showTopic = function(topic) {
                 localStorage.curTopic = topic;
