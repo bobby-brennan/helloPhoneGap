@@ -111,6 +111,7 @@ var deleteTopic = function(topic) {
     }
     $.post(url, {androidId: androidId, topicId: topic}, function(resp) {
         console.log("delete response:" + resp);
+        window.location.href = 'index.html';
     })
 }
             
