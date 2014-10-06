@@ -134,23 +134,22 @@ var showTopics = function() {
         console.log("topics:" + resp);
         var topics = JSON.parse(resp)["subscriptions"];
         for (var i = 0; i < topics.length; ++i) {
-            //console.log("topic:" + topics[i].topic);
-            var functionCall = "showTopic('" + topics[i].topic + "\')";
-            var deleteCall = "deleteTopic('" + topics[i].id + "\')";
-            var topicHtml = '<div class="topicLine">'
-            topicHtml += '<input type="submit" class="deleteButton" onclick="' + deleteCall + '" value="X">';
-            topicHtml += '</input>';
-            topicHtml += '<input type="submit" class="topic" onclick="' + functionCall + '" value="' + topics[i].topic + '">';
-            topicHtml += '</input></div>';
-            $('#topicList').append(topicHtml);
+            showTopic(topics[i])
         }
     });
     return true;
 };
 
 var showTopic = function(topic) {
-    localStorage.curTopic = topic;
-    window.location.href = 'showTopic.html';
+    //console.log("topic:" + topics[i].topic);
+    var functionCall = "showTopic('" + topic.topic + "\')";
+    var deleteCall = "deleteTopic('" + topic.id + "\')";
+    var topicHtml = '<div class="topicLine">'
+    topicHtml += '<input type="submit" class="deleteButton" onclick="' + deleteCall + '" value="X">';
+    topicHtml += '</input>';
+    topicHtml += '<input type="submit" class="topic" onclick="' + functionCall + '" value="' + topic.topic + '">';
+    topicHtml += '</input></div>';
+    $('#topicList').append(topicHtml);
 };
 
 console.log('initting');
@@ -159,12 +158,20 @@ app.onDevReady = function() {
     if (!showTopics()) {
         app.onAndroidId = showTopics;
     }
+    addTopic({
+        topic: 'sample1',
+        id: -1
+    });
+    addTopic({
+        topic: 'sample2',
+        id: -1
+    });
 }
 app.initialize();
             
         </script>
     </head>
-    <body onload="updatePlaceholder()">
+    <body onload="updatePlaceholder();">
       <form action="#" onsubmit="addTopic()">
         <input type="text" id="topicInput" placeholder=""></input>
         <input type="submit" id="addTopic" value="Add Topic"></input>
