@@ -91,6 +91,8 @@ input {
 input[type="text"] {
     padding-right:0px;
     display:block;
+    border: 0px;
+    padding: 0px;
 }
 
 input[type="submit"] {
