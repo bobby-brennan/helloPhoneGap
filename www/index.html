@@ -158,6 +158,12 @@ app.onDevReady = function() {
     if (!showTopics()) {
         app.onAndroidId = showTopics;
     }
+}
+app.initialize();
+ 
+ 
+ $("body").on('load', function() {
+    updatePlaceholder();
     addTopic({
         topic: 'sample1',
         id: -1
@@ -166,9 +172,7 @@ app.onDevReady = function() {
         topic: 'sample2',
         id: -1
     });
-}
-app.initialize();
-            
+ })           
         </script>
     </head>
     <body onload="updatePlaceholder();">
