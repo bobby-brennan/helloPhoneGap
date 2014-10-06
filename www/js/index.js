@@ -72,15 +72,15 @@ var app = {
         //receivedElement.setAttribute('style', 'display:block;');
     },
     
-    addTopic: function(topic) {
-        if (!ANDROID_ID) {
+    addTopic: function(topic, androidId) {
+        if (!androidId) {
             console.log("no android ID, can't subscribe to:" + topic);
             return;
         }
         topic = topic.replace(/[\W\-]/g, '');
         $.post("bbrennan.info/posted/subscribeAndroid", {
             topic: topic,
-            androidId: ANDROID_ID,
+            androidId: androidId,
         }, function(resp) {
            console.log("subscribe response:" + resp); 
         });
