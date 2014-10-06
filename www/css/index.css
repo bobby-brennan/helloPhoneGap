@@ -61,7 +61,7 @@ input, textarea {
 .separator {
     background-color: #DDDDDD;
     height: 2px;
-    padding: 4px;
+    margin: 4px;
 }
 
 .topicText {
