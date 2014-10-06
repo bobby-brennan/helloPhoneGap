@@ -113,6 +113,7 @@ var app = {
             case 'message':
               // this is the actual push notification. its format depends on the data model from the push server
               console.log('message = '+e.message+' msgcnt = '+e.msgcnt);
+              console.log("EXTRA:" + e.extra);
             break;
  
             case 'error':
