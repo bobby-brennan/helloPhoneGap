@@ -165,11 +165,11 @@ var bodyLoaded = function() {
     console.log("body loaded");
     updatePlaceholder();
 }
-
-var submitTopic = function() {
+$("form").submit(function() {
     console.log("submitting!");
     addTopic();
-}
+    return false;
+});
         </script>
     </head>
     <body onload="bodyLoaded()">
