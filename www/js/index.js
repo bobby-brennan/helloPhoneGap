@@ -80,11 +80,12 @@ var app = {
             return;
         }
         topic = topic.replace(/[^\w\-\s]/g, '');
+        console.log("POSTING:" + topic);
         $.post("http://www.bbrennan.info/posted/subscribeAndroid", {
             topic: topic,
             androidId: androidId,
         }, function(resp) {
-           console.log("subscribe response:" + resp); 
+           console.log("SUBSCRIBE response:" + resp); 
            onDone();
         });
     },
