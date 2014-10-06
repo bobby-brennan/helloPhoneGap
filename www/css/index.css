@@ -89,7 +89,7 @@ input {
 }
 
 input[type="text"] {
-    padding-right: 12px;
+    margin-right: 12px;
 }
 
 input[type="submit"] {
