@@ -17,21 +17,25 @@
  * under the License.
  */
 var showTopics = function() {
-    var topics = [];
-    try {
-        topics = JSON.parse(localStorage.topics);
-    } catch (e) {}
-    for (var i = 0; i < topics.length; ++i) {
-        //console.log("topic:" + topics[i].topic);
-        var functionCall = "showTopic('" + topics[i].topic + "\')";
-        var topicHtml = '<div class="topic" onclick="' + functionCall + '">';
-        topicHtml +=  '<div class="topicText">';
-        topicHtml += topics[i].topic;
-        topicHtml += '</div><div class="unreadCount">';
-        topicHtml += topics[i].unread;
-        topicHtml += '</div></div>';
-        $('#topicList').append(topicHtml);
+    if (!this.androidId) {
+        console.log("no android ID, can't get topics");
+        return;
     }
+    $.get("http://bbrennan.info/posted/getSubscriptionsAndroid?androidId=" + this.androidId, function(resp) {
+        console.log("topics:" + resp);
+        var topics = JSON.parse(resp)["subscriptions"];
+        for (var i = 0; i < topics.length; ++i) {
+            //console.log("topic:" + topics[i].topic);
+            var functionCall = "showTopic('" + topics[i].topic + "\')";
+            var topicHtml = '<div class="topic" onclick="' + functionCall + '">';
+            topicHtml +=  '<div class="topicText">';
+            topicHtml += topics[i].topic;
+            topicHtml += '</div><div class="unreadCount">';
+            topicHtml += topics[i].unread;
+            topicHtml += '</div></div>';
+            $('#topicList').append(topicHtml);
+        }
+    });
 };
 
 var app = {
@@ -91,13 +95,14 @@ var app = {
     },
     
     addTopic: function(term) {
+        if (!this.androidId) {
+            console.log("no android ID, can't subscribe to:" + term);
+            return;
+        }
         term = term.replace(/[\W\-]/g, '');
-        var curTopics = [];
-        try {
-          curTopics = JSON.parse(localStorage.topics);
-        } catch (e) {}
-        curTopics.push({topic: term, unread: 0});
-        localStorage.topics = JSON.stringify(curTopics);
+        $.get("bbrennan.info/posted/subscribeAndroid?androidId=" + this.androidId + "&topic=" + term, function(resp) {
+           console.log("subscribe response:" + resp); 
+        });
     },
     
     notifSuccess: function() {
@@ -115,6 +120,7 @@ var app = {
                 if ( e.regid.length > 0 ) {
                     console.log("Regid " + e.regid);
                     console.log('registration id = '+e.regid);
+                    this.androidId = e.regid;
                 }
             break;
  
