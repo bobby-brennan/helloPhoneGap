@@ -53,6 +53,12 @@ body {
 
 }
 
+.separator {
+    background-color: #DDDDDD;
+    height: 2px;
+    padding: 4px;
+}
+
 .topicText {
   float: left;
   width: 70%;
