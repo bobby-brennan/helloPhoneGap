@@ -96,13 +96,11 @@ input[type="submit"] {
     text-align: left;
     text-overflow: ellipsis;
     width: 100%;
-    float: left;
     border-width: 0px;
 }
 
 .deleteButton {
-    width: 70px%;
-    float: right;
+    width: 70px;
 }
 
 .rssRow {
