@@ -34,7 +34,7 @@ body {
     margin-top:20px;
     padding:12px;
     width:100%;
-    background-color: #8CCF69;
+    background-color: #101D38;
 }
 
 /* Portrait layout (default) */
@@ -54,8 +54,8 @@ body {
   width: 100%;
   height: 70px;
   margin-bottom: 12px;
-  background-color: #65AE3F;
-  color: #B5E69B;
+  background-color: #BBC4D7;
+  color: #101D38;
   vertical-align: middle;
   border: 2px;
   border-color: #B5E69B;
