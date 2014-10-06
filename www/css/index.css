@@ -96,7 +96,7 @@ input[type="submit"] {
 .topic {
     text-align: left;
     text-overflow: ellipsis;
-    width: 100%;
+    width: auto;
     border-width: 0px;
 }
 
