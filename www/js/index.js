@@ -77,9 +77,6 @@ var app = {
         app.receivedEvent('deviceready');
         console.log("registering...");
         console.log("registered!");
-        $(function() {
-            showTopics();
-        });
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -121,6 +118,9 @@ var app = {
                     console.log("Regid " + e.regid);
                     console.log('registration id = '+e.regid);
                     this.androidId = e.regid;
+                    $(function() {
+                        showTopics();
+                    });
                 }
             break;
  
