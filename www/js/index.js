@@ -16,6 +16,8 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+ 
+var ANDROID_ID;
 
 var app = {
     // Application Constructor
@@ -71,12 +73,15 @@ var app = {
     },
     
     addTopic: function(term) {
-        if (!this.androidId) {
+        if (!ANDROID_ID) {
             console.log("no android ID, can't subscribe to:" + term);
             return;
         }
         term = term.replace(/[\W\-]/g, '');
-        $.get("bbrennan.info/posted/subscribeAndroid?androidId=" + this.androidId + "&topic=" + term, function(resp) {
+        $.post("bbrennan.info/posted/subscribeAndroid", {
+            term: term,
+            androidId: ANDROID_ID,
+        }, function(resp) {
            console.log("subscribe response:" + resp); 
         });
     },
@@ -99,10 +104,7 @@ var app = {
                     if (app.onAndroidId) {
                         app.onAndroidId(e.regid);
                     }
-                    this.androidId = e.regid;
-                    $(function() {
-                        showTopics();
-                    });
+                    ANDROID_ID = e.regid;
                 }
             break;
  
