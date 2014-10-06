@@ -89,7 +89,7 @@ input {
 
 input[type="submit"] {
   border-color: #6D7C99;
-  border-width: 2px;
+  border-width: 10px;
   border-style: solid;
   background-color: #BBC4D7;
   color: #101D38;
