@@ -93,32 +93,28 @@ input[type="submit"] {
   border-width: 4px;
 }
 
-#topicList {
-    display: inline-block;
-}
-
-.topicLine {
-    
-}
-
 .topic {
-    display: inline-block;
     text-align: left;
-    text-overflow: ellipsis;
-    border-width: 0px;
-    width: 100%;
+    overflow: hidden;
 }
 
 .topic input {
+  width: 100%;
+}
+
+#topicList {
+    width: 100%;
+}
+
+.topicLine input {
     float: right;
 }
 
 .deleteButton {
-    display: inline-block;
     width: 70px;
-    float: right;
     color: #210001;
 }
+
 
 .rssRow {
    padding: 4px;
