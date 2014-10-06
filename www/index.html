@@ -162,7 +162,7 @@ app.onDevReady = function() {
 app.initialize();
  
  
- $("body").on('load', function() {
+ var bodyLoaded = function() {
     updatePlaceholder();
     showTopic({
         topic: 'sample1',
@@ -172,10 +172,10 @@ app.initialize();
         topic: 'sample2',
         id: -1
     });
- })           
+ };
         </script>
     </head>
-    <body onload="updatePlaceholder();">
+    <body onload="bodyLoaded()">
       <form action="#" onsubmit="addTopic()">
         <input type="text" id="topicInput" placeholder=""></input>
         <input type="submit" id="addTopic" value="Add Topic"></input>
