@@ -93,7 +93,7 @@ input[type="submit"] {
   border-width: 4px;
 }
 
-.topicList {
+#topicList {
     display: inline-block;
 }
 
