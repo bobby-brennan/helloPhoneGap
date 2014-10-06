@@ -93,14 +93,19 @@ input[type="submit"] {
   border-width: 4px;
 }
 
+.topicLine {
+    display: inline-block;
+}
+
 .topic {
     text-align: left;
     text-overflow: ellipsis;
     border-width: 0px;
+    width: 100%;
 }
 
 .topic input {
-    width: auto;
+    float: right;
 }
 
 .deleteButton {
