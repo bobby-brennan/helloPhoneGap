@@ -16,27 +16,6 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-var showTopics = function() {
-    if (!this.androidId) {
-        console.log("no android ID, can't get topics");
-        return;
-    }
-    $.get("http://bbrennan.info/posted/getSubscriptionsAndroid?androidId=" + this.androidId, function(resp) {
-        console.log("topics:" + resp);
-        var topics = JSON.parse(resp)["subscriptions"];
-        for (var i = 0; i < topics.length; ++i) {
-            //console.log("topic:" + topics[i].topic);
-            var functionCall = "showTopic('" + topics[i].topic + "\')";
-            var topicHtml = '<div class="topic" onclick="' + functionCall + '">';
-            topicHtml +=  '<div class="topicText">';
-            topicHtml += topics[i].topic;
-            topicHtml += '</div><div class="unreadCount">';
-            topicHtml += topics[i].unread;
-            topicHtml += '</div></div>';
-            $('#topicList').append(topicHtml);
-        }
-    });
-};
 
 var app = {
     // Application Constructor
@@ -46,8 +25,8 @@ var app = {
             localStorage.topics = [];
         }
         this.bindEvents();
-        $.support.cors;
-        $.mobile.allowCrossDomainPages;
+        //$.support.cors;
+        //$.mobile.allowCrossDomainPages;
     },
     
         
@@ -117,6 +96,9 @@ var app = {
                 if ( e.regid.length > 0 ) {
                     console.log("Regid " + e.regid);
                     console.log('registration id = '+e.regid);
+                    if (app.onAndroidId) {
+                        app.onAndroidId(e.regid);
+                    }
                     this.androidId = e.regid;
                     $(function() {
                         showTopics();
