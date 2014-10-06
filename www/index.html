@@ -37,6 +37,14 @@
 var newTopic = function() {
     window.location.href = "newTopic.html";
 };
+
+var addTopic = function() {
+    console.log("adding topic for:" + localStorage.androidId);
+    app.addTopic($('#topic').val(), function(err){
+        console.log("added");
+        window.location.href = 'index.html';
+    });
+}
             
 var showTopics = function() {
     var androidId = localStorage.androidId;
