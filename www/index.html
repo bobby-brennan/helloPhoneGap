@@ -38,7 +38,12 @@ var newTopic = function() {
     window.location.href = "newTopic.html";
 };
             
-var showTopics = function(androidId) {
+var showTopics = function() {
+    var androidId = localStorage.androidId;
+    if (!androidId) {
+        console.log("no id, can't show topics!")
+        return false;
+    }
     console.log("showing topics:" + androidId);
     var url = "http://bbrennan.info/posted/getSubscriptionsAndroid";
     $.post(url, {androidId: androidId}, function(resp) {
@@ -54,6 +59,7 @@ var showTopics = function(androidId) {
             $('#topicList').append(topicHtml);
         }
     });
+    return true;
 };
             
 var showTopic = function(topic) {
@@ -62,7 +68,11 @@ var showTopic = function(topic) {
 };
 
 console.log('initting');
-app.onAndroidId = showTopics;
+app.onDevReady = function() {
+    if (!showTopics()) {
+        app.onAndroidId = showTopics;
+    }
+}
 app.initialize();
             
         </script>
