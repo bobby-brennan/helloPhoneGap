@@ -93,6 +93,10 @@ input[type="submit"] {
   border-width: 4px;
 }
 
+.topicList {
+    display: inline-block;
+}
+
 .topicLine {
     
 }
