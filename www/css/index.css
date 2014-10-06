@@ -83,7 +83,8 @@ input {
     height: 70px;
     width: 100%;
     font-size: 48px;
-    margin-bottom: 12px;
+    margin-bottom: 6px;
+    margin-top: 6px;
 }
 
 input[type="submit"] {
