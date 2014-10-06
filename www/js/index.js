@@ -77,6 +77,7 @@ var app = {
         var androidId = localStorage.androidId;
         if (!androidId) {
             console.log("no android ID, can't subscribe to:" + topic);
+            onDone(1);
             return;
         }
         topic = topic.replace(/[^\w\-\s]/g, '');
