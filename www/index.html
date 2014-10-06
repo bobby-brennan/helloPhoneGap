@@ -35,17 +35,39 @@
         <script type="text/javascript" src="PushNotification.js"></script>
         
         <script type="text/javascript">
-            console.log('initting');
-            app.initialize();
+
+var newTopic = function() {
+    window.location.href = "newTopic.html";
+};
             
-            var newTopic = function() {
-                window.location.href = "newTopic.html";
-            };
+var showTopics = function(androidId) {
+    var urlPrefix = "http://bbrennan.info/posted/getSubscriptionsAndroid?androidId=";
+    $.get(urlPrefix + this.androidId, function(resp) {
+        console.log("topics:" + resp);
+        var topics = JSON.parse(resp)["subscriptions"];
+        for (var i = 0; i < topics.length; ++i) {
+            //console.log("topic:" + topics[i].topic);
+            var functionCall = "showTopic('" + topics[i].topic + "\')";
+            var topicHtml = '<div class="topic" onclick="' + functionCall + '">';
+            topicHtml +=  '<div class="topicText">';
+            topicHtml += topics[i].topic;
+            topicHtml += '</div><div class="unreadCount">';
+            topicHtml += topics[i].unread;
+            topicHtml += '</div></div>';
+            $('#topicList').append(topicHtml);
+        }
+    });
+};
             
-            var showTopic = function(topic) {
-                localStorage.curTopic = topic;
-                window.location.href = 'showTopic.html';
-            };
+var showTopic = function(topic) {
+    localStorage.curTopic = topic;
+    window.location.href = 'showTopic.html';
+};
+
+console.log('initting');
+app.onAndroidId = showTopics;
+app.initialize();
+            
         </script>
     </head>
     <body>
