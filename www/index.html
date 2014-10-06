@@ -103,7 +103,7 @@ var addTopic = function() {
             console.log("error adding topic!");
         }
     });
-}
+};
 
 var deleteTopic = function(topic) {
     var url = 'http://www.bbrennan.info/posted/deleteSubscriptionAndroid';
@@ -161,22 +161,18 @@ app.onDevReady = function() {
 }
 app.initialize();
  
- 
- var bodyLoaded = function() {
-    updatePlaceholder();
-    showTopic({
-        topic: 'sample1',
-        id: -1
-    });
-    showTopic({
-        topic: 'sample2',
-        id: -1
-    });
- };
+var bodyLoaded = function() {
+    console.log("body loaded");
+}
+
+var submitTopic = function() {
+    console.log("submitting!");
+    addTopic();
+}
         </script>
     </head>
     <body onload="bodyLoaded()">
-      <form action="#" onsubmit="addTopic()">
+      <form action="#" onsubmit="submitTopic()">
         <input type="text" id="topicInput" placeholder=""></input>
         <input type="submit" id="addTopic" value="Add Topic"></input>
       </form>
