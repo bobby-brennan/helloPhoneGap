@@ -134,7 +134,7 @@ var showTopics = function() {
         console.log("topics:" + resp);
         var topics = JSON.parse(resp)["subscriptions"];
         topics.sort(function(t1, t2){
-           return t1 > t2 ? 1 : -1; 
+           return t1.topic > t2.topic ? 1 : -1; 
         });
         for (var i = 0; i < topics.length; ++i) {
             showTopic(topics[i])
