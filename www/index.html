@@ -165,12 +165,12 @@ app.initialize();
         </script>
     </head>
     <body onload="updatePlaceholder()">
+      <form action="#" onsubmit="addTopic()">
+        <input type="text" id="topicInput" placeholder=""></input>
+        <input type="submit" value="Add Topic"></input>
+      </form>
+      <div class="separator"></div>
       <div id="topicList">
-        <form action="#" onsubmit="addTopic()">
-            <input type="text" id="topicInput" placeholder=""></input>
-            <input type="submit" value="Add Topic"></input>
-        </form>
-        <div class="separator"></div>
       </div>
     </body>
 </html>
