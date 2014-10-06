@@ -40,6 +40,7 @@ var newTopic = function() {
             
 var showTopics = function() {
     var androidId = localStorage.androidId;
+    console.log("show topics:" + androidId);
     if (!androidId) {
         console.log("no id, can't show topics!")
         return false;
