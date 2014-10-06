@@ -52,11 +52,9 @@ var showTopics = function() {
         var topics = JSON.parse(resp)["subscriptions"];
         for (var i = 0; i < topics.length; ++i) {
             //console.log("topic:" + topics[i].topic);
-            var functionCall = "showTopic('" + topics[i].topic + "\')";
-            var topicHtml = '<div class="topic" onclick="' + functionCall + '">';
-            topicHtml +=  '<div class="topicText">';
-            topicHtml += topics[i];
-            topicHtml += '</div></div>';
+            var functionCall = "showTopic('" + topics[i] + "\')";
+            var topicHtml = '<input type="submit" class="topic" onclick="' + functionCall + '" value="' + topics[i] + '">';
+            topicHtml += '</input>';
             $('#topicList').append(topicHtml);
         }
     });
