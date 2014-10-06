@@ -97,11 +97,12 @@ input[type="text"] {
 
 input[type="submit"] {
   border-color: #6D7C99;
-  border-width: 10px;
+  border-width: 4px;
   border-style: solid;
   background-color: #BBC4D7;
   color: #101D38;
   vertical-align: middle;
+  box-sizing: border-box;
 }
 
 .topic {
