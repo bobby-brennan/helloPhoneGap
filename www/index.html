@@ -100,6 +100,10 @@ var addTopic = function() {
         window.location.href = 'index.html';
     });
 }
+
+var deleteTopic = function(topic) {
+    console.log("DELETE:" + topic);
+}
             
 var showTopics = function() {
     var androidId = localStorage.androidId;
@@ -116,8 +120,12 @@ var showTopics = function() {
         for (var i = 0; i < topics.length; ++i) {
             //console.log("topic:" + topics[i].topic);
             var functionCall = "showTopic('" + topics[i] + "\')";
-            var topicHtml = '<input type="submit" class="topic" onclick="' + functionCall + '" value="' + topics[i] + '">';
+            var deleteCall = "deleteTopic('" + topics[i] + "\')";
+            var topicHtml = '<div class="topicLine">'
+            topicHtml += '<input type="submit" class="topic" onclick="' + functionCall + '" value="' + topics[i] + '">';
             topicHtml += '</input>';
+            topicHtml += '<input type="submit" class="deleteButton" onclick="' + deleteCall + '" value="x">';
+            topicHtml += '</input></div>';
             $('#topicList').append(topicHtml);
         }
     });
