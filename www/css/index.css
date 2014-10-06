@@ -88,6 +88,10 @@ input {
     padding: 4px;
 }
 
+input[type="text"] {
+    padding-right: 12px;
+}
+
 input[type="submit"] {
   border-color: #6D7C99;
   border-width: 10px;
