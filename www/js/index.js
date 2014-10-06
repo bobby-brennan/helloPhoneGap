@@ -16,8 +16,6 @@
  * specific language governing permissions and limitations
  * under the License.
  */
- 
-var ANDROID_ID;
 
 var app = {
     // Application Constructor
@@ -102,10 +100,7 @@ var app = {
                 if ( e.regid.length > 0 ) {
                     console.log("Regid " + e.regid);
                     console.log('registration id = '+e.regid);
-                    if (app.onAndroidId) {
-                        app.onAndroidId(e.regid);
-                    }
-                    ANDROID_ID = e.regid;
+                    localStorage.androidId = e.regid;
                 }
             break;
  
