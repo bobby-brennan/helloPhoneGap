@@ -119,8 +119,8 @@ var showTopics = function() {
         var topics = JSON.parse(resp)["subscriptions"];
         for (var i = 0; i < topics.length; ++i) {
             //console.log("topic:" + topics[i].topic);
-            var functionCall = "showTopic('" + topics[i] + "\')";
-            var deleteCall = "deleteTopic('" + topics[i] + "\')";
+            var functionCall = "showTopic('" + topics[i].topic + "\')";
+            var deleteCall = "deleteTopic('" + topics[i].id + "\')";
             var topicHtml = '<div class="topicLine">'
             topicHtml += '<input type="submit" class="topic" onclick="' + functionCall + '" value="' + topics[i] + '">';
             topicHtml += '</input>';
@@ -131,7 +131,7 @@ var showTopics = function() {
     });
     return true;
 };
-            
+
 var showTopic = function(topic) {
     localStorage.curTopic = topic;
     window.location.href = 'showTopic.html';
