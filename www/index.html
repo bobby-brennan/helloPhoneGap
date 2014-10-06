@@ -49,9 +49,7 @@ var showTopics = function(androidId) {
             var functionCall = "showTopic('" + topics[i].topic + "\')";
             var topicHtml = '<div class="topic" onclick="' + functionCall + '">';
             topicHtml +=  '<div class="topicText">';
-            topicHtml += topics[i].topic;
-            topicHtml += '</div><div class="unreadCount">';
-            topicHtml += topics[i].unread;
+            topicHtml += topics[i];
             topicHtml += '</div></div>';
             $('#topicList').append(topicHtml);
         }
