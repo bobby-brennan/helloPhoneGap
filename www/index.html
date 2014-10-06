@@ -96,8 +96,12 @@ var updatePlaceholder = function() {
 var addTopic = function() {
     console.log("adding topic for:" + localStorage.androidId);
     app.addTopic($('#topicInput').val(), function(err){
-        console.log("added, redirecting....");
-        window.location.href = 'index.html';
+        if (!err) {
+            console.log("added, redirecting....");
+            window.location.href = 'index.html';
+        } else {
+            console.log("error adding topic!");
+        }
     });
 }
 
