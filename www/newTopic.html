@@ -31,13 +31,11 @@
         <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
-            var ANDROID_ID;
             var addTopic = function() {
-                console.log("adding topic for:" + ANDROID_ID);
+                console.log("adding topic for:" + localStorage.androidId);
                 app.addTopic($('#topic').val(), ANDROID_ID, function(err){
                    console.log("added");
                     window.location.href = 'index.html';
-                    console.log("set location"); 
                 });
             }
             var showTopic = function(topic) {
@@ -45,10 +43,6 @@
                 window.location.href = 'showTopic.html';
             }
             console.log('initting');
-            app.onAndroidId = function(id) {
-                ANDROID_ID = id;
-                console.log("set ID:" + ANDROID_ID);
-            }
             app.initialize();
             
         </script>
