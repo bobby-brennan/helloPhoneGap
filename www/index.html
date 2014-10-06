@@ -42,8 +42,8 @@ var newTopic = function() {
             
 var showTopics = function(androidId) {
     console.log("showing topics:" + androidId);
-    var urlPrefix = "http://bbrennan.info/posted/getSubscriptionsAndroid?androidId=";
-    $.get(urlPrefix + this.androidId, function(resp) {
+    var url = "http://bbrennan.info/posted/getSubscriptionsAndroid";
+    $.post(url, {androidId: this.androidId}, function(resp) {
         console.log("topics:" + resp);
         var topics = JSON.parse(resp)["subscriptions"];
         for (var i = 0; i < topics.length; ++i) {
