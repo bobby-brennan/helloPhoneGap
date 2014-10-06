@@ -58,13 +58,7 @@ body {
   color: #101D38;
   vertical-align: middle;
   border: 2px;
-  border-color: #B5E69B;
-}
-
-
-button {
-  color: #000000;
-  background-color: #DDDDDD;
+  border-color: #6D7C99;
 }
 
 .topicText {
@@ -86,6 +80,10 @@ input {
     height: 70px;
     width: 100%;
     font-size: 48px;
+}
+
+input[type="submit"] {
+    border-color: #6D7C99;
 }
 
 .rssRow {
