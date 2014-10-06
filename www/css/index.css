@@ -80,13 +80,6 @@ input[type="text"] {
     padding-left: 4px;
 }
 
-
-.deleteButton {
-    width: 70px;
-    float: right;
-    color: #210001;
-}
-
 input[type="submit"] {
   border-style: solid;
   border-color: #6D7C99;
@@ -105,7 +98,12 @@ input[type="submit"] {
     text-overflow: ellipsis;
     width: 100%;
     border-width: 0px;
-    float: left;
+}
+
+.deleteButton {
+    width: 70px;
+    float: right;
+    color: #210001;
 }
 
 .rssRow {
