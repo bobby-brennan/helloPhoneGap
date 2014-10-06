@@ -72,7 +72,7 @@ var app = {
         //receivedElement.setAttribute('style', 'display:block;');
     },
     
-    addTopic: function(topic, androidId) {
+    addTopic: function(topic, androidId, onDone) {
         if (!androidId) {
             console.log("no android ID, can't subscribe to:" + topic);
             return;
@@ -83,6 +83,7 @@ var app = {
             androidId: androidId,
         }, function(resp) {
            console.log("subscribe response:" + resp); 
+           onDone();
         });
     },
     
