@@ -79,7 +79,11 @@ app.initialize();
     </head>
     <body>
       <div id="topicList">
-          <input type="submit" id="newTopic" onclick="newTopic()" value="New Topic"></input>
+        <form action="#" onsubmit="addTopic()">
+            <input type="text" id="topic" placeholder=""></input>
+            <input type="submit" class="topic" onclick="addTopic()" value="Add Topic"></input>
+        </form>
+        <div class="separator"></div>
       </div>
     </body>
 </html>
