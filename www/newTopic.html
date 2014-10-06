@@ -33,7 +33,7 @@
         <script type="text/javascript">
             var addTopic = function() {
                 console.log("adding topic for:" + localStorage.androidId);
-                app.addTopic($('#topic').val(), ANDROID_ID, function(err){
+                app.addTopic($('#topic').val(), function(err){
                    console.log("added");
                     window.location.href = 'index.html';
                 });
