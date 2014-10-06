@@ -98,6 +98,7 @@ input[type="submit"] {
     text-overflow: ellipsis;
     width: 100%;
     border-width: 0px;
+    float: left;
 }
 
 .deleteButton {
