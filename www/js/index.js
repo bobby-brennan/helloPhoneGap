@@ -70,7 +70,8 @@ var app = {
         //receivedElement.setAttribute('style', 'display:block;');
     },
     
-    addTopic: function(topic, androidId, onDone) {
+    addTopic: function(topic, onDone) {
+        var androidId = localStorage.androidId;
         if (!androidId) {
             console.log("no android ID, can't subscribe to:" + topic);
             return;
