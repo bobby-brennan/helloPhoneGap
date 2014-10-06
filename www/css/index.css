@@ -75,6 +75,7 @@ input[type="text"] {
     display:block;
     border: 0px;
     padding: 0px;
+    padding-left: 6px;
     box-sizing: border-box;
 }
 
