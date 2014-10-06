@@ -93,6 +93,8 @@ input[type="text"] {
     display:block;
     border: 0px;
     padding: 0px;
+    box-sizing: border-box;
+    padding-right: 4px;
 }
 
 input[type="submit"] {
@@ -102,7 +104,6 @@ input[type="submit"] {
   background-color: #BBC4D7;
   color: #101D38;
   vertical-align: middle;
-  box-sizing: border-box;
 }
 
 .topic {
