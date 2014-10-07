@@ -48,7 +48,7 @@ var app = {
             "ecb":"app.onNotificationAPN",
         });
         console.log("registered notifs");
-    }
+    },
     
     // Bind Event Listeners
     //
@@ -119,8 +119,9 @@ var app = {
     onIosToken: function(token) {
         console.log("IOS TOKEN:" + token);
         localStorage.iosId = token;
-    }
-                // handle APNS notifications for iOS
+    },
+    
+    // handle APNS notifications for iOS
     onNotificationAPN: function(e) {
         if (e.alert) {
             console.log('push-notification: ' + e.alert);
@@ -135,7 +136,7 @@ var app = {
         if (e.badge) {
             pushNotification.setApplicationIconBadgeNumber(successHandler, e.badge);
         }
-    }
+    },
     
     onNotification: function(e) {
         switch( e.event ) {
