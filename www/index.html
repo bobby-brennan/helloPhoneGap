@@ -212,7 +212,6 @@ var showTopic = function(topic) {
 console.log('initting');
 app.onDevReady = function() {
     console.log("on dev ready called");
-    setTimeout(showTopics, 8000);
     if (!showTopics()) {
         app.onGetNotifId = showTopics;
     }
