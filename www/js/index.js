@@ -75,7 +75,13 @@ var app = {
         //var listeningElement = parentElement.querySelector('.listening');
         //var receivedElement = parentElement.querySelector('.received');
         if (id === 'deviceready') {
-            this.registerAndroidNotifications();
+            if (device.platform == 'android' ||
+                device.platform == 'Android' ||
+                device.platform == 'amazon-fireos' ) {
+                this.registerAndroidNotifications();
+            } else {
+                this.registerIosNotifications();
+            }
             if (app.onDevReady) {
                 app.onDevReady();
             }
