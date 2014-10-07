@@ -226,6 +226,7 @@ app.initialize();
 var bodyLoaded = function() {
     console.log("body loaded");
     updatePlaceholder();
+    initDrawing();
     startLoading();
     $($("form").submit(function() {
         console.log("submitting!");
@@ -235,7 +236,7 @@ var bodyLoaded = function() {
 }
         </script>
     </head>
-    <body onload="bodyLoaded()">
+    <body onload="bodyLoaded();">
       <form>
         <input type="text" id="topicInput" placeholder=""></input>
         <input type="submit" id="addTopic" value="Add Topic"></input>
