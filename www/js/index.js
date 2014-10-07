@@ -113,8 +113,8 @@ var app = {
         console.log("notifSuccess");
     },
     
-    notifError: function() {
-        console.log("notifError");
+    notifError: function(err) {
+        console.log("notifError:" + err);
     },
     
     onIosToken: function(token) {
