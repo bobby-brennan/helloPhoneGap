@@ -167,6 +167,7 @@ var deleteTopic = function(topic) {
         console.log("no id, can't delete topic!")
         return false;
     }
+    postData["topicId"] = topic;
     $.post(url, postData, function(resp) {
         console.log("delete response:" + resp);
         console.log("reloading...");
