@@ -212,9 +212,10 @@ var showTopic = function(topic) {
 console.log('initting');
 app.onDevReady = function() {
     console.log("on dev ready called");
-    if (!showTopics()) {
-        app.onAndroidId = showTopics;
-    }
+    setTimeout(showTopics, 8000);
+    //if (!showTopics()) {
+    //    app.onAndroidId = showTopics;
+    //}
 }
 app.initialize();
  
@@ -238,7 +239,8 @@ var bodyLoaded = function() {
       </form>
       <div class="separator"></div>
       <div id="topicList">
-        <canvas id="loading" width="240" height="240"></canvas>
+        <canvas id="loading" width="240" height="240">
+        </canvas>
       </div>
     </body>
 </html>
