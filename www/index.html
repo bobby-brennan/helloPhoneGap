@@ -150,7 +150,6 @@ var updatePlaceholder = function() {
 }
 
 var addTopic = function() {
-    console.log("adding topic for:" + localStorage.androidId);
     app.addTopic($('#topicInput').val(), function(err){
         if (!err) {
             console.log("added, redirecting....");
@@ -162,19 +161,11 @@ var addTopic = function() {
 };
 
 var deleteTopic = function(topic) {
+    var postData = app.initPostRequest();
     var url = 'http://www.bbrennan.info/posted/deleteSubscriptionMobile';
-    var androidId = localStorage.androidId;
-    var iosId = localStorage.iosId;
-    console.log("show topics:" + androidId);
-    if (!(androidId || iosId)) {
+    if (!postData) {
         console.log("no id, can't delete topic!")
         return false;
-    }
-    var postData = {topicId: topic};
-    if (androidId) {
-        postData["androidId"] = androidId;
-    } else {
-        postData["iosId"] = iosId;
     }
     $.post(url, postData, function(resp) {
         console.log("delete response:" + resp);
@@ -185,15 +176,13 @@ var deleteTopic = function(topic) {
 }
             
 var showTopics = function() {
-    var androidId = localStorage.androidId;
-    console.log("show topics:" + androidId);
-    if (!androidId) {
+    var postData = app.initPostRequest();
+    if (!postData) {
         console.log("no id, can't show topics!")
         return false;
     }
-    console.log("showing topics:" + androidId);
     var url = "http://bbrennan.info/posted/getSubscriptionsAndroid";
-    $.post(url, {androidId: androidId}, function(resp) {
+    $.post(url, postData, function(resp) {
         console.log("topics:" + resp);
         stopLoading();
         var topics = JSON.parse(resp)["subscriptions"];
@@ -224,7 +213,7 @@ app.onDevReady = function() {
     console.log("on dev ready called");
     setTimeout(showTopics, 8000);
     if (!showTopics()) {
-        app.onAndroidId = showTopics;
+        app.onGetNotifId = showTopics;
     }
     initDrawing();
     startLoading();
