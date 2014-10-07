@@ -93,17 +93,21 @@ var app = {
     
     addTopic: function(topic, onDone) {
         var androidId = localStorage.androidId;
-        if (!androidId) {
+        var iosId = localStorage.iosId;
+        if (!(androidId || iosId)) {
             console.log("no android ID, can't subscribe to:" + topic);
             onDone(1);
             return;
         }
         topic = topic.replace(/[^\w\-\s]/g, '');
+        var postData = {topic: topic};
+        if (androidId) {
+            postData["androidId"] = androidId;
+        } else {
+            postData["iosId"] = iosId;
+        }
         console.log("POSTING:" + topic);
-        $.post("http://www.bbrennan.info/posted/subscribeAndroid", {
-            topic: topic,
-            androidId: androidId,
-        }, function(resp) {
+        $.post("http://www.bbrennan.info/posted/subscribeMobile", postData, function(resp) {
            console.log("SUBSCRIBE response:" + resp);
            setTimeout(onDone, 3000);
         });
