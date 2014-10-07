@@ -41,19 +41,22 @@ var imd;
 var circ = Math.PI * 2;
 var quart = Math.PI / 2;
 function initDrawing() {
+    console.log("initting drawing");
     bg = $("#loading")[0];
     ctx = ctx = bg.getContext('2d');
     ctx.beginPath();
-    ctx.strokeStyle = '#BBC4D7';
+    ctx.strokeStyle = '#FFFFFF';
     ctx.lineCap = 'round';
     ctx.closePath();
     ctx.fill();
     ctx.lineWidth = 10.0;
 
     imd = ctx.getImageData(0, 0, 240, 240);
+    console.log("done initting drawing");
 }
 
 var draw = function(current) {
+    console.log("draw:" + current);
     ctx.putImageData(imd, 0, 0);
     ctx.beginPath();
     var start = -quart
@@ -70,8 +73,7 @@ var TOTAL_STEPS = 100;
 var ANIMATION_LOOP_MS = 1000;
 var step = -1;
 var runStep = function() {
-    console.log("runStep:" + step);
-  if (step != -1) {
+  if (step !== -1) {
     draw(step / TOTAL_STEPS);
     step = (step + 1) % TOTAL_STEPS;
     setTimeout(runStep, ANIMATION_LOOP_MS / TOTAL_STEPS);
