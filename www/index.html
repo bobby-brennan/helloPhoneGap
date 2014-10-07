@@ -34,6 +34,60 @@
         
         <script type="text/javascript">
         
+// SVG stuff
+var bg = document.id('loading');
+var ctx = ctx = bg.getContext('2d');
+var imd = null;
+var circ = Math.PI * 2;
+var quart = Math.PI / 2;
+
+ctx.beginPath();
+ctx.strokeStyle = '#BBC4D7';
+ctx.lineCap = 'round';
+ctx.closePath();
+ctx.fill();
+ctx.lineWidth = 10.0;
+
+imd = ctx.getImageData(0, 0, 240, 240);
+
+var draw = function(current) {
+    ctx.putImageData(imd, 0, 0);
+    ctx.beginPath();
+    var start = -quart
+    var end = 0;
+    var offset = current * circ;
+    start += offset;
+    end += offset;
+    ctx.arc(120, 120, 70, start, end, false);
+    ctx.stroke();
+}
+
+var TOTAL_STEPS = 100;
+
+var ANIMATION_LOOP_MS = 1000;
+var step = -1;
+var runStep = function() {
+  if (step != -1) {
+    draw(step / TOTAL_STEPS);
+    step = (step + 1) % TOTAL_STEPS;
+    setTimeout(runStep, ANIMATION_LOOP_MS / TOTAL_STEPS);
+  }
+}
+
+var startLoading = function() {
+    $("#topicList").html('<canvas id="loading" width="240" height="240"></canvas>')
+    step = 0;
+    runStep();
+}
+
+myFx.set = function(now){
+    var ret = Fx.prototype.set.call(this, now);
+    this.fireEvent('step', now);
+    return ret;
+};
+
+myFx.start(0, 1000);
+        
 var PLACEHOLDERS = [
   "Ebola",
   "Hillary Clinton",
@@ -122,6 +176,7 @@ var deleteTopic = function(topic) {
 }
             
 var showTopics = function() {
+    step = -1;
     var androidId = localStorage.androidId;
     console.log("show topics:" + androidId);
     if (!androidId) {
@@ -167,6 +222,7 @@ app.initialize();
 var bodyLoaded = function() {
     console.log("body loaded");
     updatePlaceholder();
+    startLoading();
     $($("form").submit(function() {
         console.log("submitting!");
         addTopic();
