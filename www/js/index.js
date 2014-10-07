@@ -41,6 +41,7 @@ var app = {
     
     registerIosNotifications: function() {
         console.log("registering ios notifs");
+        var pushNotification = window.plugins.pushNotification;
         pushNotification.register(app.onIosToken, app.notifError, {
             "badge":"true",
             "sound":"true",
