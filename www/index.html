@@ -221,6 +221,10 @@ app.onDevReady = function() {
     //if (!showTopics()) {
     //    app.onAndroidId = showTopics;
     //}
+    setTimeout(function(){
+        initDrawing();
+        startLoading();
+    }, 1000)
     $(initDrawing());
     $(startLoading());
 }
