@@ -45,34 +45,26 @@ function initDrawing() {
     bg = document.getElementById("loading");
     bg.height=100;
     ctx = ctx = bg.getContext('2d');
-    ctx.fillRect(-1000,-1000,2000,2000);
     ctx.beginPath();
     ctx.strokeStyle = '#555555';
     ctx.lineCap = 'round';
     ctx.closePath();
     ctx.fill();
     ctx.lineWidth = 10.0;
-    ctx.stroke();
-
     imd = ctx.getImageData(0, 0, 240, 240);
     console.log("done initting drawing");
 }
 
 var draw = function(current) {
-    console.log("draw:" + ctx);
     ctx.putImageData(imd, 0, 0);
-    console.log("d1");
     ctx.beginPath();
     var start = -quart
     var end = 0;
     var offset = current * circ;
-    console.log("d2");
     start += offset;
     end += offset;
-    console.log("d3");
     ctx.arc(120, 120, 70, start, end, false);
     ctx.stroke();
-    console.log("d4");
 }
 
 var TOTAL_STEPS = 100;
@@ -219,14 +211,11 @@ console.log('initting');
 app.onDevReady = function() {
     console.log("on dev ready called");
     setTimeout(showTopics, 8000);
-    //if (!showTopics()) {
-    //    app.onAndroidId = showTopics;
-    //}
-    setTimeout(function(){
-        initDrawing();
-        startLoading();
-    }, 1000);
+    if (!showTopics()) {
+        app.onAndroidId = showTopics;
+    }
     initDrawing();
+    startLoading();
 }
 app.initialize();
  
