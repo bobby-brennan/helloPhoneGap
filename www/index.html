@@ -89,7 +89,6 @@ var runStep = function() {
 
 var startLoading = function() {
     console.log("start loading");
-    $("#topicList").html('<canvas id="loading" width="240" height="240"></canvas>');
     step = 0;
     setTimeout(runStep, 3000);
 }
@@ -226,9 +225,8 @@ app.onDevReady = function() {
     setTimeout(function(){
         initDrawing();
         startLoading();
-    }, 1000)
-    $(initDrawing());
-    $(startLoading());
+    }, 1000);
+    initDrawing();
 }
 app.initialize();
  
