@@ -94,11 +94,11 @@ var app = {
     addTopic: function(topic, onDone) {
         var postData = app.initPostRequest();
         if (!postData) {
-            console.log("no android ID, can't subscribe to:" + topic);
+            console.log("no ID, can't subscribe to:" + topic);
             onDone(1);
             return;
         }
-        var postData = {topic: topic};
+        postData["topic"] = topic;
         console.log("POSTING:" + topic);
         $.post("http://www.bbrennan.info/posted/subscribeMobile", postData, function(resp) {
            console.log("SUBSCRIBE response:" + resp);
