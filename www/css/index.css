@@ -62,6 +62,10 @@ input, textarea {
     margin: 4px;
 }
 
+canvas {
+    border:1px solid #000000;
+}
+
 input {
     height: 50px;
     width: 100%;
