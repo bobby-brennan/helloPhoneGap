@@ -86,7 +86,7 @@ var startLoading = function() {
     console.log("start loading");
     $("#topicList").html('<canvas id="loading" width="240" height="240"></canvas>');
     step = 0;
-    runStep();
+    setTimeout(runStep, 3000);
 }
 
 var PLACEHOLDERS = [
