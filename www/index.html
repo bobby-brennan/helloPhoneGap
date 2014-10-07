@@ -221,14 +221,14 @@ app.onDevReady = function() {
     //if (!showTopics()) {
     //    app.onAndroidId = showTopics;
     //}
+    initDrawing();
+    startLoading();
 }
 app.initialize();
  
 var bodyLoaded = function() {
     console.log("body loaded");
     updatePlaceholder();
-    initDrawing();
-    startLoading();
     $($("form").submit(function() {
         console.log("submitting!");
         addTopic();
