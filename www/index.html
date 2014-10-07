@@ -80,8 +80,9 @@ var runStep = function() {
 
 var startLoading = function() {
     console.log("start loading");
+    $("#loading").show();
     step = 0;
-    setTimeout(runStep, 3000);
+    runStep();
 }
 
 var PLACEHOLDERS = [
