@@ -78,19 +78,12 @@ var runStep = function() {
 }
 
 var startLoading = function() {
-    $("#topicList").html('<canvas id="loading" width="240" height="240"></canvas>')
+    console.log("start loading");
+    $("#topicList").html('<canvas id="loading" width="240" height="240"></canvas>');
     step = 0;
     runStep();
 }
 
-myFx.set = function(now){
-    var ret = Fx.prototype.set.call(this, now);
-    this.fireEvent('step', now);
-    return ret;
-};
-
-myFx.start(0, 1000);
-        
 var PLACEHOLDERS = [
   "Ebola",
   "Hillary Clinton",
