@@ -176,7 +176,7 @@ var deleteTopic = function(topic) {
     } else {
         postData["iosId"] = iosId;
     }
-    $.post(url, {androidId: androidId, topicId: topic}, function(resp) {
+    $.post(url, postData, function(resp) {
         console.log("delete response:" + resp);
         console.log("reloading...");
         window.location.href = 'index.html';
