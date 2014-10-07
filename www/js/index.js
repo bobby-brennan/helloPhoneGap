@@ -31,13 +31,24 @@ var app = {
     
         
     registerAndroidNotifications: function() {
-        console.log("registering notifs");
+        console.log("registering android notifs");
         var pushNotification = window.plugins.pushNotification;
         pushNotification.register(app.notifSuccess,
                                   app.notifError,
                                   {"senderID":"867512734067","ecb":"app.onNotification"});
         console.log("registered notifs");
     },
+    
+    registerIosNotifications: function() {
+        console.log("registering ios notifs");
+        pushNotification.register(tokenHandler, errorHandler, {
+            "badge":"true",
+            "sound":"true",
+            "alert":"true",
+            "ecb":"onNotificationAPN",
+        });
+        console.log("registered notifs");
+    }
     
     // Bind Event Listeners
     //
@@ -98,6 +109,23 @@ var app = {
     notifError: function() {
         console.log("notifError");
     },
+    
+                // handle APNS notifications for iOS
+    onNotificationAPN: function(e) {
+        if (e.alert) {
+            console.log('push-notification: ' + e.alert);
+        }
+                    
+        if (e.sound) {
+            // playing a sound also requires the org.apache.cordova.media plugin
+            var snd = new Media(e.sound);
+            snd.play();
+        }
+                
+        if (e.badge) {
+            pushNotification.setApplicationIconBadgeNumber(successHandler, e.badge);
+        }
+    }
     
     onNotification: function(e) {
         switch( e.event ) {
