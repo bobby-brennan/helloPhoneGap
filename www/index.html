@@ -43,7 +43,6 @@ var quart = Math.PI / 2;
 function initDrawing() {
     console.log("initting drawing");
     bg = document.getElementById("loading");
-    bg.height=100;
     ctx = ctx = bg.getContext('2d');
     ctx.beginPath();
     ctx.strokeStyle = '#555555';
@@ -184,6 +183,7 @@ var showTopics = function() {
     var url = "http://bbrennan.info/posted/getSubscriptionsAndroid";
     $.post(url, {androidId: androidId}, function(resp) {
         console.log("topics:" + resp);
+        $("#loading").hide();
         var topics = JSON.parse(resp)["subscriptions"];
         topics.sort(function(t1, t2){
            return t1.topic.toLowerCase() > t2.topic.toLowerCase() ? 1 : -1; 
@@ -236,9 +236,9 @@ var bodyLoaded = function() {
         <input type="submit" id="addTopic" value="Add Topic"></input>
       </form>
       <div class="separator"></div>
+      <canvas id="loading" width="240" height="240">
+      </canvas>
       <div id="topicList">
-        <canvas id="loading" width="240" height="240">
-        </canvas>
       </div>
     </body>
 </html>
