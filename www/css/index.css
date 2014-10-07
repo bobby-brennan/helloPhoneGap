@@ -62,10 +62,11 @@ input, textarea {
     margin: 4px;
 }
 
-canvas {
-    border:1px solid #000000;
-    margin-left: auto;
-    margin-right: auto;
+#canvasBox {
+  width: 90%;
+  height: 240px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 input {
