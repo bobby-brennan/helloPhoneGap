@@ -44,13 +44,15 @@ function initDrawing() {
     console.log("initting drawing");
     bg = document.getElementById("loading");
     ctx = ctx = bg.getContext('2d');
+    /*
     ctx.beginPath();
     ctx.strokeStyle = '#555555';
     ctx.lineCap = 'round';
     ctx.closePath();
     ctx.fill();
     ctx.lineWidth = 10.0;
-    ctx.rect(20,20,150,100);
+    */
+    ctx.rect(0,0,10,100);
     ctx.stroke();
 
     imd = ctx.getImageData(0, 0, 240, 240);
@@ -58,7 +60,7 @@ function initDrawing() {
 }
 
 var draw = function(current) {
-    console.log("draw:" + current);
+    //console.log("draw:" + current);
     ctx.putImageData(imd, 0, 0);
     ctx.beginPath();
     var start = -quart
