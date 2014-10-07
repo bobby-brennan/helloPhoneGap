@@ -183,6 +183,7 @@ var app = {
             }
             data["iosId"] = localStorage.iosId;
         }
+        console.log("POSTDATA:" + JSON.stringify(data));
         return data;
     }
 };
