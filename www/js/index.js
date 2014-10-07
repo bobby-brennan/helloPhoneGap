@@ -41,7 +41,7 @@ var app = {
     
     registerIosNotifications: function() {
         console.log("registering ios notifs");
-        pushNotification.register(tokenHandler, errorHandler, {
+        pushNotification.register(onIosToken, errorHandler, {
             "badge":"true",
             "sound":"true",
             "alert":"true",
@@ -116,6 +116,10 @@ var app = {
         console.log("notifError");
     },
     
+    onIosToken: function(token) {
+        console.log("IOS TOKEN:" + token);
+        localStorage.iosId = token;
+    }
                 // handle APNS notifications for iOS
     onNotificationAPN: function(e) {
         if (e.alert) {
