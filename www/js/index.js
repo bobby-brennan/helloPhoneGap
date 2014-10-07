@@ -92,24 +92,17 @@ var app = {
     },
     
     addTopic: function(topic, onDone) {
-        var androidId = localStorage.androidId;
-        var iosId = localStorage.iosId;
-        if (!(androidId || iosId)) {
+        var postData = app.initPostRequest();
+        if (!postData) {
             console.log("no android ID, can't subscribe to:" + topic);
             onDone(1);
             return;
         }
-        topic = topic.replace(/[^\w\-\s]/g, '');
         var postData = {topic: topic};
-        if (androidId) {
-            postData["androidId"] = androidId;
-        } else {
-            postData["iosId"] = iosId;
-        }
         console.log("POSTING:" + topic);
         $.post("http://www.bbrennan.info/posted/subscribeMobile", postData, function(resp) {
            console.log("SUBSCRIBE response:" + resp);
-           setTimeout(onDone, 3000);
+           onDone();
         });
     },
     
@@ -174,4 +167,21 @@ var app = {
               break;
         }
     },
+    
+    initPostRequest: function() {
+        var data = {uuid: window.device.uuid};
+        if (device.platform == 'android' ||
+            device.platform == 'Android' ||
+            device.platform == 'amazon-fireos' ) {
+            if (!localStorage.androidId) {
+                return;
+            }
+            data["androidId"] = localStorage.androidId;
+        } else {
+            if (!localStorage.iosId) {
+                return;
+            }
+            data["iosId"] = localStorage.iosId;
+        }
+    }
 };
