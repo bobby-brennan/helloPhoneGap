@@ -35,20 +35,23 @@
         <script type="text/javascript">
         
 // SVG stuff
-var bg = document.id('loading');
-var ctx = ctx = bg.getContext('2d');
-var imd = null;
+var bg;
+var ctx;
+var imd;
 var circ = Math.PI * 2;
 var quart = Math.PI / 2;
+function initDrawing() {
+    bg = $("#loading")[0];
+    ctx = ctx = bg.getContext('2d');
+    ctx.beginPath();
+    ctx.strokeStyle = '#BBC4D7';
+    ctx.lineCap = 'round';
+    ctx.closePath();
+    ctx.fill();
+    ctx.lineWidth = 10.0;
 
-ctx.beginPath();
-ctx.strokeStyle = '#BBC4D7';
-ctx.lineCap = 'round';
-ctx.closePath();
-ctx.fill();
-ctx.lineWidth = 10.0;
-
-imd = ctx.getImageData(0, 0, 240, 240);
+    imd = ctx.getImageData(0, 0, 240, 240);
+}
 
 var draw = function(current) {
     ctx.putImageData(imd, 0, 0);
