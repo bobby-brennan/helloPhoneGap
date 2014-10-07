@@ -42,7 +42,7 @@ var circ = Math.PI * 2;
 var quart = Math.PI / 2;
 function initDrawing() {
     console.log("initting drawing");
-    bg = $("#loading")[0];
+    bg = document.getElementById("loading");
     ctx = ctx = bg.getContext('2d');
     ctx.beginPath();
     ctx.strokeStyle = '#555555';
