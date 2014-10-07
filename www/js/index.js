@@ -41,11 +41,11 @@ var app = {
     
     registerIosNotifications: function() {
         console.log("registering ios notifs");
-        pushNotification.register(onIosToken, errorHandler, {
+        pushNotification.register(app.onIosToken, app.notifError, {
             "badge":"true",
             "sound":"true",
             "alert":"true",
-            "ecb":"onNotificationAPN",
+            "ecb":"app.onNotificationAPN",
         });
         console.log("registered notifs");
     }
