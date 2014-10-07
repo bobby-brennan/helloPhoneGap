@@ -70,6 +70,7 @@ var TOTAL_STEPS = 100;
 var ANIMATION_LOOP_MS = 1000;
 var step = -1;
 var runStep = function() {
+    console.log("runStep:" + step);
   if (step != -1) {
     draw(step / TOTAL_STEPS);
     step = (step + 1) % TOTAL_STEPS;
