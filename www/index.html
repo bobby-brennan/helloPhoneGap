@@ -177,6 +177,7 @@ var deleteTopic = function(topic) {
             
 var showTopics = function() {
     step = -1;
+    $("#loading").hide(true);
     var androidId = localStorage.androidId;
     console.log("show topics:" + androidId);
     if (!androidId) {
@@ -238,6 +239,7 @@ var bodyLoaded = function() {
       </form>
       <div class="separator"></div>
       <div id="topicList">
+        <canvas id="loading" width="240" height="240"></canvas>
       </div>
     </body>
 </html>
