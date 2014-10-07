@@ -181,7 +181,7 @@ var showTopics = function() {
         console.log("no id, can't show topics!")
         return false;
     }
-    var url = "http://bbrennan.info/posted/getSubscriptionsAndroid";
+    var url = "http://bbrennan.info/posted/getSubscriptionsMobile";
     $.post(url, postData, function(resp) {
         console.log("topics:" + resp);
         stopLoading();
