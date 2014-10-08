@@ -71,11 +71,18 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-        console.log('Received Event:' + id);
+        console.log('Receeived Event:' + id);
         //var parentElement = document.getElementById(id);
         //var listeningElement = parentElement.querySelector('.listening');
         //var receivedElement = parentElement.querySelector('.received');
         if (id === 'deviceready') {
+            console.log("getting phone num");
+            var telephoneNumber = cordova.require("cordova/plugin/telephonenumber");
+            telephoneNumber.get(function(result) {
+              console.log("result = " + result);
+            }, function() {
+                console.log("error");
+            });
             if (device.platform == 'android' ||
                 device.platform == 'Android' ||
                 device.platform == 'amazon-fireos' ) {
@@ -86,13 +93,6 @@ var app = {
             if (app.onDevReady) {
                 app.onDevReady();
             }
-            console.log("getting phone num");
-            var telephoneNumber = cordova.require("cordova/plugin/telephonenumber");
-            telephoneNumber.get(function(result) {
-              console.log("result = " + result);
-            }, function() {
-                console.log("error");
-            });
         }
         //listeningElement.setAttribute('style', 'display:none;');
         //receivedElement.setAttribute('style', 'display:block;');
