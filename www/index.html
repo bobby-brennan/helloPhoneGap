@@ -78,6 +78,11 @@ var runStep = function() {
   }
 }
 
+var stopLoading = function() {
+    step = -1;
+    $("#loading").hide();
+}
+
 var startLoading = function() {
     console.log("start loading");
     $("#loading").show();
@@ -145,7 +150,6 @@ var updatePlaceholder = function() {
 }
 
 var addTopic = function() {
-    console.log("adding topic for:" + localStorage.androidId);
     app.addTopic($('#topicInput').val(), function(err){
         if (!err) {
             console.log("added, redirecting....");
@@ -157,14 +161,14 @@ var addTopic = function() {
 };
 
 var deleteTopic = function(topic) {
-    var url = 'http://www.bbrennan.info/posted/deleteSubscriptionAndroid';
-    var androidId = localStorage.androidId;
-    console.log("show topics:" + androidId);
-    if (!androidId) {
-        console.log("no id, can't show topics!")
+    var postData = app.initPostRequest();
+    var url = 'http://www.bbrennan.info/posted/deleteSubscriptionMobile';
+    if (!postData) {
+        console.log("no id, can't delete topic!")
         return false;
     }
-    $.post(url, {androidId: androidId, topicId: topic}, function(resp) {
+    postData["topicId"] = topic;
+    $.post(url, postData, function(resp) {
         console.log("delete response:" + resp);
         console.log("reloading...");
         window.location.href = 'index.html';
@@ -173,18 +177,15 @@ var deleteTopic = function(topic) {
 }
             
 var showTopics = function() {
-    step = -1;
-    var androidId = localStorage.androidId;
-    console.log("show topics:" + androidId);
-    if (!androidId) {
+    var postData = app.initPostRequest();
+    if (!postData) {
         console.log("no id, can't show topics!")
         return false;
     }
-    console.log("showing topics:" + androidId);
-    var url = "http://bbrennan.info/posted/getSubscriptionsAndroid";
-    $.post(url, {androidId: androidId}, function(resp) {
+    var url = "http://bbrennan.info/posted/getSubscriptionsMobile";
+    $.post(url, postData, function(resp) {
         console.log("topics:" + resp);
-        $("#loading").hide();
+        stopLoading();
         var topics = JSON.parse(resp)["subscriptions"];
         topics.sort(function(t1, t2){
            return t1.topic.toLowerCase() > t2.topic.toLowerCase() ? 1 : -1; 
@@ -211,9 +212,8 @@ var showTopic = function(topic) {
 console.log('initting');
 app.onDevReady = function() {
     console.log("on dev ready called");
-    setTimeout(showTopics, 8000);
     if (!showTopics()) {
-        app.onAndroidId = showTopics;
+        app.onGetNotifId = showTopics;
     }
     initDrawing();
     startLoading();

@@ -41,6 +41,7 @@ var app = {
     
     registerIosNotifications: function() {
         console.log("registering ios notifs");
+        var pushNotification = window.plugins.pushNotification;
         pushNotification.register(app.onIosToken, app.notifError, {
             "badge":"true",
             "sound":"true",
@@ -48,7 +49,7 @@ var app = {
             "ecb":"app.onNotificationAPN",
         });
         console.log("registered notifs");
-    }
+    },
     
     // Bind Event Listeners
     //
@@ -91,20 +92,17 @@ var app = {
     },
     
     addTopic: function(topic, onDone) {
-        var androidId = localStorage.androidId;
-        if (!androidId) {
-            console.log("no android ID, can't subscribe to:" + topic);
+        var postData = app.initPostRequest();
+        if (!postData) {
+            console.log("no ID, can't subscribe to:" + topic);
             onDone(1);
             return;
         }
-        topic = topic.replace(/[^\w\-\s]/g, '');
+        postData["topic"] = topic;
         console.log("POSTING:" + topic);
-        $.post("http://www.bbrennan.info/posted/subscribeAndroid", {
-            topic: topic,
-            androidId: androidId,
-        }, function(resp) {
+        $.post("http://www.bbrennan.info/posted/subscribeMobile", postData, function(resp) {
            console.log("SUBSCRIBE response:" + resp);
-           setTimeout(onDone, 3000);
+           onDone();
         });
     },
     
@@ -112,15 +110,16 @@ var app = {
         console.log("notifSuccess");
     },
     
-    notifError: function() {
-        console.log("notifError");
+    notifError: function(err) {
+        console.log("notifError:" + err);
     },
     
     onIosToken: function(token) {
         console.log("IOS TOKEN:" + token);
         localStorage.iosId = token;
-    }
-                // handle APNS notifications for iOS
+    },
+    
+    // handle APNS notifications for iOS
     onNotificationAPN: function(e) {
         if (e.alert) {
             console.log('push-notification: ' + e.alert);
@@ -135,7 +134,7 @@ var app = {
         if (e.badge) {
             pushNotification.setApplicationIconBadgeNumber(successHandler, e.badge);
         }
-    }
+    },
     
     onNotification: function(e) {
         switch( e.event ) {
@@ -168,4 +167,23 @@ var app = {
               break;
         }
     },
+    
+    initPostRequest: function() {
+        var data = {uuid: window.device.uuid};
+        if (device.platform == 'android' ||
+            device.platform == 'Android' ||
+            device.platform == 'amazon-fireos' ) {
+            if (!localStorage.androidId) {
+                return;
+            }
+            data["androidId"] = localStorage.androidId;
+        } else {
+            if (!localStorage.iosId) {
+                return;
+            }
+            data["iosId"] = localStorage.iosId;
+        }
+        console.log("POSTDATA:" + JSON.stringify(data));
+        return data;
+    }
 };
