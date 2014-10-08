@@ -86,6 +86,13 @@ var app = {
             if (app.onDevReady) {
                 app.onDevReady();
             }
+            console.log("getting phone num");
+            var telephoneNumber = cordova.require("cordova/plugin/telephonenumber");
+            telephoneNumber.get(function(result) {
+              console.log("result = " + result);
+            }, function() {
+                console.log("error");
+            });
         }
         //listeningElement.setAttribute('style', 'display:none;');
         //receivedElement.setAttribute('style', 'display:block;');
