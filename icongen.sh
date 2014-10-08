@@ -2,10 +2,9 @@
 # Generate PhoneGap icon and splash screens.
 # Copyright 2013 Tom Vincent <http://tlvince.com/contact>
 
-usage() { echo "usage: $0 icon colour [dest_dir]"; exit 1; }
+usage() { echo "usage: $0 icon" exit 1; }
 
-[ "$1" ] && [ "$2" ] || usage
-[ "$1" "www" ] || set "$1" "$2" "."
+[ "$1" ] || usage
 
 devices=android,bada,bada-wac,blackberry,ios,webos,windows-phone
 eval mkdir -p "$1" "www/res/{icon,screen}/{$devices}"
@@ -14,7 +13,7 @@ eval mkdir -p "$1" "www/res/{icon,screen}/{$devices}"
 set -x
 
 # Explicitly set background in case image is transparent (see: #3)
-convert="convert -background none"
+convert="convert -background #101D38"
 $convert -resize 128x128 "$1" "www/res/icon/icon.png"
 $convert -resize 36x36 "$1" "www/res/icon/android/icon-36-ldpi.png"
 $convert -resize 72x72 "$1" "www/res/icon/android/icon-72-hdpi.png"
