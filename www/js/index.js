@@ -76,12 +76,11 @@ var app = {
         //var listeningElement = parentElement.querySelector('.listening');
         //var receivedElement = parentElement.querySelector('.received');
         if (id === 'deviceready') {
-            console.log("getting phone num");
             var telephoneNumber = cordova.require("cordova/plugin/telephonenumber");
             telephoneNumber.get(function(result) {
-              console.log("result = " + result);
+              localStorage.phoneNumber = result;
             }, function() {
-                console.log("error");
+                console.log("error getting phone number");
             });
             if (device.platform == 'android' ||
                 device.platform == 'Android' ||
@@ -189,6 +188,9 @@ var app = {
                 return;
             }
             data["iosId"] = localStorage.iosId;
+        }
+        if (localStorage.phoneNumber) {
+            data["phoneNumber"] = localStorage.phoneNumber;
         }
         console.log("POSTDATA:" + JSON.stringify(data));
         return data;
