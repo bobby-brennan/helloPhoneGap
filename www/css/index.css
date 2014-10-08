@@ -101,6 +101,9 @@ input[type="submit"] {
 
 .topic {
     overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    -webkit-appearance: none;
 }
 
 .topic input {
@@ -109,6 +112,7 @@ input[type="submit"] {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  -webkit-appearance: none;
 }
 
 #topicList {
