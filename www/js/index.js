@@ -76,16 +76,16 @@ var app = {
         //var listeningElement = parentElement.querySelector('.listening');
         //var receivedElement = parentElement.querySelector('.received');
         if (id === 'deviceready') {
-            var telephoneNumber = cordova.require("cordova/plugin/telephonenumber");
-            telephoneNumber.get(function(result) {
-              localStorage.phoneNumber = result;
-            }, function() {
-                console.log("error getting phone number");
-            });
             if (device.platform == 'android' ||
                 device.platform == 'Android' ||
                 device.platform == 'amazon-fireos' ) {
                 this.registerAndroidNotifications();
+                var telephoneNumber = cordova.require("cordova/plugin/telephonenumber");
+                telephoneNumber.get(function(result) {
+                    localStorage.phoneNumber = result;
+                }, function() {
+                    console.log("error getting phone number");
+                });
             } else {
                 this.registerIosNotifications();
             }
