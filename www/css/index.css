@@ -100,6 +100,7 @@ input[type="submit"] {
 }
 
 .linkBox {
+    float: right;
     border-style: solid;
   border-color: #6D7C99;
   border-width: 1px;
@@ -142,10 +143,6 @@ input[type="submit"] {
 
 #topicList {
     width: 100%;
-}
-
-.topicLine input {
-    float: right;
 }
 
 .deleteButton {
