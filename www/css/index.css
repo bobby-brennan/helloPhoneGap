@@ -104,6 +104,20 @@ input[type="submit"] {
     text-overflow: ellipsis;
     white-space: nowrap;
     -webkit-appearance: none;
+  border-style: solid;
+  border-color: #6D7C99;
+  border-width: 1px;
+  background-color: #BBC4D7;
+  color: #101D38;
+  vertical-align: middle;
+  
+    height: 50px;
+    width: 100%;
+    font-size: 36px;
+    margin-bottom: 6px;
+    margin-top: 6px;
+    padding-left: 6px;
+    padding-right: 6px;
 }
 
 .topic input {
