@@ -99,12 +99,8 @@ input[type="submit"] {
   border-width: 4px;
 }
 
-.topic {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    -webkit-appearance: none;
-  border-style: solid;
+.linkBox {
+    border-style: solid;
   border-color: #6D7C99;
   border-width: 1px;
   background-color: #BBC4D7;
@@ -118,6 +114,21 @@ input[type="submit"] {
     margin-top: 6px;
     padding-left: 6px;
     padding-right: 6px;
+}
+
+.topic {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    -webkit-appearance: none;
+
+      width: 100%;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  -webkit-appearance: none;
+    
 }
 
 .topic input {
