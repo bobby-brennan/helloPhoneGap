@@ -142,3 +142,11 @@ input[type="submit"] {
   max-height: 99px;
   line-height: 33px;
 }
+
+#rssTitle {
+    color: #BBC4D7;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    text-align: center;
+    width: 100%;
+}
