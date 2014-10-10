@@ -279,6 +279,12 @@ app.onDevReady = function() {
     if (!showTopics()) {
         app.onGetNotifId = showTopics;
     }
+    var feedContainer = $("#feedContainer")[0];
+    var hammertime = new Hammer(feedContainer);
+    hammertime.on('swipe', function(e) {
+        console.log("SWIPE:" + e);
+        app.switchToMain();
+    });
     initDrawing();
     startLoading();
 }
@@ -294,12 +300,6 @@ var bodyLoaded = function() {
             return false;
         })
     );
-    var feedContainer = $("#feedContainer")[0];
-    var hammertime = new Hammer(feedContainer);
-    hammertime.on('swipe', function(e) {
-        console.log("SWIPE:" + e);
-        app.switchToMain();
-    });
 }
         </script>
     </head>
