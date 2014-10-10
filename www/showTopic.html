@@ -32,42 +32,7 @@
         <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
-          var addItem = function(url, title) {
-            var clickFunc = 'onclick="navigator.app.loadUrl(\'' + url + '\', {openExternal: true})"';
-            var html = '<div class="linkBox rssRow" ' + clickFunc + '>' + title + '</div>';
-            console.log("html:" + html);
-            $("#feed").append(html);
-          }
-          
-          var showTopic = function() {
-            $("#rssTitle").html("Recent updates on " + localStorage.topicName);
-            var topicId = localStorage.topicId;
-            var urlToShow = localStorage.urlToShow;
-            if (urlToShow) {
-                addItem(localStorage.urlToShow, localStorage.titleToShow);
-            }
-            var url = 'http://www.bbrennan.info/posted/rss?topicId=' + topicId;
-            $.ajax({
-                type: "GET",
-                url: url,
-                dataType: "xml",
-                success: function(xml) {
-                  console.log("xml:" + xml);
-                  $(xml).find('item').each(function() {
-                    var title = $(this).find('title').text();
-                    var url = $(this).find('link').text();
-                    if (url === urlToShow) {
-                        continue;
-                    }
-                    if (title.toLowerCase() === 'no title') {
-                        title = url;
-                    }
-                    addItem(url, title);
-                  });
-                }
-            });
-          }
-          
+
           var init = function() {
             var hammertime = new Hammer(document.body, {});
                 hammertime.on('swipe', function(ev) {
@@ -75,12 +40,10 @@
                 console.log(ev);
             });
           }
-          document.addEventListener('deviceready', showTopic, false);
+          document.addEventListener('deviceready', showFeed, false);
         </script>
     </head>
     <body onload="init()">
-      <div id="rssTitle"></div>
-      <div id="feed">
-      </div>
+]
     </body>
 </html>
