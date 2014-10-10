@@ -40,6 +40,7 @@
                 url: url,
                 dataType: "xml",
                 success: function(xml) {
+                  console.log("xml:" + xml);
                   $(xml).find('item').each(function() {
                     var title = this.find('title').text();
                     var url = this.find('link').text();
