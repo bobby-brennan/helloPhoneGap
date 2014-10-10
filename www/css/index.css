@@ -56,6 +56,14 @@ input, textarea {
     }
 }
 
+#mainContainer {
+    
+}
+
+#rssContainer {
+    display: none;
+}
+
 .separator {
     background-color: #BBC4D7;
     height: 2px;
