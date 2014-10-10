@@ -291,14 +291,14 @@ var bodyLoaded = function() {
             console.log("submitting!");
             addTopic();
             return false;
-        });
-        var feedContainer = $("#feedContainer")[0];
-        var hammertime = new Hammer(feedContainer);
-        hammertime.on('swipe', function(e) {
-            console.log("SWIPE:" + e);
-            switchToMain();
-        });
+        })
     );
+    var feedContainer = $("#feedContainer")[0];
+    var hammertime = new Hammer(feedContainer);
+    hammertime.on('swipe', function(e) {
+        console.log("SWIPE:" + e);
+        switchToMain();
+    });
 }
         </script>
     </head>
