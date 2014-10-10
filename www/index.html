@@ -296,6 +296,7 @@ var bodyLoaded = function() {
         var hammertime = new Hammer(feedContainer);
         hammertime.on('swipe', function(e) {
             console.log("SWIPE:" + e);
+            switchToMain();
         });
     );
 }
