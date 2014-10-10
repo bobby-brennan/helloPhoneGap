@@ -117,6 +117,7 @@ input[type="submit"] {
     -webkit-appearance: none;
     width: 100%;
     text-align: left;
+    margin-right: 6px;
 }
 
 .topicText {
@@ -129,7 +130,9 @@ input[type="submit"] {
 .deleteButton {
     width: 50px;
     float: right;
-    color: #210001;
+    color: #333333;
+    text-align: center;
+    text-shadow: -2px 2px 3px #ff2d95;
 }
 
 .rssRow {
