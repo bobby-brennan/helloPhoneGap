@@ -210,7 +210,8 @@ var showTopic = function(topic) {
     $('#topicList').append(topicHtml);
 };
 
-var showRss = function(topicId) {
+var showRss = function(topicName, topicId) {
+    localStorage.topicName = topicName;
     localStorage.topicToShow = topicId;
     window.location.href="showTopic.html";
 }
