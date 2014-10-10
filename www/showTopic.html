@@ -43,8 +43,13 @@
                 dataType: "xml",
                 success: function(xml) {
                   $(xml).find('item').each(function() {
-                    var link = '<a onclick="navigator.app.loadUrl(\'' + $(this).find('link').text() + '\', {openExternal: true})">' + $(this).find('title').text() + '</a><br>';
-                    var html = '<div class="rssRow">' + link + '</div>';
+                    var title = this.find('title').text();
+                    var url = this.find('link').text();
+                    if (title.toLowerCase() === 'no title') {
+                        title = url;
+                    }
+                    var clickFunc = 'onclick="navigator.app.loadUrl(\'' + url + '\', {openExternal: true})"';
+                    var html = '<div class="linkBox rssRow" ' + clickFunc + '>' + title + '</div>';
                     $("#feed").append(html);
                   });
                 }
