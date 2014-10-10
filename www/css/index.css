@@ -109,25 +109,22 @@ input[type="submit"] {
   
     height: 50px;
     font-size: 36px;
-    margin-bottom: 6px;
-    margin-top: 6px;
     padding-left: 6px;
     padding-right: 6px;
 }
 
-#topicList {
-    width: 100%;
-}
-
 .topic {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
     -webkit-appearance: none;
     width: 100%;
     text-align: left;
 }
 
+.topicText {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+    overflow: hidden
+}
 
 .deleteButton {
     width: 50px;
