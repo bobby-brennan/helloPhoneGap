@@ -211,6 +211,11 @@ var showTopic = function(topic) {
     $('#topicList').append(topicHtml);
 };
 
+var showRss(topicId) {
+    localStorage.topicToShow = topicId;
+    window.location.href="showTopic.html";
+}
+
 console.log('initting');
 app.onDevReady = function() {
     console.log("on dev ready called");
