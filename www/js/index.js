@@ -139,6 +139,10 @@ var app = {
         }
 
         if (e.badge) {
+            var pushNotification = window.plugins.pushNotification;
+            var successHandler = function(e) {
+                console.log("success?" + e);
+            }
             pushNotification.setApplicationIconBadgeNumber(successHandler, e.badge);
         }
     },
