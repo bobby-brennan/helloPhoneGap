@@ -132,9 +132,8 @@ input[type="submit"] {
 .deleteButton {
     width: 50px;
     float: right;
-    color: #777777;
     text-align: center;
-    text-shadow: 0px 2px 3px #99A2A9;
+    text-shadow: 0px 2px 3px #607590;
 }
 
 .rssRow {
