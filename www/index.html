@@ -200,7 +200,7 @@ var showTopics = function() {
 
 var showTopic = function(topic) {
     //console.log("topic:" + topics[i].topic);
-    //var functionCall = "showTopic('" + topic.topic + "\')";
+    var functionCall = "showRss(" + topic.id + ")";
     var functionCall = "";
     var deleteCall = "deleteTopic('" + topic.id + "\')";
     var topicHtml = '<div class="topicLine">'
