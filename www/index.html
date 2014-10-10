@@ -34,6 +34,45 @@
         <script type="text/javascript" charset="utf-8" src="telephonenumber.js"></script>
         
         <script type="text/javascript">
+        
+        // FEED STUFF
+          var addItemToFeed = function(url, title) {
+            var clickFunc = 'onclick="navigator.app.loadUrl(\'' + url + '\', {openExternal: true})"';
+            var html = '<div class="linkBox rssRow" ' + clickFunc + '>' + title + '</div>';
+            console.log("html:" + html);
+            $("#feed").append(html);
+          }
+          
+          var showFeed = function() {
+            $("#rssTitle").html("Recent updates on " + localStorage.topicName);
+            var topicId = localStorage.topicId;
+            var urlToShow = localStorage.urlToShow;
+            if (urlToShow) {
+                addItemToFeed(localStorage.urlToShow, localStorage.titleToShow);
+            }
+            var url = 'http://www.bbrennan.info/posted/rss?topicId=' + topicId;
+            $.ajax({
+                type: "GET",
+                url: url,
+                dataType: "xml",
+                success: function(xml) {
+                  console.log("xml:" + xml);
+                  $(xml).find('item').each(function() {
+                    var title = $(this).find('title').text();
+                    var url = $(this).find('link').text();
+                    if (url === urlToShow) {
+                        continue;
+                    }
+                    if (title.toLowerCase() === 'no title') {
+                        title = url;
+                    }
+                    addItemToFeed(url, title);
+                  });
+                }
+            });
+          }
+          
+        // END FEED STUFF
 
 // SVG stuff
 var bg;
@@ -213,8 +252,12 @@ var showTopic = function(topic) {
 var showRss = function(topicName, topicId) {
     localStorage.topicName = topicName;
     localStorage.topicToShow = topicId;
-    $("body").fadeOut(1000, function() {
-        window.location.href="showTopic.html";
+    showFeed();
+    $("mainContainer").fadeOut(1000, function() {
+        console.log("done fade out");
+    });
+    $("feedContainer").fadeIn(1000, function() {
+        cosole.log("done fade in");
     });
 }
 
@@ -241,14 +284,20 @@ var bodyLoaded = function() {
         </script>
     </head>
     <body onload="bodyLoaded();">
-      <form>
-        <input type="text" id="topicInput" placeholder=""></input>
-        <input type="submit" id="addTopic" value="Add Topic"></input>
-      </form>
-      <div class="separator"></div>
-      <canvas id="loading" width="240" height="240">
-      </canvas>
-      <div id="topicList">
+      <div id="feedContainer">
+        <div id="rssTitle"></div>
+        <div id="feed"></div>
+      </div>
+      <div id="mainContainer">
+        <form>
+          <input type="text" id="topicInput" placeholder=""></input>
+          <input type="submit" id="addTopic" value="Add Topic"></input>
+        </form>
+        <div class="separator"></div>
+        <canvas id="loading" width="240" height="240">
+        </canvas>
+        <div id="topicList">
+        </div>
       </div>
     </body>
 </html>
