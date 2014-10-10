@@ -34,9 +34,8 @@
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
           var showTopic = function() {
-              $('#topicName').html(localStorage.curTopic);
-            var topic = localStorage.curTopic;
-            var url = 'http://news.google.com/news?output=rss&q=' + topic;
+            var topicId = localStorage.topicToShow;
+            var url = 'http://www.bbrennan.info/posted/rss?topicId=' + topicId;
             $.ajax({
                 type: "GET",
                 url: url,
