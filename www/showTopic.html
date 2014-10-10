@@ -31,9 +31,19 @@
         <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
+          var addItem = function(url, title) {
+            var clickFunc = 'onclick="navigator.app.loadUrl(\'' + url + '\', {openExternal: true})"';
+            var html = '<div class="linkBox rssRow" ' + clickFunc + '>' + title + '</div>';
+            console.log("html:" + html);
+            $("#feed").append(html);
+          }
+          
           var showTopic = function() {
             $("#rssTitle").html("Recent updates on " + localStorage.topicName);
-            var topicId = localStorage.topicToShow;
+            var topicId = localStorage.topicId;
+            if (localStorage.urlToShow) {
+                addItem(localStorage.urlToShow, localStorage.titleToShow);
+            }
             var url = 'http://www.bbrennan.info/posted/rss?topicId=' + topicId;
             $.ajax({
                 type: "GET",
@@ -47,10 +57,7 @@
                     if (title.toLowerCase() === 'no title') {
                         title = url;
                     }
-                    var clickFunc = 'onclick="navigator.app.loadUrl(\'' + url + '\', {openExternal: true})"';
-                    var html = '<div class="linkBox rssRow" ' + clickFunc + '>' + title + '</div>';
-                    console.log("html:" + html);
-                    $("#feed").append(html);
+                    addItem(url, title);
                   });
                 }
             });
