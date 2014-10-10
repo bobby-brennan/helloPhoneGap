@@ -26,9 +26,9 @@
         <!-- meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" / --> 
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <script src="js/jquery.min.js"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.3/jquery.mobile.min.js"></script>
         <script src="http://jsconsole.com/remote.js?F4A72AB5-1230-4E5B-8652-5895AEC3E885"></script>
         <script type="text/javascript" src="js/jquery.zrssfeed.min.js"></script>
+        <script type="text/javascript" src="js/hammer.js"></script>
         <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
@@ -69,9 +69,10 @@
           }
           
           var init = function() {
-              $("body").swipe(function() {
-                 console.log("SWIPE!"); 
-              });
+            var hammertime = new Hammer(document.body, {});
+                hammertime.on('pan', function(ev) {
+                console.log(ev);
+            });
           }
           document.addEventListener('deviceready', showTopic, false);
         </script>
