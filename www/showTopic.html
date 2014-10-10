@@ -70,7 +70,8 @@
           
           var init = function() {
             var hammertime = new Hammer(document.body, {});
-                hammertime.on('pan', function(ev) {
+                hammertime.on('swipe', function(ev) {
+                console.log("HAMMER");
                 console.log(ev);
             });
           }
