@@ -254,12 +254,14 @@ var switchToRss = function(topicName, topicId) {
     localStorage.topicName = topicName;
     localStorage.topicToShow = topicId;
     showFeed();
-    $("#mainContainer").fadeOut(1000, function() {
+    $("#mainContainer").fadeOut(500, function() {
         console.log("done fade out");
     });
-    $("#feedContainer").fadeIn(1000, function() {
-        cosole.log("done fade in");
-    });
+    setTimeout(function() {
+        $("#feedContainer").fadeIn(500, function() {
+            console.log("done fade in");
+        });
+    }, 250);
 }
 
 var switchToMain = function(topicName, topicId) {
