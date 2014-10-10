@@ -205,7 +205,8 @@ var showTopic = function(topic) {
     var deleteCall = "deleteTopic('" + topic.id + "\')";
     var topicHtml = '<div class="topicLine">'
     topicHtml += '<div class="linkBox deleteButton" onclick="' + deleteCall + '">x</div>';
-    topicHtml += '<div class="linkBox topic" onclick="' + functionCall + '">' + topic.topic + '</div>';
+    topicHtml += '<div class="linkBox topic" onclick="' + functionCall + '">'
+    topicHtml += '<span class="topicText">' + topic.topic + '</span></div>';
     topicHtml += '</div>';
     $('#topicList').append(topicHtml);
 };
