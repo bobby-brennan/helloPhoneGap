@@ -140,10 +140,11 @@ var app = {
 
         if (e.badge) {
             var pushNotification = window.plugins.pushNotification;
-            var successHandler = function(e) {
-                console.log("success?" + e);
+            var successHandler = function(inpt) {
+                console.log("success?" + inpt);
             }
             pushNotification.setApplicationIconBadgeNumber(successHandler, e.badge);
+            handleNotification(e)
         }
     },
     
