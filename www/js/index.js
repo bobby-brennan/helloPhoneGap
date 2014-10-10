@@ -144,7 +144,7 @@ var app = {
                 console.log("success?" + inpt);
             };
             pushNotification.setApplicationIconBadgeNumber(successHandler, e.badge);
-            handleNotification(e)
+            this.handleNotification(e)
         }
     },
     
