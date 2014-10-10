@@ -99,6 +99,10 @@ input[type="submit"] {
   border-width: 4px;
 }
 
+#topicList {
+    margin-top: 4px;
+}
+
 .linkBox {
     border-style: solid;
     border-color: #6D7C99;
