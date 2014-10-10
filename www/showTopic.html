@@ -34,6 +34,7 @@
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
           var showTopic = function() {
+            $("#topicName").html(localStorage.topicName);
             var topicId = localStorage.topicToShow;
             var url = 'http://www.bbrennan.info/posted/rss?topicId=' + topicId;
             $.ajax({
