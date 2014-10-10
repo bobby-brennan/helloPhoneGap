@@ -127,6 +127,7 @@ var app = {
     
     // handle APNS notifications for iOS
     onNotificationAPN: function(e) {
+        console.log("on notif apn:" + JSON.stringify(e));
         if (e.alert) {
             console.log('push-notification: ' + e.alert);
         }
@@ -136,7 +137,7 @@ var app = {
             var snd = new Media(e.sound);
             snd.play();
         }
-                
+
         if (e.badge) {
             pushNotification.setApplicationIconBadgeNumber(successHandler, e.badge);
         }
@@ -158,11 +159,7 @@ var app = {
               console.log('message = '+e.message+' msgcnt = '+e.msgcnt);
               console.log("EXTRA:" + JSON.stringify(e.payload.extra));
               var extra = e.payload.extra;
-              localStorage.topicName = extra.topicName;
-              localStorage.topicId = extra.topicId;
-              localStorage.urlToShow = extra.url;
-              localStorage.titleToShow = extra.title;
-              window.location.href = "showTopic.html";
+              this.handleNotification(extra);
             break;
  
             case 'error':
@@ -174,6 +171,14 @@ var app = {
               break;
         }
     },
+    
+    handleNotification: function(extra) {
+        localStorage.topicName = extra.topicName;
+        localStorage.topicId = extra.topicId;
+        localStorage.urlToShow = extra.url;
+        localStorage.titleToShow = extra.title;
+        window.location.href = "showTopic.html";
+    }
     
     initPostRequest: function() {
         var data = {uuid: window.device.uuid};
