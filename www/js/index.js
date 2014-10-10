@@ -178,7 +178,7 @@ var app = {
         localStorage.urlToShow = extra.url;
         localStorage.titleToShow = extra.title;
         window.location.href = "showTopic.html";
-    }
+    },
     
     initPostRequest: function() {
         var data = {uuid: window.device.uuid};
