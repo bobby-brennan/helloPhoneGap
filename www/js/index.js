@@ -156,12 +156,13 @@ var app = {
             case 'message':
               // this is the actual push notification. its format depends on the data model from the push server
               console.log('message = '+e.message+' msgcnt = '+e.msgcnt);
-              console.log("EXTRA:" + e.payload.extra);
-              if (e.foreground) {
-                  
-              } else {
-                window.open(e.payload.extra, '_system');
-              }
+              console.log("EXTRA:" + JSON.stringify(e.payload.extra));
+              var extra = e.payload.extra;
+              localStorage.topicName = extra.topicName;
+              localStorage.topicId = extra.topicId;
+              localStorage.urlToShow = extra.url;
+              localStorage.titleToShow = extra.title;
+              window.location.href = "showTopic.html";
             break;
  
             case 'error':
