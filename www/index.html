@@ -249,23 +249,27 @@ var showTopic = function(topic) {
     $('#topicList').append(topicHtml);
 };
 
-var switchToRss = function(topicName, topicId) {
-    console.log("SHOW RSS");
-    localStorage.topicName = topicName;
-    localStorage.topicToShow = topicId;
-    showFeed();
-    $("#mainContainer").fadeOut(500, function() {
+var switchTo = function(fromDiv, toDiv) {
+    $(fromDiv).fadeOut(500, function() {
         console.log("done fade out");
     });
     setTimeout(function() {
-        $("#feedContainer").fadeIn(500, function() {
+        $(toDiv).fadeIn(500, function() {
             console.log("done fade in");
         });
     }, 250);
 }
 
+var switchToRss = function(topicName, topicId) {
+    console.log("SHOW RSS");
+    localStorage.topicName = topicName;
+    localStorage.topicToShow = topicId;
+    showFeed();
+    switchTo("#mainContainer", "#feedContainer");
+}
+
 var switchToMain = function(topicName, topicId) {
-    
+    switchTo("#feedContainer", "#mainContainer");
 }
 
 console.log('initting');
@@ -282,11 +286,18 @@ app.initialize();
 var bodyLoaded = function() {
     console.log("body loaded");
     updatePlaceholder();
-    $($("form").submit(function() {
-        console.log("submitting!");
-        addTopic();
-        return false;
-    }));
+    $(
+        $("form").submit(function() {
+            console.log("submitting!");
+            addTopic();
+            return false;
+        });
+        var feedContainer = $("#feedContainer")[0];
+        var hammertime = new Hammer(feedContainer);
+        hammertime.on('swipe', function(e) {
+            console.log("SWIPE:" + e);
+        });
+    );
 }
         </script>
     </head>
