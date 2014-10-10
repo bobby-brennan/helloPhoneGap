@@ -48,6 +48,7 @@
                     }
                     var clickFunc = 'onclick="navigator.app.loadUrl(\'' + url + '\', {openExternal: true})"';
                     var html = '<div class="linkBox rssRow" ' + clickFunc + '>' + title + '</div>';
+                    console.log("html:" + html);
                     $("#feed").append(html);
                   });
                 }
