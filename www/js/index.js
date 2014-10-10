@@ -182,7 +182,7 @@ var app = {
         localStorage.topicId = extra.topicId;
         localStorage.urlToShow = extra.url;
         localStorage.titleToShow = extra.title;
-        window.location.href = "showTopic.html";
+        this.switchToMain();
     },
     
     initPostRequest: function() {
