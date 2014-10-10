@@ -61,7 +61,7 @@
                     var title = $(this).find('title').text();
                     var url = $(this).find('link').text();
                     if (url === urlToShow) {
-                        continue;
+                        return;
                     }
                     if (title.toLowerCase() === 'no title') {
                         title = url;
