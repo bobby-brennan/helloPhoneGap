@@ -250,7 +250,7 @@ var showTopic = function(topic) {
     $('#topicList').append(topicHtml);
 };
 
-var switchTo = function(fromDiv, toDiv) {
+app.switchTo = function(fromDiv, toDiv) {
     $(fromDiv).fadeOut(500, function() {
         console.log("done fade out");
     });
@@ -261,16 +261,16 @@ var switchTo = function(fromDiv, toDiv) {
     }, 250);
 }
 
-var switchToRss = function(topicName, topicId) {
+app.switchToRss = function(topicName, topicId) {
     console.log("SHOW RSS");
     localStorage.topicName = topicName;
     localStorage.topicToShow = topicId;
     showFeed();
-    switchTo("#mainContainer", "#feedContainer");
+    this.switchTo("#mainContainer", "#feedContainer");
 }
 
-var switchToMain = function(topicName, topicId) {
-    switchTo("#feedContainer", "#mainContainer");
+app.switchToMain = function(topicName, topicId) {
+    this.switchTo("#feedContainer", "#mainContainer");
 }
 
 console.log('initting');
