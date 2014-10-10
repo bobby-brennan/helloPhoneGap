@@ -63,10 +63,16 @@
                 }
             });
           }
+          
+          var init = function() {
+              $("body").swipe(function() {
+                 console.log("SWIPE!"); 
+              });
+          }
           document.addEventListener('deviceready', showTopic, false);
         </script>
     </head>
-    <body>
+    <body onload="init()">
       <div id="rssTitle"></div>
       <div id="feed">
       </div>
