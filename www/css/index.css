@@ -138,21 +138,5 @@ input[type="submit"] {
 }
 
 .rssRow {
-  padding: 4px;
-  height: 100px;
-  margin: 12px;
   font-size: 24px;
-  background-color: #65AE3F;
-  vertical-align: middle;
-   
-  text-overflow: ellipsis;
-  word-wrap: break-word;
-  overflow: hidden;
-  max-height: 99px;
-  line-height: 33px;
-}
-
-a {
-    color: #B5E69B;
-    text-decoration: none;
 }
