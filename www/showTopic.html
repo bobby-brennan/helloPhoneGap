@@ -42,8 +42,8 @@
                 success: function(xml) {
                   console.log("xml:" + xml);
                   $(xml).find('item').each(function() {
-                    var title = this.find('title').text();
-                    var url = this.find('link').text();
+                    var title = $(this).find('title').text();
+                    var url = $(this).find('link').text();
                     if (title.toLowerCase() === 'no title') {
                         title = url;
                     }
