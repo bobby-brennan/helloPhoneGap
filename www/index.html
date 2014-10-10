@@ -240,7 +240,7 @@ var showTopics = function() {
 
 var showTopic = function(topic) {
     //console.log("topic:" + topics[i].topic);
-    var functionCall = "switchToRss('" + topic.topic.replace(/'/g, "\\'") + "', " + topic.id + ")";
+    var functionCall = "app.switchToRss('" + topic.topic.replace(/'/g, "\\'") + "', " + topic.id + ")";
     var deleteCall = "deleteTopic('" + topic.id + "\')";
     var topicHtml = '<div class="topicLine">'
     topicHtml += '<div class="linkBox deleteButton" onclick="' + deleteCall + '">X</div>';
@@ -298,7 +298,7 @@ var bodyLoaded = function() {
     var hammertime = new Hammer(feedContainer);
     hammertime.on('swipe', function(e) {
         console.log("SWIPE:" + e);
-        switchToMain();
+        app.switchToMain();
     });
 }
         </script>
