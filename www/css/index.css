@@ -141,6 +141,7 @@ input[type="submit"] {
   word-wrap: break-word;
   max-height: 99px;
   line-height: 33px;
+  height: 100px;
 }
 
 #rssTitle {
