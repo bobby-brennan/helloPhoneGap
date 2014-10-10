@@ -138,4 +138,7 @@ input[type="submit"] {
 
 .rssRow {
   font-size: 24px;
+  word-wrap: break-word;
+  max-height: 99px;
+  line-height: 33px;
 }
