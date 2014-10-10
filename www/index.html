@@ -249,16 +249,21 @@ var showTopic = function(topic) {
     $('#topicList').append(topicHtml);
 };
 
-var showRss = function(topicName, topicId) {
+var switchToRss = function(topicName, topicId) {
+    console.log("SHOW RSS");
     localStorage.topicName = topicName;
     localStorage.topicToShow = topicId;
     showFeed();
-    $("mainContainer").fadeOut(1000, function() {
+    $("#mainContainer").fadeOut(1000, function() {
         console.log("done fade out");
     });
-    $("feedContainer").fadeIn(1000, function() {
+    $("#feedContainer").fadeIn(1000, function() {
         cosole.log("done fade in");
     });
+}
+
+var switchToMain = function(topicName, topicId) {
+    
 }
 
 console.log('initting');
