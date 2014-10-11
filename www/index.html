@@ -258,7 +258,7 @@ var showTopic = function(topic, isLast) {
     if (isLast) {
         cssClass += " linkBoxLast";
     }
-    topicHtml += '<div class="' + cssClass + ' deleteButton" onclick="' + deleteCall + '">-</div>';
+    topicHtml += '<div class="' + cssClass + ' delete button" onclick="' + deleteCall + '">-</div>';
     topicHtml += '<div class="' + cssClass + ' topic" onclick="' + functionCall + '">'
     topicHtml += '<span class="topicText">' + topic.topic + '</span></div>';
     topicHtml += '</div>';
@@ -332,7 +332,7 @@ var bodyLoaded = function() {
     <body onload="bodyLoaded();">
       <div id="feedContainer">
         <div id="navBar topicLine">
-            <div id="backbutton" class="linkBox">&lt;</div>
+            <div id="backbutton" class="button linkBox">&lt;</div>
             <div id="rssTitle" class="linkBox">title</div>
         </div>
         <div id="feed"></div>
