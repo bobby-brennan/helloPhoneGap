@@ -259,6 +259,7 @@ app.switchTo = function(fromDiv, toDiv) {
         console.log("done fade out");
     });
     setTimeout(function() {
+        window.scrollTo(0, 0);
         $(toDiv).fadeIn(500, function() {
             console.log("done fade in");
         });
