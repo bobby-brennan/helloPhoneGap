@@ -271,11 +271,11 @@ app.switchToRss = function(topicName, topicId) {
     localStorage.topicName = topicName;
     localStorage.topicToShow = topicId;
     showFeed();
-    this.switchTo("#mainContainer", "#feedContainer");
+    app.switchTo("#mainContainer", "#feedContainer");
 }
 
 app.switchToMain = function(topicName, topicId) {
-    this.switchTo("#feedContainer", "#mainContainer");
+    app.switchTo("#feedContainer", "#mainContainer");
 }
 
 console.log('initting');
