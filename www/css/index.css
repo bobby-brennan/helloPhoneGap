@@ -154,7 +154,7 @@ input[type="submit"] {
 #navBar {
     width: 100%;
     height: 50px;
-    background-color: #00FF00;
+    color: #BBC4D7;
 }
 
 #backbutton {
@@ -162,11 +162,7 @@ input[type="submit"] {
 }
 
 #rssTitle {
-    color: #BBC4D7;
-    margin-top: 24px;
-    margin-bottom: 24px;
-    text-align: center;
-    width: 100%;
+    
 }
 
 .rssRow {
