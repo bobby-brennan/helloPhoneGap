@@ -45,8 +45,10 @@
           }
           
           var showFeed = function() {
+            $("#feed").html("");
             $("#rssTitle").html("Recent updates on " + localStorage.topicName);
             var topicId = localStorage.topicId;
+            console.log
             var urlToShow = localStorage.urlToShow;
             if (urlToShow) {
                 addItemToFeed(localStorage.urlToShow, localStorage.titleToShow);
