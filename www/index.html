@@ -46,7 +46,7 @@
           
           var showFeed = function() {
             $("#feed").html("");
-            $("#rssTitle").html(localStorage.topicName);
+            $("#rssTitleText").html(localStorage.topicName);
             var topicId = localStorage.topicId;
             /*
             var urlToShow = localStorage.urlToShow;
@@ -335,7 +335,7 @@ var bodyLoaded = function() {
       <div id="feedContainer">
         <div id="navBar topicLine">
             <div id="backbutton" class="button linkBox">&lt;</div>
-            <div id="rssTitle" class="linkBox">title</div>
+            <div id="rssTitle" class="linkBox"><span id="rssTitleText" class="topicText"></span></div>
         </div>
         <div id="feed"></div>
       </div>
