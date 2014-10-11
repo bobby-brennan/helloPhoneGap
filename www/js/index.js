@@ -183,7 +183,7 @@ var app = {
         localStorage.topicId = extra.topicId;
         localStorage.urlToShow = extra.url;
         localStorage.titleToShow = extra.title;
-        app.switchToRss();
+        app.switchToRss(extra.topicName, extra.topicId);
     },
     
     initPostRequest: function() {
