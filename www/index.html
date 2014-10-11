@@ -62,19 +62,24 @@
                 dataType: "xml",
                 success: function(xml) {
                   console.log("xml:" + xml);
-                  $(xml).find('item').each(function() {
-                    var title = $(this).find('title').text();
-                    var url = $(this).find('link').text();
-                    /*
-                    if (url === urlToShow) {
-                        return;
-                    }
-                    */
-                    if (title.toLowerCase() === 'no title') {
-                        title = url;
-                    }
-                    addItemToFeed(url, title);
-                  });
+                  var items = $(xml).find('item');
+                  if (items.length === 0) {
+                      $("#feed").html("<i>No items to show</i>");
+                  } else {
+                    $(items).each(function() {
+                        var title = $(this).find('title').text();
+                        var url = $(this).find('link').text();
+                        /*
+                        if (url === urlToShow) {
+                            return;
+                        }
+                        */
+                        if (title.toLowerCase() === 'no title') {
+                            title = url;
+                        }
+                        addItemToFeed(url, title);
+                    });
+                  }
                 }
             });
           }
