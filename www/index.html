@@ -270,7 +270,6 @@ var showTopic = function(topic, isLast) {
 };
 
 app.switchTo = function(fromDiv, toDiv) {
-    window.scrollTo(0, 0);
     $(fromDiv).fadeOut(500, function() {
         console.log("done fade out");
     });
@@ -278,6 +277,7 @@ app.switchTo = function(fromDiv, toDiv) {
         $(toDiv).fadeIn(500, function() {
             console.log("done fade in");
         });
+        setTimeout(function(){window.scrollTo(0, 0)}, 250);
     }, 250);
 }
 
