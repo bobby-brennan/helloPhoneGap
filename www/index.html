@@ -46,6 +46,7 @@
           
           var showFeed = function() {
             $("#feed").html("");
+            $("#feed").addItemToFeed("#", "loading...");
             $("#rssTitleText").html(localStorage.topicName);
             var topicId = localStorage.topicId;
             /*
@@ -61,6 +62,7 @@
                 url: url,
                 dataType: "xml",
                 success: function(xml) {
+                  $("#feed").html("");
                   console.log("xml:" + xml);
                   var items = $(xml).find('item');
                   console.log("length:" + items.length + ":" + $(items).length);
