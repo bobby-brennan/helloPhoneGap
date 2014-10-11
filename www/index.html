@@ -271,7 +271,7 @@ app.switchTo = function(fromDiv, toDiv) {
 app.switchToRss = function(topicName, topicId) {
     console.log("SHOW RSS:" + topicName + "," + topicId);
     localStorage.topicName = topicName;
-    localStorage.topicToShow = topicId;
+    localStorage.topicId = topicId;
     showFeed();
     app.switchTo("#mainContainer", "#feedContainer");
 }
