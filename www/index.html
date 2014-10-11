@@ -304,14 +304,16 @@ app.onDevReady = function() {
     });
     initDrawing();
     startLoading();
-    document.addEventListener("backbutton", function(e){
+    var onBack = function(e) {
         if ($('#mainContainer:visible').length == 0) {
             app.switchToMain();
         } else {
             e.preventDefault();
             navigator.app.exitApp();
         }
-    }, false);
+    };
+    document.addEventListener("backbutton", onBack, false);
+    $("#backbutton").click(onBack);
 }
 app.initialize();
  
@@ -331,8 +333,8 @@ var bodyLoaded = function() {
     <body onload="bodyLoaded();">
       <div id="feedContainer">
         <div id="navBar topicLine">
-            <div id="backbutton linkBox">&lt;</div>
-            <div id="rssTitle linkBox">title</div>
+            <div id="backbutton" class="linkBox">&lt;</div>
+            <div id="rssTitle" class="linkBox">title</div>
         </div>
         <div id="feed"></div>
       </div>
