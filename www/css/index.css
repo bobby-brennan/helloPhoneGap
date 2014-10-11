@@ -115,7 +115,8 @@ input[type="submit"] {
 .linkBox {
     border-style: solid;
     border-color: #6D7C99;
-    border-width: 1px;
+    border-width: 2px;
+    border-bottom-width: 0px;
     background-color: #BBC4D7;
     color: #101D38;
     line-height: 50px;
@@ -124,6 +125,10 @@ input[type="submit"] {
     font-size: 36px;
     padding-left: 6px;
     padding-right: 6px;
+}
+
+.linkBoxLast {
+    border-bottom-width: 2px;
 }
 
 .topic {
