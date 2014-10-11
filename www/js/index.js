@@ -178,11 +178,12 @@ var app = {
     },
     
     handleNotification: function(extra) {
+        console.log("handling notif:" + JSON.stringify(extra));
         localStorage.topicName = extra.topicName;
         localStorage.topicId = extra.topicId;
         localStorage.urlToShow = extra.url;
         localStorage.titleToShow = extra.title;
-        this.switchToMain();
+        app.switchToRss();
     },
     
     initPostRequest: function() {
