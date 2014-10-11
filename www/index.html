@@ -232,19 +232,23 @@ var showTopics = function() {
            return t1.topic.toLowerCase() > t2.topic.toLowerCase() ? 1 : -1; 
         });
         for (var i = 0; i < topics.length; ++i) {
-            showTopic(topics[i])
+            showTopic(topics[i], i === topics.length - 1)
         }
     });
     return true;
 };
 
-var showTopic = function(topic) {
+var showTopic = function(topic, isLast) {
     //console.log("topic:" + topics[i].topic);
     var functionCall = "app.switchToRss('" + topic.topic.replace(/'/g, "\\'") + "', " + topic.id + ")";
     var deleteCall = "deleteTopic('" + topic.id + "\')";
     var topicHtml = '<div class="topicLine">'
-    topicHtml += '<div class="linkBox deleteButton" onclick="' + deleteCall + '">X</div>';
-    topicHtml += '<div class="linkBox topic" onclick="' + functionCall + '">'
+    var cssClass = "linkBox";
+    if (isLast) {
+        cssClass += " linkBoxLast";
+    }
+    topicHtml += '<div class="' + cssClass + ' deleteButton" onclick="' + deleteCall + '">X</div>';
+    topicHtml += '<div class="' + cssClass + ' topic" onclick="' + functionCall + '">'
     topicHtml += '<span class="topicText">' + topic.topic + '</span></div>';
     topicHtml += '</div>';
     $('#topicList').append(topicHtml);
@@ -287,6 +291,7 @@ app.onDevReady = function() {
     });
     initDrawing();
     startLoading();
+    document.addEventListener("backbutton", switchToMain, false);
 }
 app.initialize();
  
