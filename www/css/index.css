@@ -151,6 +151,24 @@ input[type="submit"] {
     font-family: 'Roboto', sans-serif;
 }
 
+#navBar {
+    width: 100%;
+    height: 50px;
+    background-color: #00FF00;
+}
+
+#backbutton {
+    width: 50px;
+}
+
+#rssTitle {
+    color: #BBC4D7;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    text-align: center;
+    width: 100%;
+}
+
 .rssRow {
   font-size: 24px;
   max-height: 99px;
@@ -161,12 +179,4 @@ input[type="submit"] {
   word-wrap: break-word;
   overflow: hidden;
   vertical-align: middle;
-}
-
-#rssTitle {
-    color: #BBC4D7;
-    margin-top: 24px;
-    margin-bottom: 24px;
-    text-align: center;
-    width: 100%;
 }
