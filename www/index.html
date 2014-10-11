@@ -48,12 +48,12 @@
             $("#feed").html("");
             $("#rssTitle").html("Recent updates on " + localStorage.topicName);
             var topicId = localStorage.topicId;
-            console.log
             var urlToShow = localStorage.urlToShow;
             if (urlToShow) {
                 addItemToFeed(localStorage.urlToShow, localStorage.titleToShow);
             }
             var url = 'http://www.bbrennan.info/posted/rss?topicId=' + topicId;
+            console.log("fetching:" + url);
             $.ajax({
                 type: "GET",
                 url: url,
