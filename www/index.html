@@ -304,7 +304,14 @@ app.onDevReady = function() {
     });
     initDrawing();
     startLoading();
-    document.addEventListener("backbutton", app.switchToMain, false);
+    document.addEventListener("backbutton", function(e){
+        if ($('#mainContainer:visible').length == 0) {
+            app.switchToMain();
+        } else {
+            e.preventDefault();
+            navigator.app.exitApp();
+        }
+    }, false);
 }
 app.initialize();
  
