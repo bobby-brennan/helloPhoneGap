@@ -66,7 +66,7 @@
                   console.log("length:" + items.length + ":" + $(items).length);
                   if ($(items).length === 0) {
                       console.log("no items!");
-                      $("#feed").html("<i>No items to show</i>");
+                      addItemToFeed("#", "Nothing yet...");
                   } else {
                     $(items).each(function() {
                         var title = $(this).find('title').text();
