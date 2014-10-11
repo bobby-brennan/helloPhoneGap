@@ -204,7 +204,7 @@ var app = {
         return data;
     },
     
-    openUrl: function() {
+    openUrl: function(url) {
         if(device.platform === 'Android') {
             navigator.app.loadUrl(url, {openExternal:true});
         } else {
