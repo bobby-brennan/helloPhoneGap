@@ -160,11 +160,14 @@ input[type="submit"] {
 
 #backbutton {
     float: left;
+    color: #BBC4D7;
+    background-color: #101D38;
 }
 
 #rssTitle {
     color: #BBC4D7;
     background-color: #101D38;
+    text-align: center;
 }
 
 .rssRow {
