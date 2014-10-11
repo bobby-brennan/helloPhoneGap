@@ -271,14 +271,12 @@ var showTopic = function(topic, isLast) {
 
 app.switchTo = function(fromDiv, toDiv) {
     $(fromDiv).fadeOut(500, function() {
+        window.scrollTo(0, 0);
         console.log("done fade out");
-    });
-    setTimeout(function() {
         $(toDiv).fadeIn(500, function() {
             console.log("done fade in");
         });
-        setTimeout(function(){window.scrollTo(0, 0)}, 250);
-    }, 250);
+    });
 }
 
 app.switchToRss = function(topicName, topicId) {
