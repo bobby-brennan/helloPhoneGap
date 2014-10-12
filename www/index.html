@@ -56,7 +56,11 @@
             }
             */
             console.log("fetching:" + ajaxParams.url);
-            ajaxParams.successs = function(xml) {
+            ajaxParams.error = function(err) {
+                console.log("error fetching xml");
+                addItemToFeed("#", "Error retrieving feed");
+            };
+            ajaxParams.success = function(xml) {
                   $("#feed").html("");
                   console.log("xml:" + xml);
                   var items = $(xml).find('item');
@@ -79,7 +83,7 @@
                         addItemToFeed(url, title);
                     });
                   }
-            }
+            };
             $.ajax(ajaxParams);
           }
           
