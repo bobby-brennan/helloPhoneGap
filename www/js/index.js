@@ -144,7 +144,7 @@ var app = {
                 console.log("success?" + inpt);
             };
             pushNotification.setApplicationIconBadgeNumber(successHandler, e.badge);
-            this.handleNotification(e)
+            this.handleNotification(e);
         }
     },
     
@@ -179,7 +179,8 @@ var app = {
     
     handleNotification: function(extra) {
         console.log("handling notif:" + JSON.stringify(extra));
-        app.switchToRss(extra.topicName, extra.topicId);
+        //app.switchToRss(extra.topicName, extra.topicId);
+        app.switchToUserRss();
     },
     
     initPostRequest: function() {
