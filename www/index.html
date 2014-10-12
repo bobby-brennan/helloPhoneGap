@@ -57,7 +57,7 @@
             */
             console.log("fetching:" + ajaxParams.url);
             ajaxParams.error = function(err) {
-                console.log("error fetching xml");
+                console.log("error fetching xml:" + err);
                 addItemToFeed("#", "Error retrieving feed");
             };
             ajaxParams.success = function(xml) {
@@ -296,7 +296,7 @@ app.switchToUserRss = function() {
     var ajaxParams = {
         type: "POST",
         url: 'http://www.bbrennan.info/posted/userRss',
-        dataType: "json",
+        dataType: "xml",
         data: app.initPostRequest(),
     };
     showFeed(ajaxParams);
