@@ -315,6 +315,9 @@ app.onDevReady = function() {
     };
     document.addEventListener("backbutton", onBack, false);
     $("#backbutton").click(onBack);
+    $("#rssTitle").click(function(){
+        openUrl("http://www.google.com/news?q=" + $("#rssTitleText").html());
+    })
 }
 app.initialize();
  
