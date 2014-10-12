@@ -44,7 +44,7 @@
             $("#feed").append(html);
           }
           
-          var showFeed = function() {
+          var showFeed = function(ajaxParams) {
             $("#feed").html("");
             addItemToFeed("#", "loading...");
             $("#rssTitleText").html(localStorage.topicName);
@@ -55,13 +55,8 @@
                 addItemToFeed(localStorage.urlToShow, localStorage.titleToShow);
             }
             */
-            var url = 'http://www.bbrennan.info/posted/rss?topicId=' + topicId;
             console.log("fetching:" + url);
-            $.ajax({
-                type: "GET",
-                url: url,
-                dataType: "xml",
-                success: function(xml) {
+            ajaxParams.successs = function(xml) {
                   $("#feed").html("");
                   console.log("xml:" + xml);
                   var items = $(xml).find('item');
@@ -84,8 +79,8 @@
                         addItemToFeed(url, title);
                     });
                   }
-                }
-            });
+            }
+            $.ajax(ajaxParams);
           }
           
         // END FEED STUFF
@@ -283,8 +278,23 @@ app.switchToRss = function(topicName, topicId) {
     console.log("SHOW RSS:" + topicName + "," + topicId);
     localStorage.topicName = topicName;
     localStorage.topicId = topicId;
-    showFeed();
+    var ajaxParams = {
+        type: "GET",
+        url: 'http://www.bbrennan.info/posted/rss?topicId=' + topicId,
+        dataType: "xml",
+    };
+    showFeed(ajaxParams);
     app.switchTo("#mainContainer", "#feedContainer");
+}
+
+app.switchToUserRss = function() {
+    localStorage.topicName = 'Recent';
+    var ajaxParams = {
+        type: "POST",
+        url: 'http://www.bbrennan.info/posted/userRss',
+        dataType: "json",
+        data: app.initPostRequest(),
+    };
 }
 
 app.switchToMain = function(topicName, topicId) {
@@ -351,6 +361,11 @@ var bodyLoaded = function() {
         <canvas id="loading" width="240" height="240">
         </canvas>
         <div id="topicList">
+          <div class="topicLine">
+            <div class="linkBox topic" onclick="switchToUserRss()">
+                <span class="topicText">Recent</span>
+            </div>
+          </div>
         </div>
       </div>
     </body>
