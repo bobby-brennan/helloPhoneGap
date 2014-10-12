@@ -295,6 +295,8 @@ app.switchToUserRss = function() {
         dataType: "json",
         data: app.initPostRequest(),
     };
+    showFeed(ajaxParams);
+    app.switchTo("#mainContainer", "#feedContainer");
 }
 
 app.switchToMain = function(topicName, topicId) {
