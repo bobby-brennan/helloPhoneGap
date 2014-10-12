@@ -55,7 +55,7 @@
                 addItemToFeed(localStorage.urlToShow, localStorage.titleToShow);
             }
             */
-            console.log("fetching:" + url);
+            console.log("fetching:" + ajaxParams.url);
             ajaxParams.successs = function(xml) {
                   $("#feed").html("");
                   console.log("xml:" + xml);
