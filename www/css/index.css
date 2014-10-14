@@ -182,11 +182,6 @@ input[type="submit"] {
   overflow: hidden;
 }
 
-.userRssRow {
-  height: 124px; /* 4*line-height + 2*padding */
-  max-height: 124px; /* 4*line-height + 2*padding */
-}
-
 .rssRowHeader {
     font-size: 18px;
     font-family: 'Roboto Bold', sans-serif;
