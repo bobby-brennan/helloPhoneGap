@@ -105,7 +105,7 @@
                         var url = $(this).find('link').text();
                         var date = $(this).find('date');
                         console.log("date:" + date);
-                        date = new Date(dateStr);
+                        date = new Date(date);
                         var category = null;
                         if (useHeaders) {
                             category = $(this).find('category').text();
