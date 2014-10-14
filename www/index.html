@@ -196,8 +196,7 @@ var updatePlaceholder = function() {
 var addTopic = function() {
     app.addTopic($('#topicInput').val(), function(err){
         if (!err) {
-            console.log("added, redirecting....");
-            window.location.href = 'index.html';
+            switchToMain();
         } else {
             console.log("error adding topic!");
         }
@@ -215,15 +214,17 @@ var deleteTopic = function(topic) {
     $.post(url, postData, function(resp) {
         console.log("delete response:" + resp);
         console.log("reloading...");
-        window.location.href = 'index.html';
-        console.log("reloaded");
+        switchToMain();
     })
 }
             
 var showTopics = function() {
+    $("#topicList").html('');
+    showTopic('Loading...', true);
     var postData = app.initPostRequest();
     if (!postData) {
-        console.log("no id, can't show topics!")
+        $("#topicList").html('');
+        showTopic('Error getting subscriptions', true);
         return false;
     }
     var url = "http://bbrennan.info/posted/getSubscriptionsMobile";
@@ -233,8 +234,9 @@ var showTopics = function() {
         topics.sort(function(t1, t2){
            return t1.topic.toLowerCase() > t2.topic.toLowerCase() ? 1 : -1; 
         });
+        $("#topicList").html('');
         for (var i = 0; i < topics.length; ++i) {
-            showTopic(topics[i], i === topics.length - 1)
+            showTopic(topics[i], i === topics.length - 1);
         }
     });
     return true;
@@ -292,6 +294,7 @@ app.switchToUserRss = function() {
 }
 
 app.switchToMain = function(topicName, topicId) {
+    showTopics();
     app.switchTo("#feedContainer", "#mainContainer");
 }
 
@@ -316,7 +319,7 @@ app.onDevReady = function() {
     document.addEventListener("backbutton", onBack, false);
     $("#backbutton").click(onBack);
     $("#rssTitle").click(function(){
-        app.openUrl("http://www.google.com/news?q=" + $("#rssTitleText").html());
+        app.openUrl("https://www.google.com/search?tbm=nws&q=" + $("#rssTitleText").html());
     })
 }
 app.initialize();
