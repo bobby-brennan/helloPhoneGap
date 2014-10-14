@@ -257,7 +257,7 @@ var showTopic = function(topic, isLast) {
     if (isLast) {
         cssClass += " linkBoxLast";
     }
-    if (topicId !== -1) {
+    if (topic.id !== -1) {
         topicHtml += '<div class="' + cssClass + ' delete button" onclick="' + deleteCall + '">-</div>';
     }
     topicHtml += '<div class="' + cssClass + ' topic" onclick="' + functionCall + '">'
