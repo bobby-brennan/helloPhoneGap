@@ -159,7 +159,7 @@ input[type="submit"] {
 }
 
 #backbutton {
-    vertical-align: middle;
+    line-height: 50px;
     float: left;
     color: #BBC4D7;
     background-color: #101D38;
