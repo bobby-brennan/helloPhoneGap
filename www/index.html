@@ -214,7 +214,7 @@ var deleteTopic = function(topic) {
     $.post(url, postData, function(resp) {
         console.log("delete response:" + resp);
         console.log("reloading...");
-        switchToMain();
+        app.switchToMain();
     })
 }
             
@@ -257,7 +257,9 @@ var showTopic = function(topic, isLast) {
     if (isLast) {
         cssClass += " linkBoxLast";
     }
-    topicHtml += '<div class="' + cssClass + ' delete button" onclick="' + deleteCall + '">-</div>';
+    if (topicId !== -1) {
+        topicHtml += '<div class="' + cssClass + ' delete button" onclick="' + deleteCall + '">-</div>';
+    }
     topicHtml += '<div class="' + cssClass + ' topic" onclick="' + functionCall + '">'
     topicHtml += '<span class="topicText">' + topic.topic + '</span></div>';
     topicHtml += '</div>';
