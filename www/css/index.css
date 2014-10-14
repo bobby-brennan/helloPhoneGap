@@ -131,7 +131,7 @@ input[type="submit"] {
 
 .topic {
     -webkit-appearance: none;
-    text-align: left;
+    -align: left;
 }
 
 .topicText {
@@ -139,7 +139,7 @@ input[type="submit"] {
     white-space: nowrap;
     text-overflow: ellipsis;
     display: block;
-    overflow: hidden
+    overflow: hidden;
     font-size: 36px;
 }
 
