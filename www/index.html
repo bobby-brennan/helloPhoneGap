@@ -37,14 +37,22 @@
         <script type="text/javascript">
         
         // FEED STUFF
-          var addItemToFeed = function(url, title) {
+          var addItemToFeed = function(url, title, category) {
             var clickFunc = 'onclick="app.openUrl(\'' + url + '\')"';
-            var html = '<div class="linkBox rssRow" ' + clickFunc + '>' + title + '</div>';
-            console.log("html:" + html);
+            var classStr = 'linkBox rssRow';
+            if (category) {
+                classStr += ' userRssRow';
+            }
+            var html = '<div class="' + classStr +  '"' + clickFunc + '>';
+            if (category) {
+                html += '<div class="rssRowHeader">' + category + '</div>'; 
+            }
+            html +=  + title + '</div>'
+            
             $("#feed").append(html);
           }
           
-          var showFeed = function(ajaxParams) {
+          var showFeed = function(ajaxParams, useHeaders) {
             $("#feed").html("");
             addItemToFeed("#", "loading...");
             $("#rssTitleText").html(localStorage.topicName);
@@ -72,6 +80,10 @@
                     $(items).each(function() {
                         var title = $(this).find('title').text();
                         var url = $(this).find('link').text();
+                        var category = null;
+                        if (useHeaders) {
+                            category = $(this).find('category').text();
+                        }
                         /*
                         if (url === urlToShow) {
                             return;
@@ -80,7 +92,7 @@
                         if (title.toLowerCase() === 'no title') {
                             title = url;
                         }
-                        addItemToFeed(url, title);
+                        addItemToFeed(url, title, category);
                     });
                   }
             };
