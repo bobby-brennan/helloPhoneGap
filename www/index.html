@@ -39,7 +39,9 @@
         var SEC_IN_HOUR = SEC_IN_MINUTE * 60;
         var SEC_IN_DAY = SEC_IN_HOUR * 24;
         var getTimeMessage = function(date) {
-          var timeSec = (new Date().getTime() - date.getTime()) * 1000;
+          var msecAgo = (new Date().getTime() - date.getTime());
+          console.log("msec ago:" + msecAgo);
+          var timeSec = mSecAgo / 1000;
           var unit = "";
           var amt = 0;
           if (timeSec < SEC_IN_MINUTE) {
