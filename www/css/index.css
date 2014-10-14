@@ -17,7 +17,7 @@
  * under the License.
  */
 @import url(http://fonts.googleapis.com/css?family=Roboto+Condensed);
-@import url(http://fonts.googleapis.com/css?family=Roboto:500);
+@import url(http://fonts.googleapis.com/css?family=Roboto:500,bold);
 
 * {
     -webkit-tap-highlight-color: rgba(0,255,0, 0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
@@ -196,4 +196,5 @@ input[type="submit"] {
     font-size: 18px;
     line-height: 20px;
     height: 20px;
+    font-family: 'Roboto';
 }
