@@ -183,9 +183,9 @@ input[type="submit"] {
 
 .userRssRow {
   font-size: 24px;
-  max-height: 119px;
   line-height: 28px;
-  height: 112px;
+  height: 124px;
+  max-height: 124px; /* 4*line-height + 2*padding */
 
   text-overflow: ellipsis;
   word-wrap: break-word;
