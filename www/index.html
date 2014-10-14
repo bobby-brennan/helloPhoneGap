@@ -38,16 +38,12 @@
         // FEED STUFF
           var addItemToFeed = function(item) {
             var clickFunc = 'onclick="app.openUrl(\'' + item.url + '\')"';
-            var classStr = 'linkBox rssRow';
-            if (item.category) {
-                classStr += ' userRssRow';
-            }
-            var html = '<div class="' + classStr +  '"' + clickFunc + '>';
+            var html += '<div class="linkBox>';
             if (item.category) {
                 html += '<div class="rssRowHeader">' + item.category + '</div>'; 
             }
-            html += item.title + '</div>'
-            
+            html += '<div class="rssRow" ' + clickFunc + '>' + item.title + '</div>';
+            html += '</div>'
             $("#feed").append(html);
           }
           
