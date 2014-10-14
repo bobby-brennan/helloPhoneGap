@@ -195,4 +195,6 @@ input[type="submit"] {
 .rssRowHeader {
     font-size: 18px;
     font-family: 'Roboto Bold', sans-serif;
+    height: 28px;
+    line-height: 28px;
 }
