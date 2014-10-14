@@ -173,11 +173,13 @@ input[type="submit"] {
 .rssRow {
     padding-top: 6px;
     padding-bottom: 6px;
+    height: 84px;
 }
 
 .userRssRow {
     padding-top: 6px;
     padding-bottom: 6px;
+    height: 112px;
 }
 
 .rssText {
