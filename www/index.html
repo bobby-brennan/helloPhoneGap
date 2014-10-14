@@ -302,6 +302,7 @@ app.switchToUserRss = function() {
 }
 
 app.switchToMain = function(topicName, topicId) {
+    $('#topicInput').val('');
     showTopics();
     app.switchTo("#feedContainer", "#mainContainer");
 }
