@@ -182,12 +182,18 @@ input[type="submit"] {
 }
 
 .userRssRow {
+  font-size: 24px;
+  max-height: 99px;
+  line-height: 33px;
   height: 119px;
-  background-color: #FF0000;
+
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  overflow: hidden;
 }
 
 .rssRowHeader {
-    font-size: 16px;
+    font-size: 18px;
     line-height: 20px;
     height: 20px;
 }
