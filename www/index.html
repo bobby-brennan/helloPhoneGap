@@ -29,7 +29,6 @@
         <script src="http://jsconsole.com/remote.js?F4A72AB5-1230-4E5B-8652-5895AEC3E885"></script>
         <script type="text/javascript" src="js/jquery.zrssfeed.min.js"></script>
         <script type="text/javascript" src="phonegap.js"></script>
-        <script type="text/javascript" src="js/hammer.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="PushNotification.js"></script>
         <script type="text/javascript" charset="utf-8" src="telephonenumber.js"></script>
@@ -329,11 +328,6 @@ app.onDevReady = function() {
         app.onGetNotifId = showTopics;
     }
     var feedContainer = $("#feedContainer")[0];
-    var hammertime = new Hammer(feedContainer);
-    hammertime.on('swipe', function(e) {
-        console.log("SWIPE:" + e);
-        app.switchToMain();
-    });
     initDrawing();
     startLoading();
     var onBack = function(e) {
