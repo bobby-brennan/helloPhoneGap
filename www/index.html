@@ -44,7 +44,7 @@
             if (item.category) {
                 html += '<div class="rssRowHeader">' + item.category + '</div>'; 
             }
-            html += '<span class="rssText">' + item.title + '</span>';
+            html += '<div class="rssTextBox"><span class="rssText">' + item.title + '</span></div>';
             html += '</div>'
             $("#feed").append(html);
           }
