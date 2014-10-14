@@ -41,7 +41,7 @@
             var clickFunc = 'onclick="app.openUrl(\'' + item.url + '\')"';
             var classStr = 'linkBox rssRow';
             if (item.category) {
-                classStr += ' userRssRow';
+                classStr = 'userRssRow ' + classStr;
             }
             var html = '<div class="' + classStr +  '"' + clickFunc + '>';
             if (item.category) {
