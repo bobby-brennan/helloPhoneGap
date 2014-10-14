@@ -41,7 +41,7 @@
         var getTimeMessage = function(date) {
           var msecAgo = (new Date().getTime() - date.getTime());
           console.log("msec ago:" + msecAgo);
-          var timeSec = mSecAgo / 1000;
+          var timeSec = Math.floor(mSecAgo / 1000);
           var unit = "";
           var amt = 0;
           if (timeSec < SEC_IN_MINUTE) {
