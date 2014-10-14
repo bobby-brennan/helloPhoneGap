@@ -145,6 +145,7 @@ input[type="submit"] {
 
 .button {
     width: 50px;
+    line-height: 50px;
     text-align: center;
     font-size: 24px;
     font-family: 'Roboto', sans-serif;
@@ -159,7 +160,6 @@ input[type="submit"] {
 }
 
 #backbutton {
-    line-height: 50px;
     float: left;
     color: #BBC4D7;
     background-color: #101D38;
