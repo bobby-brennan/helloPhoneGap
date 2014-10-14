@@ -91,6 +91,7 @@
             console.log("fetching:" + ajaxParams.url);
             ajaxParams.error = function(err) {
                 console.log("error fetching xml:" + err);
+                $("#feed").html("");
                 addItemToFeed({url:"#", title: "Error retrieving feed"});
             };
             ajaxParams.success = function(xml) {
