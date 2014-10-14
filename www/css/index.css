@@ -182,11 +182,14 @@ input[type="submit"] {
     height: 112px;
 }
 
+.rssTextBox {
+  height: 84px; /* 3*line-height + 2*padding */
+  max-height: 84px; /* 3*line-height + 2*padding */
+}
+
 .rssText {
   font-size: 24px;
   line-height: 28px;
-  height: 84px; /* 3*line-height + 2*padding */
-  max-height: 84px; /* 3*line-height + 2*padding */
   text-overflow: ellipsis;
   word-wrap: break-word;
   overflow: hidden;
