@@ -103,7 +103,7 @@
                     $(items).each(function() {
                         var title = $(this).find('title').text();
                         var url = $(this).find('link').text();
-                        var date = $(this).find('date');
+                        var date = $(this).find('date').text();
                         console.log("date:" + date);
                         date = new Date(date);
                         var category = null;
