@@ -301,9 +301,12 @@ app.onDevReady = function() {
     var feedContainer = $("#feedContainer")[0];
     initDrawing();
     var onBack = function(e) {
+        console.log("onback!");
         if ($('#mainContainer:visible').length == 0) {
+            console.log("switching to main");
             app.switchToMain();
         } else {
+            console.log("exiting");
             e.preventDefault();
             navigator.app.exitApp();
         }
