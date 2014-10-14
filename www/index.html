@@ -219,12 +219,12 @@ var deleteTopic = function(topic) {
 }
             
 var showTopics = function() {
-    $("#topicListInner").html('');
-    showTopic('Loading...', true);
+    $("#topicList").html('');
+    showTopic({topic:'Loading...', id:-1}, true);
     var postData = app.initPostRequest();
     if (!postData) {
-        $("#topicListInner").html('');
-        showTopic('Error getting subscriptions', true);
+        $("#topicList").html('');
+        showTopic({topic:'Error getting subscriptions.', id:-1}, true);
         return false;
     }
     var url = "http://bbrennan.info/posted/getSubscriptionsMobile";
@@ -234,7 +234,8 @@ var showTopics = function() {
         topics.sort(function(t1, t2){
            return t1.topic.toLowerCase() > t2.topic.toLowerCase() ? 1 : -1; 
         });
-        $("#topicListInner").html('');
+        $("#topicList").html('');
+        showTopic({topic: 'Recent', id:-1}, topics.length === 0);
         for (var i = 0; i < topics.length; ++i) {
             showTopic(topics[i], i === topics.length - 1);
         }
@@ -244,7 +245,12 @@ var showTopics = function() {
 
 var showTopic = function(topic, isLast) {
     //console.log("topic:" + topics[i].topic);
-    var functionCall = "app.switchToRss('" + topic.topic.replace(/'/g, "\\'") + "', " + topic.id + ")";
+    var functionCall = '';
+    if (topic.id === -1) {
+        functionCall = 'app.switchToUserRss();';
+    } else {
+        functionCall = "app.switchToRss('" + topic.topic.replace(/'/g, "\\'") + "', " + topic.id + ")";
+    }
     var deleteCall = "deleteTopic('" + topic.id + "\')";
     var topicHtml = '<div class="topicLine">'
     var cssClass = "linkBox";
@@ -255,7 +261,7 @@ var showTopic = function(topic, isLast) {
     topicHtml += '<div class="' + cssClass + ' topic" onclick="' + functionCall + '">'
     topicHtml += '<span class="topicText">' + topic.topic + '</span></div>';
     topicHtml += '</div>';
-    $('#topicListInner').append(topicHtml);
+    $('#topicList').append(topicHtml);
 };
 
 app.switchTo = function(fromDiv, toDiv) {
@@ -353,11 +359,6 @@ var bodyLoaded = function() {
         <div class="separator"></div>
         <div id="topicList">
           <div class="topicLine">
-            <div class="linkBox topic" onclick="app.switchToUserRss()">
-                <span class="topicText">Recent</span>
-            </div>
-            <div id="topicListInner">
-            </div>
           </div>
         </div>
       </div>
