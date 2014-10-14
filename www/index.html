@@ -56,19 +56,19 @@
           
           var showFeed = function(ajaxParams, useHeaders) {
             $("#feed").html("");
-            addItemToFeed("#", "loading...");
+            addItemToFeed({url:"#", title:"loading..."});
             $("#rssTitleText").html(localStorage.topicName);
             var topicId = localStorage.topicId;
             /*
             var urlToShow = localStorage.urlToShow;
             if (urlToShow) {
-                addItemToFeed(localStorage.urlToShow, localStorage.titleToShow);
+                addItemToFeed({url: localStorage.urlToShow, title:localStorage.titleToShow});
             }
             */
             console.log("fetching:" + ajaxParams.url);
             ajaxParams.error = function(err) {
                 console.log("error fetching xml:" + err);
-                addItemToFeed("#", "Error retrieving feed");
+                addItemToFeed({url:"#", title: "Error retrieving feed"});
             };
             ajaxParams.success = function(xml) {
                   $("#feed").html("");
@@ -77,7 +77,7 @@
                   console.log("length:" + items.length + ":" + $(items).length);
                   if ($(items).length === 0) {
                       console.log("no items!");
-                      addItemToFeed("#", "Nothing yet...");
+                      addItemToFeed({url:"#", title: "Nothing yet..."});
                   } else {
                     $(items).each(function() {
                         var title = $(this).find('title').text();
