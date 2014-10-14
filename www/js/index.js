@@ -184,7 +184,6 @@ var app = {
     },
     
     initPostRequest: function() {
-        return {phoneNumber: "5083083947"};
         var data = {uuid: window.device.uuid};
         if (device.platform == 'android' ||
             device.platform == 'Android' ||
@@ -201,8 +200,6 @@ var app = {
         }
         if (localStorage.phoneNumber) {
             data["phoneNumber"] = localStorage.phoneNumber;
-        } else {
-            data["phoneNumber"] = "5083083947";
         }
         console.log("POSTDATA:" + JSON.stringify(data));
         return data;
