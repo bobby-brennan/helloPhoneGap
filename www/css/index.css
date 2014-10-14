@@ -17,7 +17,7 @@
  * under the License.
  */
 @import url(http://fonts.googleapis.com/css?family=Roboto+Condensed);
-@import url(http://fonts.googleapis.com/css?family=Roboto:500,bold);
+@import url(http://fonts.googleapis.com/css?family=Roboto|Roboto:bold);
 
 * {
     -webkit-tap-highlight-color: rgba(0,255,0, 0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
@@ -194,7 +194,7 @@ input[type="submit"] {
 
 .rssRowHeader {
     font-size: 18px;
-    line-height: 20px;
-    height: 20px;
-    font-family: 'Roboto';
+    line-height: 33px;
+    height: 33px;
+    font-family: 'Roboto Bold', sans-serif;
 }
