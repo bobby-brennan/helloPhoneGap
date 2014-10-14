@@ -109,6 +109,8 @@
                         var category = null;
                         if (useHeaders) {
                             category = $(this).find('category').text();
+                        } else {
+                            category = getTimeMessage(date);
                         }
                         /*
                         if (url === urlToShow) {
