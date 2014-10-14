@@ -209,7 +209,7 @@ var app = {
         if(device.platform === 'Android') {
             navigator.app.loadUrl(url, {openExternal:true});
         } else {
-            window.open(url, '_system');
+            window.open(url, '_blank', 'location=yes');
         }
     },
 };
