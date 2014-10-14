@@ -40,7 +40,7 @@
           var addItemToFeed = function(item) {
             var clickFunc = 'onclick="app.openUrl(\'' + item.url + '\')"';
             var classStr = 'linkBox rssRow';
-            if (category) {
+            if (item.category) {
                 classStr += ' userRssRow';
             }
             var html = '<div class="' + classStr +  '"' + clickFunc + '>';
