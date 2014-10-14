@@ -130,61 +130,6 @@
           
         // END FEED STUFF
 
-// SVG stuff
-var bg;
-var ctx;
-var imd;
-var circ = Math.PI * 2;
-var quart = Math.PI / 2;
-function initDrawing() {
-    console.log("initting drawing");
-    bg = document.getElementById("loading");
-    ctx = ctx = bg.getContext('2d');
-    ctx.beginPath();
-    ctx.strokeStyle = '#555555';
-    ctx.lineCap = 'round';
-    ctx.closePath();
-    ctx.fill();
-    ctx.lineWidth = 10.0;
-    imd = ctx.getImageData(0, 0, 240, 240);
-    console.log("done initting drawing");
-}
-
-var draw = function(current) {
-    ctx.putImageData(imd, 0, 0);
-    ctx.beginPath();
-    var start = -quart;
-    var end = 0;
-    var offset = current * circ;
-    start += offset;
-    end += offset;
-    ctx.arc(120, 120, 70, start, end, false);
-    ctx.stroke();
-}
-
-var TOTAL_STEPS = 100;
-
-var ANIMATION_LOOP_MS = 1000;
-var step = -1;
-var runStep = function() {
-  if (step !== -1) {
-    draw(step / TOTAL_STEPS);
-    step = (step + 1) % TOTAL_STEPS;
-    setTimeout(runStep, ANIMATION_LOOP_MS / TOTAL_STEPS);
-  }
-}
-
-var stopLoading = function() {
-    step = -1;
-    $("#loading").hide();
-}
-
-var startLoading = function() {
-    console.log("start loading");
-    $("#loading").show();
-    step = 0;
-    runStep();
-}
 
 var PLACEHOLDERS = [
   "Ebola",
@@ -281,7 +226,6 @@ var showTopics = function() {
     var url = "http://bbrennan.info/posted/getSubscriptionsMobile";
     $.post(url, postData, function(resp) {
         console.log("topics:" + resp);
-        stopLoading();
         var topics = JSON.parse(resp)["subscriptions"];
         topics.sort(function(t1, t2){
            return t1.topic.toLowerCase() > t2.topic.toLowerCase() ? 1 : -1; 
@@ -356,7 +300,6 @@ app.onDevReady = function() {
     }
     var feedContainer = $("#feedContainer")[0];
     initDrawing();
-    startLoading();
     var onBack = function(e) {
         if ($('#mainContainer:visible').length == 0) {
             app.switchToMain();
@@ -407,8 +350,6 @@ var bodyLoaded = function() {
             </div>
           </div>
         </div>
-        <canvas id="loading" width="240" height="240">
-        </canvas>
       </div>
     </body>
 </html>
