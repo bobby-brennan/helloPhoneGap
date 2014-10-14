@@ -37,17 +37,17 @@
         <script type="text/javascript">
         
         // FEED STUFF
-          var addItemToFeed = function(url, title, category) {
-            var clickFunc = 'onclick="app.openUrl(\'' + url + '\')"';
+          var addItemToFeed = function(item) {
+            var clickFunc = 'onclick="app.openUrl(\'' + item.url + '\')"';
             var classStr = 'linkBox rssRow';
             if (category) {
                 classStr += ' userRssRow';
             }
             var html = '<div class="' + classStr +  '"' + clickFunc + '>';
             if (category) {
-                html += '<div class="rssRowHeader">' + category + '</div>'; 
+                html += '<div class="rssRowHeader">' + item.category + '</div>'; 
             }
-            html +=  + title + '</div>'
+            html += item.title + '</div>'
             
             $("#feed").append(html);
           }
@@ -92,7 +92,8 @@
                         if (title.toLowerCase() === 'no title') {
                             title = url;
                         }
-                        addItemToFeed(url, title, category);
+                        var item = {url, title, category};
+                        addItemToFeed(item);
                     });
                   }
             };
