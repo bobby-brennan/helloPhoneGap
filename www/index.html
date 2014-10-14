@@ -299,7 +299,7 @@ app.switchToUserRss = function() {
         dataType: "xml",
         data: app.initPostRequest(),
     };
-    showFeed(ajaxParams);
+    showFeed(ajaxParams, true);
     app.switchTo("#mainContainer", "#feedContainer");
 }
 
