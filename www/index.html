@@ -196,7 +196,7 @@ var updatePlaceholder = function() {
 var addTopic = function() {
     app.addTopic($('#topicInput').val(), function(err){
         if (!err) {
-            switchToMain();
+            app.switchToMain();
         } else {
             console.log("error adding topic!");
         }
