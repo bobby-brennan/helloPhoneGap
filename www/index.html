@@ -38,7 +38,7 @@
         // FEED STUFF
           var addItemToFeed = function(item) {
             var clickFunc = 'onclick="app.openUrl(\'' + item.url + '\')"';
-            var html += '<div class="linkBox>';
+            var html = '<div class="linkBox>';
             if (item.category) {
                 html += '<div class="rssRowHeader">' + item.category + '</div>'; 
             }
