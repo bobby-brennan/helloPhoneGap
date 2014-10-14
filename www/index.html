@@ -35,6 +35,32 @@
         
         <script type="text/javascript">
         
+        var SEC_IN_MINUTE = 60;
+        var SEC_IN_HOUR = SEC_IN_MINUTE * 60;
+        var SEC_IN_DAY = SEC_IN_HOUR * 24;
+        var getTimeMessage = function(date) {
+          var timeSec = (new Date().getTime() - date.getTime()) * 1000;
+          var unit = "";
+          var amt = 0;
+          if (timeSec < SEC_IN_MINUTE) {
+            unit = "second";
+            amt = timeSec;
+          } else if (timeSec < SEC_IN_HOUR) {
+            unit = "minute";
+            amt = Math.floor(timeSec / SEC_IN_MINUTE);
+          } else if (timeSec < SEC_IN_DAY) {
+            unit = "hour";
+            amt = Math.floor(timeSec / SEC_IN_HOUR);
+          } else {
+            unit = "day";
+            amt = Math.floor(timeSec / SEC_IN_DAY);
+          }
+          if (amt > 1) {
+            unit += "s";
+          }
+          return amt + " " + unit + " ago";
+        }
+                
         // FEED STUFF
           var addItemToFeed = function(item) {
             var clickFunc = 'onclick="app.openUrl(\'' + item.url + '\')"';
@@ -77,6 +103,9 @@
                     $(items).each(function() {
                         var title = $(this).find('title').text();
                         var url = $(this).find('link').text();
+                        var date = $(this).find('date');
+                        console.log("date:" + date);
+                        date = new Date(dateStr);
                         var category = null;
                         if (useHeaders) {
                             category = $(this).find('category').text();
