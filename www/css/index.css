@@ -174,11 +174,15 @@ input[type="submit"] {
   font-size: 24px;
   max-height: 99px;
   line-height: 33px;
-  height: 120px;
-  
+  height: 99px;
+
   text-overflow: ellipsis;
   word-wrap: break-word;
   overflow: hidden;
+}
+
+.userRssRow {
+  height: 119px;  
 }
 
 .rssRowHeader {
