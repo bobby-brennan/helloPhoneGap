@@ -44,7 +44,7 @@
                 classStr += ' userRssRow';
             }
             var html = '<div class="' + classStr +  '"' + clickFunc + '>';
-            if (category) {
+            if (item.category) {
                 html += '<div class="rssRowHeader">' + item.category + '</div>'; 
             }
             html += item.title + '</div>'
