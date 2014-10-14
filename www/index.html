@@ -219,11 +219,11 @@ var deleteTopic = function(topic) {
 }
             
 var showTopics = function() {
-    $("#topicList").html('');
+    $("#topicListInner").html('');
     showTopic('Loading...', true);
     var postData = app.initPostRequest();
     if (!postData) {
-        $("#topicList").html('');
+        $("#topicListInner").html('');
         showTopic('Error getting subscriptions', true);
         return false;
     }
@@ -234,7 +234,7 @@ var showTopics = function() {
         topics.sort(function(t1, t2){
            return t1.topic.toLowerCase() > t2.topic.toLowerCase() ? 1 : -1; 
         });
-        $("#topicList").html('');
+        $("#topicListInner").html('');
         for (var i = 0; i < topics.length; ++i) {
             showTopic(topics[i], i === topics.length - 1);
         }
@@ -255,7 +255,7 @@ var showTopic = function(topic, isLast) {
     topicHtml += '<div class="' + cssClass + ' topic" onclick="' + functionCall + '">'
     topicHtml += '<span class="topicText">' + topic.topic + '</span></div>';
     topicHtml += '</div>';
-    $('#topicList').append(topicHtml);
+    $('#topicListInner').append(topicHtml);
 };
 
 app.switchTo = function(fromDiv, toDiv) {
@@ -355,6 +355,8 @@ var bodyLoaded = function() {
           <div class="topicLine">
             <div class="linkBox topic" onclick="app.switchToUserRss()">
                 <span class="topicText">Recent</span>
+            </div>
+            <div id="topicListInner">
             </div>
           </div>
         </div>
