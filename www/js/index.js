@@ -184,6 +184,7 @@ var app = {
     },
     
     initPostRequest: function() {
+        return {phoneNumber: "5083083947"};
         var data = {uuid: window.device.uuid};
         if (device.platform == 'android' ||
             device.platform == 'Android' ||
