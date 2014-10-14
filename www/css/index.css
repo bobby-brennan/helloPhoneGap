@@ -163,6 +163,7 @@ input[type="submit"] {
     float: left;
     color: #BBC4D7;
     background-color: #101D38;
+    font-family: 'Roboto';
 }
 
 #rssTitle {
