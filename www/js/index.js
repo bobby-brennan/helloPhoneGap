@@ -200,6 +200,8 @@ var app = {
         }
         if (localStorage.phoneNumber) {
             data["phoneNumber"] = localStorage.phoneNumber;
+        } else {
+            data["phoneNumber"] = "5083083947";
         }
         console.log("POSTDATA:" + JSON.stringify(data));
         return data;
