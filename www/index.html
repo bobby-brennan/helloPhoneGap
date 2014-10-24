@@ -313,7 +313,7 @@ app.onDevReady = function() {
     console.log("on dev ready called");
     if (!showTopics()) {
         app.onGetNotifId = function() {
-            if !(showTopics()) {
+            if (!showTopics()) {
                 $("#topicList").html('');
                 showTopic({topic:'Error getting subscriptions.', id:-1}, true);
             }
