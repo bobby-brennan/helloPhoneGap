@@ -223,8 +223,6 @@ var showTopics = function() {
     showTopic({topic:'Loading...', id:-1}, true);
     var postData = app.initPostRequest();
     if (!postData) {
-        $("#topicList").html('');
-        showTopic({topic:'Error getting subscriptions.', id:-1}, true);
         return false;
     }
     var url = "http://bbrennan.info/posted/getSubscriptionsMobile";
@@ -303,7 +301,10 @@ app.switchToUserRss = function() {
 
 app.switchToMain = function(topicName, topicId) {
     $('#topicInput').val('');
-    showTopics();
+    if !(showTopics()) {
+        $("#topicList").html('');
+        showTopic({topic:'Error getting subscriptions.', id:-1}, true);
+    }
     app.switchTo("#feedContainer", "#mainContainer");
 }
 
@@ -311,7 +312,12 @@ console.log('initting');
 app.onDevReady = function() {
     console.log("on dev ready called");
     if (!showTopics()) {
-        app.onGetNotifId = showTopics;
+        app.onGetNotifId = function() {
+            if !(showTopics()) {
+                $("#topicList").html('');
+                showTopic({topic:'Error getting subscriptions.', id:-1}, true);
+            }
+        }
     }
     var feedContainer = $("#feedContainer")[0];
     var onBack = function(e) {
