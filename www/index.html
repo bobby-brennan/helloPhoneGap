@@ -301,7 +301,7 @@ app.switchToUserRss = function() {
 
 app.switchToMain = function(topicName, topicId) {
     $('#topicInput').val('');
-    if !(showTopics()) {
+    if (!showTopics()) {
         $("#topicList").html('');
         showTopic({topic:'Error getting subscriptions.', id:-1}, true);
     }
