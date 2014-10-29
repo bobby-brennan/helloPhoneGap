@@ -14,7 +14,7 @@ set -x
 
 # Explicitly set background in case image is transparent (see: #3)
 convert="convert -antialias -background #101D38"
-$convert -density 512 -resize 512x512 "$1" "www/res/icon/icon-512.png"
+$convert -density 512 -resize 512x512 "$1" "www/res/icon/play_store/hires.png"
 $convert -density 128 -resize 128x128 "$1" "www/res/icon/icon.png"
 $convert -density 36 -resize 36x36 "$1" "www/res/icon/android/icon-36-ldpi.png"
 $convert -density 72 -resize 72x72 "$1" "www/res/icon/android/icon-72-hdpi.png"
@@ -47,6 +47,7 @@ $convert -density 128 -resize 128x128 "$1" "www/icon.png"
 $convert -density 200 -resize 170x200 "$1" "www/img/logo.png"
 
 convert="convert -antialias -background #101D38 -gravity center"
+$convert -density 256 -resize 256x256 -extent 1024x500 "$1" "www/res/icon/play_store/feature.png"
 $convert -density 512 -resize 512x512 -extent 1280x720 "$1" "www/res/screen/android/screen-xhdpi-landscape.png"
 $convert -density 256 -resize 256x256 -extent 480x800 "$1" "www/res/screen/android/screen-hdpi-portrait.png"
 $convert -density 128 -resize 128x128 -extent 320x200 "$1" "www/res/screen/android/screen-ldpi-landscape.png"
