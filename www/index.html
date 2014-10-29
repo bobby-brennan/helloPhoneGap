@@ -312,13 +312,8 @@ console.log('initting');
 app.onDevReady = function() {
     console.log("on dev ready called");
     if (!showTopics()) {
-        showTopic({topic: 'Add a topic above to start getting notifications!', id: -1}, true);
-        app.onGetNotifId = function() {
-            if (!showTopics()) {
-                $("#topicList").html('');
-                showTopic({topic:'Error getting subscriptions.', id:-1}, true);
-            }
-        }
+        $("#topicList").html('');
+        showTopic({topic: 'Add topics above to start', id: -1}, true);
     }
     var feedContainer = $("#feedContainer")[0];
     var onBack = function(e) {
