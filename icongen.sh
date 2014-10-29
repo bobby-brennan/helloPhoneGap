@@ -13,7 +13,8 @@ eval mkdir -p "$1" "www/res/{icon,screen}/{$devices}"
 set -x
 
 # Explicitly set background in case image is transparent (see: #3)
-convert="convert -background #101D38"
+convert="convert -antialias -background #101D38"
+$convert -antialias -resize 512x512 "$1" "www/res/icon/icon-512.png"
 $convert -resize 128x128 "$1" "www/res/icon/icon.png"
 $convert -resize 36x36 "$1" "www/res/icon/android/icon-36-ldpi.png"
 $convert -resize 72x72 "$1" "www/res/icon/android/icon-72-hdpi.png"
