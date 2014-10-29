@@ -312,6 +312,7 @@ console.log('initting');
 app.onDevReady = function() {
     console.log("on dev ready called");
     if (!showTopics()) {
+        showTopic({topic: 'Add a topic above to start getting notifications!', id: -1}, true);
         app.onGetNotifId = function() {
             if (!showTopics()) {
                 $("#topicList").html('');
