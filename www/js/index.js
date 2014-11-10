@@ -115,7 +115,7 @@ var server = {
     })
   },
             
-  getTopics = function(onTopics) {
+  getSubscriptions: function(onTopics) {
     var postData = this.initPostRequest();
     if (!postData) {
         return false;
