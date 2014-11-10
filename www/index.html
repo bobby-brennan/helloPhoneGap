@@ -29,8 +29,6 @@
     angular.module('app', ['onsen']);
     console.log('started angular module');
 
-    app.onDevReady = function() {console.log('odr1')}
-
     angular.module('app').controller('AppController', function($scope) {
       console.log('in controller');
       $scope.doSomething = function() {
@@ -200,7 +198,7 @@
 
   <ons-template id="recent.html">
     <ons-navigator>
-      <ons-page>
+      <ons-page on-device-backbutton="onsen.tabbar.setActiveTab(1)">
         <ons-toolbar>
           <div class="left"><ons-toolbar-button ng-click="loadUserArticles()"><ons-icon icon="ion-compose"></ons-icon></ons-toolbar-button></div>
           <div class="center">{{recentTitle}}</div>
@@ -226,7 +224,7 @@
 
   <ons-template id="subscriptions.html">
     <ons-navigator>
-      <ons-page>
+      <ons-page on-device-backbutton="onsen.tabbar.setActiveTab(0)">
         <ons-toolbar>
           <div class="left"><ons-toolbar-button ng-click="loadSubs()"><ons-icon icon="ion-compose"></ons-icon></ons-toolbar-button></div>
           <div class="center">My Topics</div>
@@ -250,7 +248,7 @@
   </ons-template>
 
   <ons-template id="settings.html">
-    <ons-page>
+    <ons-page on-device-backbutton="onsen.tabbar.setActiveTab(0)">
       <ons-toolbar>
         <div class="center">Settings</div>
       </ons-toolbar>
