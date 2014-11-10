@@ -127,7 +127,6 @@ var server = {
     console.log('get subs:' + server);
     var postData = server.initPostRequest();
     console.log('pd:' + JSON.stringify(postData));
-    return onTopics([{topic:'hi', topicId:'there'}]);
     if (!postData) {
         return onTopics([]);
     }
