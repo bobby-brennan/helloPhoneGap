@@ -63,19 +63,27 @@
           $scope.$apply();
         });
       };
-      $scope.onTabChanged = function(idx, tabItem) {
-        console.log('tc! ' + idx);
-        if (idx === 0) {
-          
-        } else if (idx === 1) {
 
+      $scope.LAST_TAB = 2;
+      $scope.THIS_TAB = 2;
+      $scope.onTabChanged = function(idx, tabItem) {
+        console.log("tc! " + idx);
+        $scope.LAST_TAB = $scope.THIS_TAB;
+        $scope.THIS_TAB = ix;
+        if (idx === 0) {
+          loadUserArticles(); 
+        } else if (idx === 1) {
+          // Do nothing
+        } else if (idx === 2) {
+          loadSubs();
+        } else if (idx === 3) {
+          // Do nothing
         }
       };
 
       app.onDevReady = function() {
         FastClick.attach(document.body);
         $scope.loadSubs();
-        $scope.loadUserArticles();
       };
     });
   </script>
@@ -205,10 +213,9 @@
 
   <ons-template id="recent.html">
     <ons-navigator>
-      <ons-page on-device-backbutton="ons.tabbar.setActiveTab(2)">
+      <ons-page on-device-backbutton="ons.tabbar.setActiveTab(LAST_TAB)">
         <ons-toolbar>
-          <div class="left"><ons-toolbar-button ng-click="loadUserArticles()"><ons-icon icon="ion-compose"></ons-icon></ons-toolbar-button></div>
-          <div class="center">{{recentTitle}}</div>
+          <div class="center">Recent</div>
           <div class="right"></div>
         </ons-toolbar>
 
@@ -229,9 +236,34 @@
     </ons-navigator>
   </ons-template>
 
+  <ons-template id="topic.html">
+    <ons-navigator>
+      <ons-page on-device-backbutton="ons.tabbar.setActiveTab(LAST_TAB)">
+        <ons-toolbar>
+          <div class="center">{{topicTitle}}</div>
+          <div class="right"></div>
+        </ons-toolbar>
+
+        <ons-list id="subscriptions" style="margin: -1px 0">
+          <ons-list-item modifier="chevron" class="item" ng-repeat="item in topicArticles">
+            <ons-row ng-click="openUrl(item.url)">
+              <ons-col>
+                <header>
+                  <span class="item-title">{{item.category}}</span>
+                  <span class="item-label"><span>
+                </header>
+                <p class="item-desc">{{item.title}}</p>
+              </ons-col>
+            </ons-row>
+          </ons-list-item>
+        </ons-list>
+      </ons-page>
+    </ons-navigator>
+  </ons-template>
+
   <ons-template id="subscriptions.html">
     <ons-navigator>
-      <ons-page on-device-backbutton="ons.tabbar.setActiveTab(0)">
+      <ons-page on-device-backbutton="ons.tabbar.setActiveTab(LAST_TAB)">
         <ons-toolbar>
           <div class="left"><ons-toolbar-button ng-click="loadSubs()"><ons-icon icon="ion-compose"></ons-icon></ons-toolbar-button></div>
           <div class="center">My Topics</div>
@@ -255,7 +287,7 @@
   </ons-template>
 
   <ons-template id="settings.html">
-    <ons-page on-device-backbutton="ons.tabbar.setActiveTab(0)">
+    <ons-page on-device-backbutton="ons.tabbar.setActiveTab(LAST_TAB)">
       <ons-toolbar>
         <div class="center">Settings</div>
       </ons-toolbar>
