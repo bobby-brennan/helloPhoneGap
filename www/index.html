@@ -28,6 +28,8 @@
     angular.module('app', ['onsen']);
     console.log('started angular module');
 
+    app.onDevReady = function() {console.log('odr1')}
+
     angular.module('app').controller('AppController', function($scope) {
       console.log('in controller');
       $scope.doSomething = function() {
@@ -35,8 +37,6 @@
           alert('tapped');
         }, 100);
       };
-      console.log('getting subs');
-      $scope.subscriptions = [{topic: "foo", topicId: 23}];
       $scope.loadSubs = function() {
         server.getSubscriptions(function(subs) {
           $scope.subscriptions = subs;
@@ -52,6 +52,7 @@
         });
       };
       app.onDevReady = function() {
+        console.log('on device ready!');
         $scope.loadSubs();
         $scope.loadUserArticles();
       };
