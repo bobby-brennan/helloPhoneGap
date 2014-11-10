@@ -35,11 +35,12 @@
           alert('tapped');
         }, 100);
       };
-
+      console.log('getting subs');
       $scope.subscriptions = [{topic: "foo", topicId: 23}];
 
       server.getSubscriptions(function(subs) {
-        console.log('got subs:' + subs.length);
+        console.log('got subs');
+        console.log('got subs:' + JSON.stringify(subs));
         $scope.subscriptions = subs;
       });
       console.log('module initialized!!!!!!!!!!_!_!_!_!_!');

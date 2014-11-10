@@ -118,17 +118,20 @@ var server = {
   getSubscriptions: function(onTopics) {
     var postData = this.initPostRequest();
     if (!postData) {
-        return false;
+        return onTopics([]);
     }
     var url = BASE_URL + "getSubscriptionsMobile";
+    console.log('post req:' + url);
     $.post(url, postData, function(resp) {
+        console.log('post resp:' + JSON.stringify(resp));
         var topics = JSON.parse(resp)["subscriptions"];
         topics.sort(function(t1, t2){
            return t1.topic.toLowerCase() > t2.topic.toLowerCase() ? 1 : -1; 
         });
+        console.log('subs:' + JSON.stringify(topics));
         onTopics(topics);
     });
-    return true;
+    console.log('sent post request');
   },
 }
 
