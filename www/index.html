@@ -64,8 +64,7 @@
         });
       };
       $scope.onTabChanged = function(idx, tabItem) {
-        console.log('tc!');
-        console.log("tab change to:" + idx + JSON.stringify(tabItem));
+        console.log('tc! ' + idx);
         if (idx === 0) {
           
         } else if (idx === 1) {
@@ -177,7 +176,7 @@
 <body ng-controller="AppController">    
   
   <ons-tabbar animation="slide"
-              on-active-tab-changed="console.log('tab change')">
+              on-active-tab-changed="switchToTab($index)">
 
     <ons-tabbar-item page="recent.html">
       <div class="tab">
@@ -186,7 +185,7 @@
       </div>
     </ons-tabbar-item>
 
-    <ons-tabbar-item page="recent.html">
+    <ons-tabbar-item page="recent.html" style="display:none">
     </ons-tabbar-item>
 
     <ons-tabbar-item active="true" page="subscriptions.html">
@@ -246,7 +245,7 @@
                 <ons-icon icon="ion-ios7-close" class="delete-icon"></ons-icon>
               </ons-col>
               <ons-col ng-click="loadTopicArticles(sub.topic, sub.id)">
-                  <p class="item-desc">{{sub.topic}}</p>
+                  <p class="item-desc item-title">{{sub.topic}}</p>
               </ons-col>
             </ons-row>                          
           </ons-list-item>
