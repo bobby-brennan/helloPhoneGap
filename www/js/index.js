@@ -18,7 +18,7 @@
  */
 
 var server = {
-  BASE_URL = "http://www.bbrennan.info/posted/", 
+  BASE_URL: "http://www.bbrennan.info/posted/", 
 
   initPostRequest: function() {
     var data = {uuid: window.device.uuid};
