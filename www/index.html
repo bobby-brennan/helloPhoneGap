@@ -56,19 +56,22 @@
       };
       $scope.loadUserArticles = function() {
         console.log('load user articles');
+        $scope.recentTitle = "Recent";
         server.getUserArticles(function(articles) {
           console.log('got articles:' + JSON.stringify(articles));
           $scope.articles = articles;
           $scope.$apply();
         });
       };
-      $scope.loadTopicArticles = function(topicId) {
+      $scope.loadTopicArticles = function(topicName, topicId) {
         ons.tabbar.setActiveTab(0);
+        $scope.recentTitle = topicName;
         server.getTopicArticles(topicId, function(articles) {
           $scope.articles = articles;
           $scope.$apply();
         });
       };
+
       app.onDevReady = function() {
         console.log('on device ready!');
         $scope.loadSubs();
@@ -201,7 +204,7 @@
       <ons-page>
         <ons-toolbar>
           <div class="left"><ons-toolbar-button ng-click="loadUserArticles()"><ons-icon icon="ion-compose"></ons-icon></ons-toolbar-button></div>
-          <div class="center">Recent</div>
+          <div class="center">{{recentTitle}}</div>
           <div class="right"></div>
         </ons-toolbar>
 
@@ -237,7 +240,7 @@
               <ons-col width="60px" ng-click="deleteTopic(sub.id)"> 
                 <ons-icon icon="ion-ios7-close" class="delete-icon"></ons-icon>
               </ons-col>
-              <ons-col ng-click="loadTopicArticles(sub.id)">
+              <ons-col ng-click="loadTopicArticles(sub.topic, sub.id)">
                 <header>
                   <span class="item-title">{{sub.topic}}</span>
                 </header>
