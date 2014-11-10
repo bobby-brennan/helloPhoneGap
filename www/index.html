@@ -38,7 +38,7 @@
           alert('tapped');
         }, 100);
       };
-      $scope.openUrl(url) {
+      $scope.openUrl = function(url) {
         console.log('opening:' + url);
         server.openUrl(url);
       };
@@ -151,6 +151,7 @@
     .item-title {
       font-size: 15px;
       font-weight: 500;
+      vertical-align: middle;
     }
     .item-desc {
       font-size: 14px;
