@@ -261,7 +261,6 @@ var app = {
     onNotification: function(e) {
         switch( e.event ) {
             case 'registered':
-                console.log("registerd");
                 if ( e.regid.length > 0 ) {
                     console.log("Regid " + e.regid);
                     console.log('registration id = '+e.regid);

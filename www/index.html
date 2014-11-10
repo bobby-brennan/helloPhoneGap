@@ -177,7 +177,7 @@
   
   <ons-tabbar>
     <ons-tabbar-item page="recent.html">
-      <div class="tab">
+      <div class="tab" ng-click="loadUserArticles()">
         <ons-icon icon="ion-android-clock" class="tab-icon"></ons-icon>
         <div class="tab-label">Recent</div>
       </div>
@@ -240,7 +240,7 @@
                 <ons-icon icon="ion-ios7-close" class="delete-icon"></ons-icon>
               </ons-col>
               <ons-col ng-click="loadTopicArticles(sub.topic, sub.id)">
-                  <p class="item-title">{{sub.topic}}</p>
+                  <p class="item-desc">{{sub.topic}}</p>
               </ons-col>
             </ons-row>                          
           </ons-list-item>
