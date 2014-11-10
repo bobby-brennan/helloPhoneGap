@@ -195,7 +195,7 @@
 
         <ons-list id="subscriptions" style="margin: -1px 0">
           <ons-list-item modifier="chevron" class="item" ng-repeat="item in articles">
-            <ons-row ng-click="app.openUrl('{{item.url}}')">
+            <ons-row ng-click="app.openUrl(item.url)">
               <ons-col>
                 <header>
                   <span class="item-title">{{item.category}}</span>
@@ -223,9 +223,9 @@
           <ons-list-item modifier="chevron" class="item" ng-repeat="sub in subscriptions">
             <ons-row>
               <ons-col width="60px" ng-click="doSomething()"> 
-                <ons-icon icon="ion-ios7-close" class="delete-icon"><!-- ng-click="server.deleteTopic('{{sub.topic}}', {{sub.topicId}})"--></ons-icon>
+                <ons-icon icon="ion-ios7-close" class="delete-icon" ng-click="server.deleteTopic(sub.topic, sub.topicId)"></ons-icon>
               </ons-col>
-              <ons-col ng-click="loadTopicArticles({{sub.topicId}})">
+              <ons-col ng-click="loadTopicArticles(sub.topicId)">
                 <header>
                   <span class="item-title">{{sub.topic}}</span>
                   <span class="item-label">{{sub.topicId}}</span>
