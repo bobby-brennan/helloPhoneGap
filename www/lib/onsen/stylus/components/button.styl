@@ -19,20 +19,28 @@
 // NOTE: You can't use @extend that break component independent and topdoc parsing.
 
 // internal variables
-var-button-background-color = $highlight-color
-var-button-color = white
-var-button-cta-background-color = $second-highlight-color
-var-border--button-color = rgba(0, 0, 0, 0)
-var-button-quiet-color = $highlight-color
+var-background-color__button := #1284ff
+var-color__button := white
+var-background-color--cta := #4CDA64
+var-quiet-button-color := #1284ff
 
-var-button-cta-background-color = $second-highlight-color
-var-button-cta-color = white
-var-button-large-padding = 4px 12px
-var-button-padding = 4px 10px
-var-button-line-height = 32px
-var-button-large-line-height = 36px
-var-button-active-opacity = 0.2
-var-button-border-radius = 3px
+var-text-shadow--cta = none
+var-border__button--quiet = none
+var-quiet-button-background = transparent
+var-color--button--active = var-color__button
+var-background-color--down__button = var-background-color__button
+var-background-color--quiet-active = transparent
+var-box-shadow--cta = none
+var-box-shadow--cta--down = none
+var-background-color--cta--down = var-background-color--cta
+var-color--cta = white
+var-color--cta--down = white
+var-padding--button--large = 4px 12px
+var-padding--button = 4px 10px
+var-line-height--button = 32px
+var-line-height--button--large = 36px
+var-active-button-opacity = 0.2
+var-border-radius__button = 3px
 
 /*! topdoc
   name: Button
@@ -64,24 +72,29 @@ button()
   ellipsis()
   height auto
   text-decoration none
-  padding var-button-padding
+  padding var-padding--button
   font-size var-font-size
-  line-height var-button-line-height
+  line-height var-line-height--button
   letter-spacing var-letter-spacing
-  color var-button-color
+  color var-color__button
+  text-shadow var-text-shadow
   vertical-align middle
-  background-color var-button-background-color
+  background-color var-background-color__button
+  box-shadow var-box-shadow
   border 0px solid currentColor
-  border-radius var-button-border-radius
+  border-radius var-border-radius__button
   transition none
 
 button--focus()
+  box-shadow none
   outline 0
 
 button--active()
-  background-color var-button-background-color
+  background-color var-background-color--down__button
+  box-shadow var-box-shadow--down
+  color var-color--button--active
   transition none
-  opacity var-button-active-opacity
+  opacity var-active-button-opacity
 
 .button
   button()
@@ -109,17 +122,17 @@ button--active()
 */
 .button--outline
   background-color transparent
-  border 1px solid var-button-background-color
-  color var-button-background-color
+  border 1px solid var-background-color__button
+  color var-background-color__button
 
 .button--outline:active
-  background-color mylighten(var-button-background-color)
-  border 1px solid var-button-background-color
-  color var-button-background-color
+  background-color mylighten(var-background-color__button)
+  border 1px solid var-background-color__button
+  color var-background-color__button
   opacity 1
 
 .button--outline:hover
-  border 1px solid var-button-background-color
+  border 1px solid var-background-color__button
   transition 0
 
 /*! topdoc
@@ -152,8 +165,8 @@ button--active()
 .button--quiet
   button()
   button--quiet()
-  background transparent
-  color var-button-quiet-color
+  background var-quiet-button-background
+  color var-quiet-button-color
   border none
 
 .button--quiet:disabled,
@@ -168,11 +181,13 @@ button--active()
   button--focus()
 
 .button--quiet:active
-  background-color transparent
+  text-shadow var-text-shadow
+  background-color var-background-color--quiet-active
   border none
+  box-shadow var-box-shadow--down
   transition none
-  opacity var-button-active-opacity
-  color var-button-quiet-color
+  opacity var-active-button-opacity
+  color var-quiet-button-color
 
 /*! topdoc
   name: Call To Action Button
@@ -185,8 +200,10 @@ button--active()
 .button--cta
   button()
   border none
-  background-color var-button-cta-background-color
-  color var-button-cta-color
+  background-color var-background-color--cta
+  box-shadow var-box-shadow--cta
+  color var-color--cta
+  text-shadow var-text-shadow--cta
 
 .button--cta:hover
   button--hover()
@@ -195,10 +212,11 @@ button--active()
   button--focus()
 
 .button--cta:active
-  color var-button-cat-color
-  background-color var-button-cta-background-color
+  color var-color--cta--down
+  background-color var-background-color--cta--down
+  box-shadow var-box-shadow--cta--down
   transition none
-  opacity var-button-active-opacity
+  opacity var-active-button-opacity
 
 .button--cta:disabled,
 .button--cta[disabled]
@@ -216,8 +234,8 @@ button--active()
 .button--large
   font-size var-font-size--large
   font-weight var-font-weight--large
-  line-height var-button-large-line-height
-  padding var-button-large-padding
+  line-height var-line-height--button--large
+  padding var-padding--button--large
   display block
   width 100%
   text-align center
@@ -247,18 +265,18 @@ button--active()
   button()
   font-size var-font-size--large
   font-weight var-font-weight--large
-  line-height var-button-large-line-height
-  padding var-button-large-padding
+  line-height var-line-height--button--large
+  padding var-padding--button--large
   display block
   width 100%
   button--quiet()
-  color var-button-quiet-color
+  color var-quiet-button-color
   text-align center
 
 .button--large--quiet:active
   transition none
-  opacity var-button-active-opacity
-  color var-button-quiet-color
+  opacity var-active-button-opacity
+  color var-quiet-button-color
   button--quiet()
 
 .button--large--quiet:disabled,
@@ -282,12 +300,14 @@ button--active()
 .button--large--cta
   button()
   border none
-  background-color var-button-cta-background-color
-  color var-button-cta-color
+  background-color var-background-color--cta
+  box-shadow var-box-shadow--cta
+  color var-color--cta
+  text-shadow var-text-shadow--cta
   font-size var-font-size--large
   font-weight var-font-weight--large
-  line-height var-button-large-line-height
-  padding var-button-large-padding
+  line-height var-line-height--button--large
+  padding var-padding--button--large
   width 100%
   text-align center
   display block
@@ -299,10 +319,11 @@ button--active()
   button--focus()
 
 .button--large--cta:active
-  color var-button-cta-color
-  background-color var-button-cta-background-color
+  color var-color--cta--down
+  background-color var-background-color--cta--down
+  box-shadow var-box-shadow--cta--down
   transition none
-  opacity var-button-active-opacity
+  opacity var-active-button-opacity
 
 .button--large--cta:disabled,
 .button--large--cta[disabled]

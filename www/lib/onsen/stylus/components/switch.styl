@@ -20,13 +20,16 @@
 // NOTE: You can't use @extend that break component independent and topdoc parsing.
 
 // internal variables
-var-switch-background-color = $border-color
-var-switch-checked-background-color = $switch-highlight-color // background color active
-var-switch-thumb-background-color = white
-var-swtich-thumb-border-color = $border-color
-var-swtich-thumb-border-color-active = $switch-highlight-color
-var-switch-height = 32px
-var-switch-width = 51px
+
+var-switch-background-color := #ddd
+var-background-color--switch__label--checked := #4CD964 // background color active
+var-switch-thumb-background-color := #fff
+var-swtich-thumb-border-color := #ddd
+var-swtich-thumb-border-color-active := #4CD964
+
+var-height--switch = 32px
+var-width--switch = 51px
+var-switch--border-radius = 30px
 
 /*! topdoc
   name: Switch
@@ -66,16 +69,16 @@ switch__toggle()
   padding 0 20px
   border none
   overflow visible
-  width var-switch-width
-  height var-switch-height
+  width var-width--switch
+  height var-height--switch
   z-index 0
   text-align left
 
 .switch__input
   hide-input()
-  width var-switch-width
+  width var-width--switch
   height 44px
-  margin-top -((44px-(var-switch-height))/2px)
+  margin-top -((44px-(var-height--switch))/2px)
   top 0px
   left 0px
   transition all 0.2s linear
@@ -109,7 +112,7 @@ switch__toggle()
   transition-timing-function cubic-bezier(.5, 1.6, .5, 1)
 
 .switch__input:checked + .switch__toggle
-  background-color var-switch-checked-background-color
+  background-color var-background-color--switch__label--checked
 
 .switch__input:checked + .switch__toggle:before
   transform translateX(18px)
