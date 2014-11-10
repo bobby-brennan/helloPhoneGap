@@ -24,10 +24,12 @@
   <script src="js/index.js"></script>
 
   <script>
-    console.log('starting angular module')
+    console.log('starting angular module');
     angular.module('app', ['onsen']);
+    console.log('started angular module');
 
     angular.module('app').controller('AppController', function($scope) {
+      console.log('in controller');
       $scope.doSomething = function() {
         setTimeout(function() {
           alert('tapped');
@@ -42,6 +44,7 @@
       });
       console.log('module initialized!!!!!!!!!!_!_!_!_!_!');
     });
+    console.log('finished ang script')
   </script>
 
   <style>
