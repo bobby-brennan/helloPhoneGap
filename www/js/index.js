@@ -119,8 +119,9 @@ var server = {
             
   getSubscriptions: function(onTopics) {
     console.log('get subs:' + this);
-    return onTopics([{topic:'hi', topicId:'there'}]);
     var postData = this.initPostRequest();
+    console.log('pd:' + JSON.stringify(postData));
+    return onTopics([{topic:'hi', topicId:'there'}]);
     if (!postData) {
         return onTopics([]);
     }
