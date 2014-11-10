@@ -194,13 +194,14 @@
         </ons-toolbar>
 
         <ons-list id="subscriptions" style="margin: -1px 0">
-          <ons-list-item modifier="chevron" class="item" ng-repeat="item in articles" ng-click="app.openUrl('{{item.url}}')">
-            <ons-row>
+          <ons-list-item modifier="chevron" class="item" ng-repeat="item in articles">
+            <ons-row ng-click="app.openUrl('{{item.url}}')">
               <ons-col>
                 <header>
                   <span class="item-title">{{item.category}}</span>
-                  <span class="item-label">{{item.title}}</span>
+                  <span class="item-label"><span>
                 </header>
+                <p class="item-desc">{{item.title}}</p>
               </ons-col>
             </ons-row>
           </ons-list-item>
