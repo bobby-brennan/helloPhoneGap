@@ -41,7 +41,6 @@ var server = {
     if (localStorage.phoneNumber) {
       data["phoneNumber"] = localStorage.phoneNumber;
     }
-    console.log("POSTDATA:" + JSON.stringify(data));
     return data;
   },
 
@@ -53,9 +52,7 @@ var server = {
             return;
         }
         postData["topic"] = topic;
-        console.log("POSTING:" + topic);
         $.post(server.BASE_URL + "subscribeMobile", postData, function(resp) {
-           console.log("SUBSCRIBE response:" + resp);
            onDone();
         });
   },
@@ -111,10 +108,8 @@ var server = {
         console.log("no id, can't delete topic!")
         return false;
     }
-    console.log("deleting:" + JSON.stringify(postData));
     postData["topicId"] = topic;
     $.post(url, postData, function(resp) {
-      console.log("DELETED:" + JSON.stringify(resp));
       onDone();
     })
   },
@@ -125,34 +120,27 @@ var server = {
         return onTopics([]);
     }
     var url = server.BASE_URL + "getSubscriptionsMobile";
-    console.log('post req:' + url);
     $.post(url, postData, function(resp) {
-        console.log('post resp:' + JSON.stringify(resp));
         var topics = JSON.parse(resp)["subscriptions"];
         topics.sort(function(t1, t2){
            return t1.topic.toLowerCase() > t2.topic.toLowerCase() ? 1 : -1; 
         });
         onTopics(topics);
     });
-    console.log('sent post request');
   },
 }
 
 var app = {
     // Application Constructor
     initialize: function() {
-        console.log("init");
         if (!localStorage.topics) {
             localStorage.topics = [];
         }
         this.bindEvents();
-        //$.support.cors;
-        //$.mobile.allowCrossDomainPages;
     },
     
         
     registerAndroidNotifications: function() {
-        console.log("registering android notifs");
         var pushNotification = window.plugins.pushNotification;
         pushNotification.register(app.notifSuccess, app.notifError, {
             "senderID":"867512734067",
@@ -161,11 +149,9 @@ var app = {
             "alert": "false",
             "sound": "false"
         });
-        console.log("registered notifs");
     },
     
     registerIosNotifications: function() {
-        console.log("registering ios notifs");
         var pushNotification = window.plugins.pushNotification;
         pushNotification.register(app.onIosToken, app.notifError, {
             "badge":"true",
@@ -173,7 +159,6 @@ var app = {
             "alert":"false",
             "ecb":"app.onNotificationAPN",
         });
-        console.log("registered notifs");
     },
     
     // Bind Event Listeners
@@ -181,7 +166,6 @@ var app = {
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
-        console.log("bind");
         document.addEventListener('deviceready', this.onDeviceReady, false);
     },
     // deviceready Event Handler
@@ -189,17 +173,10 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        console.log("devready");
         app.receivedEvent('deviceready');
-        console.log("registering...");
-        console.log("registered!");
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-        console.log('Receeived Event:' + id);
-        //var parentElement = document.getElementById(id);
-        //var listeningElement = parentElement.querySelector('.listening');
-        //var receivedElement = parentElement.querySelector('.received');
         if (id === 'deviceready') {
             if (device.platform == 'android' ||
                 device.platform == 'Android' ||
@@ -223,7 +200,6 @@ var app = {
     },
     
     notifSuccess: function() {
-        console.log("notifSuccess");
     },
     
     notifError: function(err) {
@@ -231,13 +207,11 @@ var app = {
     },
     
     onIosToken: function(token) {
-        console.log("IOS TOKEN:" + token);
         localStorage.iosId = token;
     },
     
     // handle APNS notifications for iOS
     onNotificationAPN: function(e) {
-        console.log("on notif apn:" + JSON.stringify(e));
         if (e.alert) {
             console.log('push-notification: ' + e.alert);
         }
@@ -262,16 +236,12 @@ var app = {
         switch( e.event ) {
             case 'registered':
                 if ( e.regid.length > 0 ) {
-                    console.log("Regid " + e.regid);
-                    console.log('registration id = '+e.regid);
                     localStorage.androidId = e.regid;
                 }
             break;
  
             case 'message':
               // this is the actual push notification. its format depends on the data model from the push server
-              console.log('message = '+e.message+' msgcnt = '+e.msgcnt);
-              console.log("EXTRA:" + JSON.stringify(e.payload.extra));
               var extra = e.payload.extra;
               this.handleNotification(extra);
             break;
@@ -287,12 +257,10 @@ var app = {
     },
     
     handleNotification: function(extra) {
-      console.log("handling notif:" + JSON.stringify(extra));
       ons.tabbar.setActiveTab(0);
     },
     
     openUrl: function(url) {
-        console.log('opening:' + navigator);
         if(device.platform === 'Android') {
             navigator.app.loadUrl(url, {openExternal:true});
         } else {

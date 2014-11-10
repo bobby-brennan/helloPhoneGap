@@ -26,23 +26,18 @@
 
   <script>
     app.initialize();
-    console.log('starting angular module');
     angular.module('app', ['onsen']);
-    console.log('started angular module');
 
     angular.module('app').controller('AppController', function($scope) {
-      console.log('in controller');
       $scope.doSomething = function() {
         setTimeout(function() {
           alert('tapped');
         }, 100);
       };
       $scope.openUrl = function(url) {
-        console.log('opening:' + url);
         app.openUrl(url);
       };
       $scope.deleteTopic = function(topicId) {
-        console.log('del topic id:' + topicId);
         server.deleteTopic(topicId, function() {
           $scope.loadSubs();
         });
@@ -54,10 +49,8 @@
         });
       };
       $scope.loadUserArticles = function() {
-        console.log('load user articles');
         $scope.recentTitle = "Recent";
         server.getUserArticles(function(articles) {
-          console.log('got articles:' + JSON.stringify(articles));
           $scope.articles = articles;
           $scope.$apply();
         });
@@ -80,9 +73,7 @@
       };
 
       app.onDevReady = function() {
-        console.log('on device ready!');
         FastClick.attach(document.body);
-        console.log("Attached fastclick!!!!");
         $scope.loadSubs();
         $scope.loadUserArticles();
       };
