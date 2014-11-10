@@ -156,7 +156,6 @@
     .item-title {
       font-size: 15px;
       font-weight: 500;
-      vertical-align: middle;
     }
     .item-desc {
       font-size: 14px;
@@ -241,7 +240,7 @@
                 <ons-icon icon="ion-ios7-close" class="delete-icon"></ons-icon>
               </ons-col>
               <ons-col ng-click="loadTopicArticles(sub.topic, sub.id)">
-                  <p class="item-desc">{{sub.topic}}</p>
+                  <p class="item-title">{{sub.topic}}</p>
               </ons-col>
             </ons-row>                          
           </ons-list-item>

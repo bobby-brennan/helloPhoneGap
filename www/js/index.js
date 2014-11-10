@@ -288,7 +288,8 @@ var app = {
     },
     
     handleNotification: function(extra) {
-        console.log("handling notif:" + JSON.stringify(extra));
+      console.log("handling notif:" + JSON.stringify(extra));
+      ons.tabbar.setActiveTab(0);
     },
     
     openUrl: function(url) {
