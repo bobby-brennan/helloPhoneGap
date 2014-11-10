@@ -96,7 +96,7 @@ var server = {
             item.title = url;
           }
           ret.push(item);
-        }
+        });
         onArticles(ret);
       }
       $.ajax(ajaxParams);
