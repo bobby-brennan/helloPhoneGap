@@ -294,6 +294,7 @@ var app = {
     },
     
     openUrl: function(url) {
+        console.log('opening:' + navigator);
         if(device.platform === 'Android') {
             navigator.app.loadUrl(url, {openExternal:true});
         } else {

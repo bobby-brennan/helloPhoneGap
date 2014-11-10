@@ -40,12 +40,13 @@
       };
       $scope.openUrl = function(url) {
         console.log('opening:' + url);
-        server.openUrl(url);
+        app.openUrl(url);
       };
       $scope.deleteTopic = function(topicId) {
         console.log('del topic id:' + topicId);
-        server.deleteTopic(topicId);
-        $scope.loadSubs();
+        server.deleteTopic(topicId, function() {
+          $scope.loadSubs();
+        });
       };
       $scope.loadSubs = function() {
         server.getSubscriptions(function(subs) {
