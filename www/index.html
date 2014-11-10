@@ -46,8 +46,14 @@
       };
       $scope.loadUserArticles = function() {
         console.log('load user articles');
-        server.getArticlesForUser(function(articles) {
+        server.getUserArticles(function(articles) {
           console.log('got articles:' + JSON.stringify(articles));
+          $scope.articles = articles;
+          $scope.$apply();
+        });
+      };
+      $scope.loadTopicArticles = function(topicId) {
+        server.getTopicArticles(topicId, function(articles) {
           $scope.articles = articles;
           $scope.$apply();
         });

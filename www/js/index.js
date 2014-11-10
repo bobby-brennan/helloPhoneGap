@@ -65,7 +65,7 @@ var server = {
         });
   },
 
-  getTopicArticles: function(topicName, topicId, onArticles) {
+  getTopicArticles: function(topicId, onArticles) {
     var ajaxParams = {
         type: "GET",
         url: 'http://www.bbrennan.info/posted/rss?topicId=' + topicId,
