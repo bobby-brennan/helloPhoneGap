@@ -17,6 +17,121 @@
  * under the License.
  */
 
+var server = {
+  BASE_URL = "http://www.bbrennan.info/posted/", 
+
+  initPostRequest: function() {
+    var data = {uuid: window.device.uuid};
+    if (device.platform == 'android' ||
+      device.platform == 'Android' ||
+      device.platform == 'amazon-fireos' ) {
+      if (!localStorage.androidId) {
+        return;
+      }
+      data["androidId"] = localStorage.androidId;
+    } else {
+      if (!localStorage.iosId) {
+        return;
+      }
+      data["iosId"] = localStorage.iosId;
+    }
+    if (localStorage.phoneNumber) {
+      data["phoneNumber"] = localStorage.phoneNumber;
+    }
+    console.log("POSTDATA:" + JSON.stringify(data));
+    return data;
+  },
+
+  addTopic: function(topic, onDone) {
+        var postData = this.initPostRequest();
+        if (!postData) {
+            console.log("no ID, can't subscribe to:" + topic);
+            onDone(1);
+            return;
+        }
+        postData["topic"] = topic;
+        console.log("POSTING:" + topic);
+        $.post(this.BASE_URL + "subscribeMobile", postData, function(resp) {
+           console.log("SUBSCRIBE response:" + resp);
+           onDone();
+        });
+  },
+
+  getTopicArticles: function(topicName, topicId, onArticles) {
+    var ajaxParams = {
+        type: "GET",
+        url: 'http://www.bbrennan.info/posted/rss?topicId=' + topicId,
+        dataType: "xml",
+    };
+    getArticlesFromRss(ajaxParams, onArticles);
+  },
+
+  getUserArticles: function(onArticles) {
+    var ajaxParams = {
+        type: "POST",
+        url: 'http://www.bbrennan.info/posted/userRss',
+        dataType: "xml",
+        data: this.initPostRequest(),
+    };
+    getArticlesFromRss(ajaxParams, onArticles);
+  },
+
+  getArticlesFromRss: function(ajaxParams, onArticles) {
+      ajaxParams.error = function(err) {
+        onArticles([]);
+      };
+      ajaxParams.success = function(xml) {
+        var items = $(xml).find('item');
+        console.log("length:" + items.length + ":" + $(items).length);
+        var ret = [];
+        $(items).each(function() {
+          var item = {};
+          item.title = $(this).find('title').text();
+          item.url = $(this).find('link').text();
+          item.date = $(this).find('pubDate').text();
+          item.date = new Date(item.date);
+          item.category = $(this).find('category');
+          if (item.category) {item.category = item.category.text()}
+          if (item.title.toLowerCase() === 'no title') {
+            item.title = url;
+          }
+          ret.push(item);
+        }
+        onArticles(ret);
+      }
+      $.ajax(ajaxParams);
+  },
+
+  deleteTopic: function(topic, onDone) {
+    var postData = this.initPostRequest();
+    var url = this.BASE_URL + 'deleteSubscriptionMobile';
+    if (!postData) {
+        console.log("no id, can't delete topic!")
+        return false;
+    }
+    postData["topicId"] = topic;
+    $.post(url, postData, function(resp) {
+      onDone();
+    })
+  },
+            
+  getTopics = function(onTopics) {
+    var postData = this.initPostRequest();
+    if (!postData) {
+        return false;
+    }
+    var url = BASE_URL + "getSubscriptionsMobile";
+    $.post(url, postData, function(resp) {
+        var topics = JSON.parse(resp)["subscriptions"];
+        topics.sort(function(t1, t2){
+           return t1.topic.toLowerCase() > t2.topic.toLowerCase() ? 1 : -1; 
+        });
+        onTopics(topics);
+    });
+    return true;
+  },
+}
+
 var app = {
     // Application Constructor
     initialize: function() {
@@ -97,21 +212,6 @@ var app = {
         //receivedElement.setAttribute('style', 'display:block;');
     },
     
-    addTopic: function(topic, onDone) {
-        var postData = app.initPostRequest();
-        if (!postData) {
-            console.log("no ID, can't subscribe to:" + topic);
-            onDone(1);
-            return;
-        }
-        postData["topic"] = topic;
-        console.log("POSTING:" + topic);
-        $.post("http://www.bbrennan.info/posted/subscribeMobile", postData, function(resp) {
-           console.log("SUBSCRIBE response:" + resp);
-           onDone();
-        });
-    },
-    
     notifSuccess: function() {
         console.log("notifSuccess");
     },
@@ -181,28 +281,6 @@ var app = {
         console.log("handling notif:" + JSON.stringify(extra));
         //app.switchToRss(extra.topicName, extra.topicId);
         app.switchToUserRss();
-    },
-    
-    initPostRequest: function() {
-        var data = {uuid: window.device.uuid};
-        if (device.platform == 'android' ||
-            device.platform == 'Android' ||
-            device.platform == 'amazon-fireos' ) {
-            if (!localStorage.androidId) {
-                return;
-            }
-            data["androidId"] = localStorage.androidId;
-        } else {
-            if (!localStorage.iosId) {
-                return;
-            }
-            data["iosId"] = localStorage.iosId;
-        }
-        if (localStorage.phoneNumber) {
-            data["phoneNumber"] = localStorage.phoneNumber;
-        }
-        console.log("POSTDATA:" + JSON.stringify(data));
-        return data;
     },
     
     openUrl: function(url) {

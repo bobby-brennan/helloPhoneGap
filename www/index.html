@@ -5,11 +5,13 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   
-  <title>My App</title>  
+  <title>Posted</title>  
   
   <link rel="stylesheet" href="lib/onsen/css/onsenui.css">  
   <link rel="stylesheet" href="lib/onsen/css/onsen-css-components.css">  
   <link rel="stylesheet" href="styles/app.css"/>
+
+  <script src="js/index.js"></script>
 
   <script src="lib/onsen/js/angular/angular.js"></script>    
   <script src="lib/onsen/js/onsenui.js"></script>    
@@ -26,6 +28,10 @@
           alert('tapped');
         }, 100);
       };
+
+      server.getSubscriptions(function(subs) {
+        $scope.subscriptions = subs;
+      });
     });
   </script>
 
@@ -118,10 +124,17 @@
 <body ng-controller="AppController">    
   
   <ons-tabbar>
-    <ons-tabbar-item active="true" page="home.html">
+    <ons-tabbar-item page="recent.html">
       <div class="tab">
-        <ons-icon icon="ion-home" class="tab-icon"></ons-icon>
-        <div class="tab-label">Timeline</div>
+        <ons-icon icon="ion-android-clock" class="tab-icon"></ons-icon>
+        <div class="tab-label">Recent Updates</div>
+      </div>
+    </ons-tabbar-item>
+
+    <ons-tabbar-item active="true" page="subscriptions.html">
+      <div class="tab">
+        <ons-icon icon="ion-android-storage" class="tab-icon"></ons-icon>
+        <div class="tab-label">My Topics</div>
       </div>
     </ons-tabbar-item>
 
@@ -133,27 +146,26 @@
     </ons-tabbar-item>
   </ons-tabbar>
 
-  <ons-template id="home.html">
+  <ons-template id="subscriptions.html">
     <ons-navigator>
       <ons-page>
         <ons-toolbar>
-          <div class="left"><ons-toolbar-button ng-click="doSomething()"><ons-icon icon="ion-compose"></ons-icon></ons-toolbar-button></div>
-          <div class="center">Home</div>
+          <div class="left"><ons-toolbar-button ng-click="showEditMode()"><ons-icon icon="ion-compose"></ons-icon></ons-toolbar-button></div>
+          <div class="center">My Topics</div>
           <div class="right"></div>
         </ons-toolbar>
 
-        <ons-list style="margin: -1px 0">
-          <ons-list-item modifier="chevron" class="item" ng-repeat="i in [1,2,3,4,5]" ng-click="doSomething()">
+        <ons-list id="subscriptions" style="margin: -1px 0">
+          <ons-list-item modifier="chevron" class="item" ng-repeat="sub in subscriptions" ng-click="doSomething()">
             <ons-row>
               <ons-col width="60px"> 
                 <div class="item-thum"></div>
               </ons-col>
               <ons-col>
                 <header>
-                  <span class="item-title">Rorem Ipsum</span>
-                  <span class="item-label">5h</span>
+                  <span class="item-title">sub.topic</span>
+                  <span class="item-label">sub.topicId</span>
                 </header>
-                <p class="item-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
               </ons-col>
             </ons-row>                          
           </ons-list-item>
