@@ -21,7 +21,9 @@ var server = {
   BASE_URL: "http://www.bbrennan.info/posted/", 
 
   initPostRequest: function() {
+    console.log('init po');
     var data = {uuid: window.device.uuid};
+    console.log('got data:' + data);
     if (device.platform == 'android' ||
       device.platform == 'Android' ||
       device.platform == 'amazon-fireos' ) {
@@ -116,6 +118,8 @@ var server = {
   },
             
   getSubscriptions: function(onTopics) {
+    console.log('get subs:' + this);
+    return onTopics([{topic:'hi', topicId:'there'}]);
     var postData = this.initPostRequest();
     if (!postData) {
         return onTopics([]);
