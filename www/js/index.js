@@ -45,7 +45,7 @@ var server = {
   },
 
   addTopic: function(topic, onDone) {
-        var postData = this.initPostRequest();
+        var postData = server.initPostRequest();
         if (!postData) {
             console.log("no ID, can't subscribe to:" + topic);
             onDone(1);
@@ -53,7 +53,7 @@ var server = {
         }
         postData["topic"] = topic;
         console.log("POSTING:" + topic);
-        $.post(this.BASE_URL + "subscribeMobile", postData, function(resp) {
+        $.post(server.BASE_URL + "subscribeMobile", postData, function(resp) {
            console.log("SUBSCRIBE response:" + resp);
            onDone();
         });
@@ -73,7 +73,7 @@ var server = {
         type: "POST",
         url: 'http://www.bbrennan.info/posted/userRss',
         dataType: "xml",
-        data: this.initPostRequest(),
+        data: server.initPostRequest(),
     };
     getArticlesFromRss(ajaxParams, onArticles);
   },
@@ -105,8 +105,8 @@ var server = {
   },
 
   deleteTopic: function(topic, onDone) {
-    var postData = this.initPostRequest();
-    var url = this.BASE_URL + 'deleteSubscriptionMobile';
+    var postData = server.initPostRequest();
+    var url = server.BASE_URL + 'deleteSubscriptionMobile';
     if (!postData) {
         console.log("no id, can't delete topic!")
         return false;
@@ -118,8 +118,8 @@ var server = {
   },
             
   getSubscriptions: function(onTopics) {
-    console.log('get subs:' + this);
-    var postData = this.initPostRequest();
+    console.log('get subs:' + server);
+    var postData = server.initPostRequest();
     console.log('pd:' + JSON.stringify(postData));
     return onTopics([{topic:'hi', topicId:'there'}]);
     if (!postData) {
