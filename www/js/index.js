@@ -96,7 +96,7 @@ var server = {
           item.category = $(this).find('category');
           if (item.category) {item.category = item.category.text()}
           if (item.title.toLowerCase() === 'no title') {
-            item.title = url;
+            item.title = item.url;
           }
           ret.push(item);
         });

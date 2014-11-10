@@ -63,6 +63,7 @@
         });
       };
       $scope.loadTopicArticles = function(topicId) {
+        ons.tabbar.setActiveTab(0);
         server.getTopicArticles(topicId, function(articles) {
           $scope.articles = articles;
           $scope.$apply();
