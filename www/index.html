@@ -24,6 +24,7 @@
   <script src="js/index.js"></script>
 
   <script>
+  app.onDevReady = function() {
     console.log('starting angular module');
     angular.module('app', ['onsen']);
     console.log('started angular module');
@@ -46,7 +47,8 @@
       };
       $scope.loadSubs();
     });
-    console.log('finished ang script')
+    console.log('finished ang script');
+  }
   </script>
 
   <style>
