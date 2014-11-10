@@ -81,6 +81,7 @@
       font-size: 24px;
       padding: 0;
       margin: 0;
+      vertical-align: middle;
       line-height: 28px;
     }
     .tab-label {
@@ -223,12 +224,11 @@
               <ons-col width="60px" ng-click="doSomething()"> 
                 <ons-icon icon="ion-ios7-close" class="delete-icon"><!-- ng-click="server.deleteTopic('{{sub.topic}}', {{sub.topicId}})"--></ons-icon>
               </ons-col>
-              <ons-col ng-click="doSomething()">
+              <ons-col ng-click="loadTopicArticles({{sub.topicId}})">
                 <header>
                   <span class="item-title">{{sub.topic}}</span>
                   <span class="item-label">{{sub.topicId}}</span>
                 </header>
-                <p class="item-desc">Lorem</p>
               </ons-col>
             </ons-row>                          
           </ons-list-item>
