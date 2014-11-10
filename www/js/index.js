@@ -21,15 +21,10 @@ var server = {
   BASE_URL: "http://www.bbrennan.info/posted/", 
 
   initPostRequest: function() {
-    console.log('init po');
-    console.log('window:' + window);
-    console.log('device:' + window.device);
-    console.log('device2:' + device);
     var data = {};
     if (window.device) {
       data.uuid = window.device.uuid;
     }
-    console.log('got data:' + data);
     if (device.platform == 'android' ||
       device.platform == 'Android' ||
       device.platform == 'amazon-fireos' ) {
@@ -117,8 +112,10 @@ var server = {
         console.log("no id, can't delete topic!")
         return false;
     }
+    console.log("deleting:" + JSON.stringify(postData));
     postData["topicId"] = topic;
     $.post(url, postData, function(resp) {
+      console.log("DELETED:" + JSON.stringify(resp));
       onDone();
     })
   },
