@@ -39,13 +39,17 @@
       $scope.subscriptions = [{topic: "foo", topicId: 23}];
       $scope.loadSubs = function() {
         server.getSubscriptions(function(subs) {
-          console.log('got subs');
-          console.log('got subs:' + JSON.stringify(subs));
           $scope.subscriptions = subs;
+        });
+      };
+      $scope.loadUserArticles = function() {
+        server.getArticlesForUser(function(articles) {
+          $scope.articles = articles;
         });
       };
       app.onDevReady = function() {
         $scope.loadSubs();
+        $scope.loadUserArticles();
       };
     });
   </script>
@@ -65,7 +69,6 @@
       font-size: 24px;
       padding: 0;
       margin: 0;
-      vertical-align: top;
       line-height: 28px;
     }
     .tab-label {
@@ -178,14 +181,13 @@
         </ons-toolbar>
 
         <ons-list id="subscriptions" style="margin: -1px 0">
-          <ons-list-item modifier="chevron" class="item" ng-repeat="item in recent" ng-click="doSomething()">
+          <ons-list-item modifier="chevron" class="item" ng-repeat="item in recent" ng-click="app.openUrl('{{item.url}}')">
             <ons-row>
               <ons-col>
                 <header>
                   <span class="item-title">{{item.category}}</span>
                   <span class="item-label">{{item.title}}</span>
                 </header>
-                <p class="item-desc">Lorem</p>
               </ons-col>
             </ons-row>
           </ons-list-item>
@@ -206,7 +208,7 @@
         <ons-list id="subscriptions" style="margin: -1px 0">
           <ons-list-item modifier="chevron" class="item" ng-repeat="sub in subscriptions" ng-click="doSomething()">
             <ons-row>
-              <ons-col width="60px"> 
+              <ons-col width="60px" ng-click="doSomething()"> 
                 <ons-icon icon="ion-ios7-close" class="delete-icon"><!-- ng-click="server.deleteTopic('{{sub.topic}}', {{sub.topicId}})"--></ons-icon>
               </ons-col>
               <ons-col>
