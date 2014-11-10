@@ -85,7 +85,6 @@ var server = {
       };
       ajaxParams.success = function(xml) {
         var items = $(xml).find('item');
-        console.log("length:" + items.length + ":" + $(items).length);
         var ret = [];
         $(items).each(function() {
           var item = {};
