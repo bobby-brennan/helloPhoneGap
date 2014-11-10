@@ -66,7 +66,7 @@
 
       $scope.LAST_TAB = 2;
       $scope.THIS_TAB = 2;
-      $scope.onTabChanged = function(idx, tabItem) {
+      $scope.onTabChanged = function(idx) {
         console.log("tc! " + idx);
         $scope.LAST_TAB = $scope.THIS_TAB;
         $scope.THIS_TAB = ix;
@@ -184,7 +184,7 @@
 <body ng-controller="AppController">    
   
   <ons-tabbar animation="slide"
-              on-active-tab-changed="switchToTab($index)">
+              on-active-tab-changed="onTabChanged($index)">
 
     <ons-tabbar-item page="recent.html">
       <div class="tab">
