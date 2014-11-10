@@ -11,6 +11,9 @@
   <link rel="stylesheet" href="lib/onsen/css/onsen-css-components.css">  
   <link rel="stylesheet" href="styles/app.css"/>
 
+  <script src="lib/onsen/js/angular/angular.js"></script>    
+  <script src="lib/onsen/js/onsenui.js"></script>
+
   <script src="phonegap.js"></script>
   <script src="js/jquery.min.js"></script>
   <script src="http://jsconsole.com/remote.js?F4A72AB5-1230-4E5B-8652-5895AEC3E885"></script>
@@ -19,9 +22,6 @@
   <script type="text/javascript" charset="utf-8" src="telephonenumber.js"></script>
 
   <script src="js/index.js"></script>
-
-  <script src="lib/onsen/js/angular/angular.js"></script>    
-  <script src="lib/onsen/js/onsenui.js"></script>    
 
   <script>
     console.log('starting angular module')
@@ -165,7 +165,7 @@
         </ons-toolbar>
 
         <ons-list id="subscriptions" style="margin: -1px 0">
-          <ons-list-item modifier="chevron" class="item" ng-repeat="sub in subscriptions" ng-click="doSomething()">
+          <!--ons-list-item modifier="chevron" class="item" ng-repeat="sub in subscriptions" ng-click="doSomething()">
             <ons-row>
               <ons-col width="60px"> 
                 <div class="item-thum"></div>
@@ -177,7 +177,7 @@
                 </header>
               </ons-col>
             </ons-row>                          
-          </ons-list-item>
+          </ons-list-item-->
         </ons-list>
       </ons-page>
     </ons-navigator>
