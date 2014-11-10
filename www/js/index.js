@@ -71,7 +71,7 @@ var server = {
         url: 'http://www.bbrennan.info/posted/rss?topicId=' + topicId,
         dataType: "xml",
     };
-    getArticlesFromRss(ajaxParams, onArticles);
+    server.getArticlesFromRss(ajaxParams, onArticles);
   },
 
   getUserArticles: function(onArticles) {
@@ -81,7 +81,7 @@ var server = {
         dataType: "xml",
         data: server.initPostRequest(),
     };
-    getArticlesFromRss(ajaxParams, onArticles);
+    server.getArticlesFromRss(ajaxParams, onArticles);
   },
 
   getArticlesFromRss: function(ajaxParams, onArticles) {
