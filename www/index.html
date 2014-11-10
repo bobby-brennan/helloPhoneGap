@@ -1,375 +1,224 @@
-<!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
+<!doctype html>
+<html lang="en" ng-app="app">
+<head>
+  <meta charset="utf-8">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  
+  <title>My App</title>  
+  
+  <link rel="stylesheet" href="lib/onsen/css/onsenui.css">  
+  <link rel="stylesheet" href="lib/onsen/css/onsen-css-components.css">  
+  <link rel="stylesheet" href="styles/app.css"/>
 
-    http://www.apache.org/licenses/LICENSE-2.0
+  <script src="lib/onsen/js/angular/angular.js"></script>    
+  <script src="lib/onsen/js/onsenui.js"></script>    
 
-    Unless required by applicable law or agreed to in writing,'
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
-<html>
-    <head>
-        <title>Posted</title>
-        <meta charset="utf-8" />
+  <script src="cordova.js"></script>
+  <script src="js/app.js"></script> 
 
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0" />
-        <!-- meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" / --> 
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <script src="js/jquery.min.js"></script>
-        <script src="http://jsconsole.com/remote.js?F4A72AB5-1230-4E5B-8652-5895AEC3E885"></script>
-        <script type="text/javascript" src="js/jquery.zrssfeed.min.js"></script>
-        <script type="text/javascript" src="phonegap.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript" src="PushNotification.js"></script>
-        <script type="text/javascript" charset="utf-8" src="telephonenumber.js"></script>
+  <script>
+    angular.module('app', ['onsen']);
 
-        <!-- Polymer imports -->
-        <link rel="import" href="../bower_components/paper-button/paper-button.html">
-
-        <script type="text/javascript">
-        
-        var SEC_IN_MINUTE = 60;
-        var SEC_IN_HOUR = SEC_IN_MINUTE * 60;
-        var SEC_IN_DAY = SEC_IN_HOUR * 24;
-        var getTimeMessage = function(date) {
-          var mSecAgo = (new Date().getTime() - date.getTime());
-          console.log("msec ago:" + mSecAgo);
-          var timeSec = Math.floor(mSecAgo / 1000);
-          var unit = "";
-          var amt = 0;
-          if (timeSec < SEC_IN_MINUTE) {
-            unit = "second";
-            amt = timeSec;
-          } else if (timeSec < SEC_IN_HOUR) {
-            unit = "minute";
-            amt = Math.floor(timeSec / SEC_IN_MINUTE);
-          } else if (timeSec < SEC_IN_DAY) {
-            unit = "hour";
-            amt = Math.floor(timeSec / SEC_IN_HOUR);
-          } else {
-            unit = "day";
-            amt = Math.floor(timeSec / SEC_IN_DAY);
-          }
-          if (amt > 1) {
-            unit += "s";
-          }
-          return amt + " " + unit + " ago";
-        }
-                
-        // FEED STUFF
-          var addItemToFeed = function(item) {
-            var clickFunc = 'onclick="app.openUrl(\'' + item.url + '\')"';
-            var classStr = item.category ? '"linkBox userRssRow"' : '"linkBox rssRow"';
-            classStr = 'class=' + classStr;
-            var html = '<div ' + classStr + ' ' + clickFunc + '>';
-            if (item.category) {
-                html += '<div class="rssRowHeader">' + item.category + '</div>'; 
-            }
-            html += '<div class="rssTextBox rssText">' + item.title + '</div>';
-            html += '</div>'
-            $("#feed").append(html);
-          }
-          
-          var showFeed = function(ajaxParams, useHeaders) {
-            $("#feed").html("");
-            addItemToFeed({url:"#", title:"loading..."});
-            $("#rssTitleText").html(localStorage.topicName);
-            var topicId = localStorage.topicId;
-            /*
-            var urlToShow = localStorage.urlToShow;
-            if (urlToShow) {
-                addItemToFeed({url: localStorage.urlToShow, title:localStorage.titleToShow});
-            }
-            */
-            console.log("fetching:" + ajaxParams.url);
-            ajaxParams.error = function(err) {
-                console.log("error fetching xml:" + err);
-                $("#feed").html("");
-                addItemToFeed({url:"#", title: "Error retrieving feed"});
-            };
-            ajaxParams.success = function(xml) {
-                  $("#feed").html("");
-                  console.log("xml:" + xml);
-                  var items = $(xml).find('item');
-                  console.log("length:" + items.length + ":" + $(items).length);
-                  if ($(items).length === 0) {
-                      console.log("no items!");
-                      addItemToFeed({url:"#", title: "Nothing yet..."});
-                  } else {
-                    $(items).each(function() {
-                        var title = $(this).find('title').text();
-                        var url = $(this).find('link').text();
-                        var date = $(this).find('pubDate').text();
-                        console.log("date:" + date);
-                        date = new Date(date);
-                        var category = null;
-                        if (useHeaders) {
-                            category = $(this).find('category').text();
-                        } else {
-                            category = getTimeMessage(date);
-                        }
-                        /*
-                        if (url === urlToShow) {
-                            return;
-                        }
-                        */
-                        if (title.toLowerCase() === 'no title') {
-                            title = url;
-                        }
-                        var item = {url: url, title: title, category: category};
-                        addItemToFeed(item);
-                    });
-                  }
-            };
-            $.ajax(ajaxParams);
-          }
-          
-        // END FEED STUFF
-
-
-var PLACEHOLDERS = [
-  "Ebola",
-  "Hillary Clinton",
-  "Syrian Conflict",
-  "Boston Red Sox",
-  "Lady Gaga",
-  "The Federal Reserve",
-  "Vladimir Putin",
-  "Amazon",
-  "AAPL",
-  "NASA",
-  "Jack White",
-  "Miley Cyrus",
-  "Barack Obama",
-  "Ron Paul",
-  "Ukraine",
-  "iPhone 6",
-  "General Motors",
-  "Space X",
-  "Net Neutrality",
-  "Fracking",
-  "Climate Change",
-  "Johnny Depp",
-  "Jon Stewart",
-  "Ron Paul",
-  "Immigration",
-  "Boko Haram",
-  "European Union",
-  "NYC events",
-  "Kanye West",
-  "Dallas Cowboys",
-  "Derek Jeter",
-  "Enterovirus",
-  "Netflix",
-  "Islamic State",
-  "Diabetes",
-  "Heart Disease",
-  "Childhood Obesity",
-];
-
-var curPlaceholderIdx = Math.floor(Math.random() * PLACEHOLDERS.length);
-var curChar = 0;
-var updatePlaceholder = function() {
-  var curPlaceholder = PLACEHOLDERS[curPlaceholderIdx];
-  if (curChar === curPlaceholder.length) {
-    curChar = 0;
-    var oldIdx = curPlaceholderIdx;
-    while (oldIdx === curPlaceholderIdx) {
-      curPlaceholderIdx = Math.floor(Math.random() * PLACEHOLDERS.length);
-    }
-    setTimeout(updatePlaceholder, 1500);
-  } else {
-    var addedChar = curPlaceholder.substring(curChar, curChar + 1);
-    $("#topicInput").attr('placeholder', curPlaceholder.substring(0, curChar + 1));
-    curChar++;
-    setTimeout(updatePlaceholder, addedChar === ' ' ? 0 : 100);
-  }
-}
-
-var addTopic = function() {
-    app.addTopic($('#topicInput').val(), function(err){
-        if (!err) {
-            app.switchToMain();
-        } else {
-            console.log("error adding topic!");
-        }
+    angular.module('app').controller('AppController', function($scope) {
+      $scope.doSomething = function() {
+        setTimeout(function() {
+          alert('tapped');
+        }, 100);
+      };
     });
-};
+  </script>
 
-var deleteTopic = function(topic) {
-    var postData = app.initPostRequest();
-    var url = 'http://www.bbrennan.info/posted/deleteSubscriptionMobile';
-    if (!postData) {
-        console.log("no id, can't delete topic!")
-        return false;
+  <style>
+    .tab {
+      line-height: 1;
     }
-    postData["topicId"] = topic;
-    $.post(url, postData, function(resp) {
-        console.log("delete response:" + resp);
-        console.log("reloading...");
-        app.switchToMain();
-    })
-}
-            
-var showTopics = function() {
-    $("#topicList").html('');
-    showTopic({topic:'Loading...', id:-1}, true);
-    var postData = app.initPostRequest();
-    if (!postData) {
-        return false;
+    .tab-icon {
+      font-size: 24px;
+      padding: 0;
+      margin: 0;
+      vertical-align: top;
+      line-height: 28px;
     }
-    var url = "http://bbrennan.info/posted/getSubscriptionsMobile";
-    $.post(url, postData, function(resp) {
-        console.log("topics:" + resp);
-        var topics = JSON.parse(resp)["subscriptions"];
-        topics.sort(function(t1, t2){
-           return t1.topic.toLowerCase() > t2.topic.toLowerCase() ? 1 : -1; 
-        });
-        $("#topicList").html('');
-        showTopic({topic: 'Recent', id:-1}, topics.length === 0);
-        for (var i = 0; i < topics.length; ++i) {
-            showTopic(topics[i], i === topics.length - 1);
-        }
-    });
-    return true;
-};
+    .tab-label {
+      line-height: 11px;
+      vertical-align: top;
+      font-size: 11px;
+    }
 
-var showTopic = function(topic, isLast) {
-    //console.log("topic:" + topics[i].topic);
-    var functionCall = '';
-    if (topic.id === -1) {
-        functionCall = 'app.switchToUserRss();';
-    } else {
-        functionCall = "app.switchToRss('" + topic.topic.replace(/'/g, "\\'") + "', " + topic.id + ")";
+    .profile-wrapper {
+      padding: 16px 10px 0 10px;
     }
-    var deleteCall = "deleteTopic('" + topic.id + "\')";
-    var topicHtml = '<div class="topicLine">'
-    var cssClass = "linkBox";
-    if (isLast) {
-        cssClass += " linkBoxLast";
+
+    .profile-image {
+      width: 50px;
+      height: 50px;
+      border-radius: 100%;
+      -webkit-border-radius: 100%;
+      background-color: #ccc;
     }
-    if (topic.id !== -1) {
-        topicHtml += '<div class="' + cssClass + ' delete button" onclick="' + deleteCall + '">x</div>';
+
+    .profile-name {
+      font-size: 18px;
+      padding: 4px 0 2px 0;
     }
-    topicHtml += '<div class="' + cssClass + ' topic" onclick="' + functionCall + '">'
-    topicHtml += '<span class="topicText">' + topic.topic + '</span></div>';
-    topicHtml += '</div>';
-    $('#topicList').append(topicHtml);
-};
 
-app.switchTo = function(fromDiv, toDiv) {
-    $(fromDiv).fadeOut(500, function() {
-        window.scrollTo(0, 0);
-        console.log("done fade out");
-        $(toDiv).fadeIn(500, function() {
-            console.log("done fade in");
-        });
-    });
-}
-
-app.switchToRss = function(topicName, topicId) {
-    console.log("SHOW RSS:" + topicName + "," + topicId);
-    localStorage.topicName = topicName;
-    localStorage.topicId = topicId;
-    var ajaxParams = {
-        type: "GET",
-        url: 'http://www.bbrennan.info/posted/rss?topicId=' + topicId,
-        dataType: "xml",
-    };
-    showFeed(ajaxParams);
-    app.switchTo("#mainContainer", "#feedContainer");
-}
-
-app.switchToUserRss = function() {
-    localStorage.topicName = 'Recent';
-    var ajaxParams = {
-        type: "POST",
-        url: 'http://www.bbrennan.info/posted/userRss',
-        dataType: "xml",
-        data: app.initPostRequest(),
-    };
-    showFeed(ajaxParams, true);
-    app.switchTo("#mainContainer", "#feedContainer");
-}
-
-app.switchToMain = function(topicName, topicId) {
-    $('#topicInput').val('');
-    if (!showTopics()) {
-        $("#topicList").html('');
-        showTopic({topic:'Error getting subscriptions.', id:-1}, true);
+    .profile-email {
+      font-size: 15px;
+      opacity: 0.4;
     }
-    app.switchTo("#feedContainer", "#mainContainer");
-}
 
-console.log('initting');
-app.onDevReady = function() {
-    console.log("on dev ready called");
-    if (!showTopics()) {
-        $("#topicList").html('');
-        showTopic({topic: 'Add topics above to start', id: -1}, true);
+    .switch--list-item {
+      margin-right: 0px;
     }
-    var feedContainer = $("#feedContainer")[0];
-    var onBack = function(e) {
-        console.log("onback!");
-        if ($('#mainContainer:visible').length == 0) {
-            console.log("switching to main");
-            app.switchToMain();
-        } else {
-            console.log("exiting");
-            e.preventDefault();
-            navigator.app.exitApp();
-        }
-    };
-    document.addEventListener("backbutton", onBack, false);
-    $("#backbutton").click(onBack);
-    $("#rssTitle").click(function(){
-        app.openUrl("https://www.google.com/search?tbm=nws&q=" + $("#rssTitleText").html());
-    })
-}
-app.initialize();
- 
-var bodyLoaded = function() {
-    console.log("body loaded");
-    updatePlaceholder();
-    $(
-        $("form").submit(function() {
-            console.log("submitting!");
-            addTopic();
-            return false;
-        })
-    );
-}
-        </script>
-    </head>
-    <body onload="bodyLoaded();">
-      <div id="feedContainer">
-        <div id="navBar topicLine">
-            <div id="backbutton" class="button linkBox">&lt;</div>
-            <div id="rssTitle" class="linkBox"><span id="rssTitleText" class="topicText"></span></div>
-        </div>
-        <div id="feed"></div>
+
+    .settings-header {
+      font-weight: 500;
+      font-size: 14px;
+      opacity: 0.4;
+      padding: 10px 0 0px 10px;
+      margin-bottom: -4px;
+    }
+
+    .settings-list {
+      margin-top: 10px;
+    }
+
+    .item {
+      padding: 10px;
+      line-height: 1;
+    }
+    .item-thum {
+      background-color: #ccc;
+      width: 50px;
+      height: 50px;
+      border-radius: 100%;
+      -webkit-border-radius: 100%;
+    }
+    .item-title {
+      font-size: 15px;
+      font-weight: 500;
+    }
+    .item-desc {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.3;
+      margin: 4px 0 0 0;
+      padding: 0 30px 0 0;
+    }
+    .item-label {
+      font-size: 12px;
+      color: #999;
+      float: right;
+    }
+  </style>
+  
+</head>
+
+<body ng-controller="AppController">    
+  
+  <ons-tabbar>
+    <ons-tabbar-item active="true" page="home.html">
+      <div class="tab">
+        <ons-icon icon="ion-home" class="tab-icon"></ons-icon>
+        <div class="tab-label">Timeline</div>
       </div>
-      <div id="mainContainer">
-        <form>
-          <input type="text" id="topicInput" placeholder=""></input>
-          <paper-button>Keep Me Posted</paper-button>
-        </form>
-        <div class="separator"></div>
-        <div id="topicList">
-          <div class="topicLine">
-          </div>
-        </div>
+    </ons-tabbar-item>
+
+    <ons-tabbar-item page="settings.html">
+      <div class="tab">
+        <ons-icon icon="ion-gear-a" class="tab-icon"></ons-icon>
+        <div class="tab-label">Settings</div>
       </div>
-    </body>
+    </ons-tabbar-item>
+  </ons-tabbar>
+
+  <ons-template id="home.html">
+    <ons-navigator>
+      <ons-page>
+        <ons-toolbar>
+          <div class="left"><ons-toolbar-button ng-click="doSomething()"><ons-icon icon="ion-compose"></ons-icon></ons-toolbar-button></div>
+          <div class="center">Home</div>
+          <div class="right"></div>
+        </ons-toolbar>
+
+        <ons-list style="margin: -1px 0">
+          <ons-list-item modifier="chevron" class="item" ng-repeat="i in [1,2,3,4,5]" ng-click="doSomething()">
+            <ons-row>
+              <ons-col width="60px"> 
+                <div class="item-thum"></div>
+              </ons-col>
+              <ons-col>
+                <header>
+                  <span class="item-title">Rorem Ipsum</span>
+                  <span class="item-label">5h</span>
+                </header>
+                <p class="item-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              </ons-col>
+            </ons-row>                          
+          </ons-list-item>
+        </ons-list>
+      </ons-page>
+    </ons-navigator>
+  </ons-template>
+
+  <ons-template id="settings.html">
+    <ons-page>
+      <ons-toolbar>
+        <div class="center">Settings</div>
+      </ons-toolbar>
+
+      <ons-row class="profile-wrapper">
+        <ons-col width="60px" class="profile-image-wrapper">
+          <div class="profile-image"></div>
+        </ons-col>
+
+        <ons-col>
+          <div class="profile-name">Foobar</div>
+          <div class="profile-email">foobar@example.com</div>
+        </ons-col>
+
+      </ons-row>
+
+      <div class="settings-header">Share</div>
+
+      <ons-list modifier="inset" class="settings-list">
+        <ons-list-item>
+          Twitter
+          <ons-switch modifier="list-item"></ons-switch>
+        </ons-list-item>
+
+        <ons-list-item>
+          Facebook
+          <ons-switch modifier="list-item" checked></ons-switch>
+        </ons-list-item>
+      </ons-list>
+
+      <div class="settings-header">Others</div>
+
+      <ons-list modifier="inset" class="settings-list">
+        <ons-list-item modifier="chevron" ng-click="doSomething()">
+          Terms of Service
+        </ons-list-item>
+
+        <ons-list-item modifier="chevron" ng-click="doSomething()">
+          Privacy Policy
+        </ons-list-item>
+      </ons-list>
+
+      <br>
+
+      <ons-list modifier="inset" class="settings-list">
+        <ons-list-item modifier="tappable" ng-click="doSomething()">
+          <ons-icon icon="ion-log-out" style="opacity: 0.8"></ons-icon>
+          Sign out
+        </ons-list-item>
+      </ons-list>
+
+      <br>
+
+    </ons-page>
+  </ons-template>
+
+</body>
 </html>
