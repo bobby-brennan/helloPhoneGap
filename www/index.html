@@ -177,7 +177,7 @@
 <body ng-controller="AppController">    
   
   <ons-tabbar animation="slide"
-              on-active-tab-changed="onTabChanged($index, $tabItem)">
+              on-active-tab-changed="console.log('tab change')">
     <ons-tabbar-item page="recent.html">
       <div class="tab" ng-click="loadUserArticles()">
         <ons-icon icon="ion-android-clock" class="tab-icon"></ons-icon>
