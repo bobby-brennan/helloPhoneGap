@@ -130,7 +130,7 @@ var server = {
     if (!postData) {
         return onTopics([]);
     }
-    var url = BASE_URL + "getSubscriptionsMobile";
+    var url = server.BASE_URL + "getSubscriptionsMobile";
     console.log('post req:' + url);
     $.post(url, postData, function(resp) {
         console.log('post resp:' + JSON.stringify(resp));
