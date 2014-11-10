@@ -22,7 +22,13 @@ var server = {
 
   initPostRequest: function() {
     console.log('init po');
-    var data = {uuid: window.device.uuid};
+    console.log('window:' + window);
+    console.log('device:' + window.device);
+    console.log('device2:' + device);
+    var data = {};
+    if (window.device) {
+      data.uuid = window.device.uuid;
+    }
     console.log('got data:' + data);
     if (device.platform == 'android' ||
       device.platform == 'Android' ||
