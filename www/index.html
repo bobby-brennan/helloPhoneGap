@@ -70,10 +70,19 @@
           $scope.$apply();
         });
       };
+      $scope.onTabChanged = function(idx, tabItem) {
+        console.log("tab change to:" + idx + JSON.stringify(tabItem));
+        if (idx === 0) {
+          
+        } else if (idx === 1) {
+
+        }
+      };
 
       app.onDevReady = function() {
         console.log('on device ready!');
         FastClick.attach(document.body);
+        console.log("Attached fastclick!!!!");
         $scope.loadSubs();
         $scope.loadUserArticles();
       };
@@ -175,7 +184,8 @@
 
 <body ng-controller="AppController">    
   
-  <ons-tabbar animation="slide">
+  <ons-tabbar animation="slide"
+              on-active-tab-changed="onTabChanged($index, $tabItem)">
     <ons-tabbar-item page="recent.html">
       <div class="tab" ng-click="loadUserArticles()">
         <ons-icon icon="ion-android-clock" class="tab-icon"></ons-icon>
@@ -200,7 +210,7 @@
 
   <ons-template id="recent.html">
     <ons-navigator>
-      <ons-page on-device-backbutton="onsen.tabbar.setActiveTab(1)">
+      <ons-page on-device-backbutton="ons.tabbar.setActiveTab(1)">
         <ons-toolbar>
           <div class="left"><ons-toolbar-button ng-click="loadUserArticles()"><ons-icon icon="ion-compose"></ons-icon></ons-toolbar-button></div>
           <div class="center">{{recentTitle}}</div>
@@ -226,7 +236,7 @@
 
   <ons-template id="subscriptions.html">
     <ons-navigator>
-      <ons-page on-device-backbutton="onsen.tabbar.setActiveTab(0)">
+      <ons-page on-device-backbutton="ons.tabbar.setActiveTab(0)">
         <ons-toolbar>
           <div class="left"><ons-toolbar-button ng-click="loadSubs()"><ons-icon icon="ion-compose"></ons-icon></ons-toolbar-button></div>
           <div class="center">My Topics</div>
@@ -250,7 +260,7 @@
   </ons-template>
 
   <ons-template id="settings.html">
-    <ons-page on-device-backbutton="onsen.tabbar.setActiveTab(0)">
+    <ons-page on-device-backbutton="ons.tabbar.setActiveTab(0)">
       <ons-toolbar>
         <div class="center">Settings</div>
       </ons-toolbar>
