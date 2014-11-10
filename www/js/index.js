@@ -116,7 +116,6 @@ var server = {
   },
             
   getSubscriptions: function(onTopics) {
-    return onTopics([{topic: 'foo', topicId: 'baz'}]);
     var postData = this.initPostRequest();
     if (!postData) {
         return onTopics([]);
