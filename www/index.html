@@ -38,6 +38,15 @@
           alert('tapped');
         }, 100);
       };
+      $scope.openUrl(url) {
+        console.log('opening:' + url);
+        server.openUrl(url);
+      };
+      $scope.deleteTopic = function(topicId) {
+        console.log('del topic id:' + topicId);
+        server.deleteTopic(topicId);
+        $scope.loadSubs();
+      };
       $scope.loadSubs = function() {
         server.getSubscriptions(function(subs) {
           $scope.subscriptions = subs;
@@ -195,7 +204,7 @@
 
         <ons-list id="subscriptions" style="margin: -1px 0">
           <ons-list-item modifier="chevron" class="item" ng-repeat="item in articles">
-            <ons-row ng-click="app.openUrl(item.url)">
+            <ons-row ng-click="openUrl(item.url)">
               <ons-col>
                 <header>
                   <span class="item-title">{{item.category}}</span>
@@ -222,8 +231,8 @@
         <ons-list id="subscriptions" style="margin: -1px 0">
           <ons-list-item modifier="chevron" class="item" ng-repeat="sub in subscriptions">
             <ons-row>
-              <ons-col width="60px" ng-click="doSomething()"> 
-                <ons-icon icon="ion-ios7-close" class="delete-icon" ng-click="server.deleteTopic(sub.topic, sub.topicId)"></ons-icon>
+              <ons-col width="60px" ng-click="deleteTopic(sub.topicId)"> 
+                <ons-icon icon="ion-ios7-close" class="delete-icon"></ons-icon>
               </ons-col>
               <ons-col ng-click="loadTopicArticles(sub.topicId)">
                 <header>
