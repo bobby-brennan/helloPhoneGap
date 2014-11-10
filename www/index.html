@@ -67,15 +67,14 @@
       $scope.LAST_TAB = 2;
       $scope.THIS_TAB = 2;
       $scope.onTabChanged = function(idx) {
-        console.log("tc! " + idx);
         $scope.LAST_TAB = $scope.THIS_TAB;
         $scope.THIS_TAB = ix;
         if (idx === 0) {
-          loadUserArticles(); 
+          $scope.loadUserArticles(); 
         } else if (idx === 1) {
           // Do nothing
         } else if (idx === 2) {
-          loadSubs();
+          $scope.loadSubs();
         } else if (idx === 3) {
           // Do nothing
         }
@@ -83,7 +82,6 @@
 
       app.onDevReady = function() {
         FastClick.attach(document.body);
-        $scope.loadSubs();
       };
     });
   </script>
