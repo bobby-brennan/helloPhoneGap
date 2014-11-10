@@ -44,7 +44,9 @@
         });
       };
       $scope.loadUserArticles = function() {
+        console.log('load user articles');
         server.getArticlesForUser(function(articles) {
+          console.log('got articles:' + JSON.stringify(articles));
           $scope.articles = articles;
           $scope.$apply();
         });
@@ -183,7 +185,7 @@
         </ons-toolbar>
 
         <ons-list id="subscriptions" style="margin: -1px 0">
-          <ons-list-item modifier="chevron" class="item" ng-repeat="item in recent" ng-click="app.openUrl('{{item.url}}')">
+          <ons-list-item modifier="chevron" class="item" ng-repeat="item in articles" ng-click="app.openUrl('{{item.url}}')">
             <ons-row>
               <ons-col>
                 <header>
