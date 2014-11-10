@@ -40,11 +40,13 @@
       $scope.loadSubs = function() {
         server.getSubscriptions(function(subs) {
           $scope.subscriptions = subs;
+          $scope.$apply();
         });
       };
       $scope.loadUserArticles = function() {
         server.getArticlesForUser(function(articles) {
           $scope.articles = articles;
+          $scope.$apply();
         });
       };
       app.onDevReady = function() {

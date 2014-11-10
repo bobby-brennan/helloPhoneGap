@@ -124,9 +124,7 @@ var server = {
   },
             
   getSubscriptions: function(onTopics) {
-    console.log('get subs:' + server);
     var postData = server.initPostRequest();
-    console.log('pd:' + JSON.stringify(postData));
     if (!postData) {
         return onTopics([]);
     }
@@ -138,7 +136,6 @@ var server = {
         topics.sort(function(t1, t2){
            return t1.topic.toLowerCase() > t2.topic.toLowerCase() ? 1 : -1; 
         });
-        console.log('subs:' + JSON.stringify(topics));
         onTopics(topics);
     });
     console.log('sent post request');
