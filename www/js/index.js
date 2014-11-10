@@ -286,8 +286,6 @@ var app = {
     
     handleNotification: function(extra) {
         console.log("handling notif:" + JSON.stringify(extra));
-        //app.switchToRss(extra.topicName, extra.topicId);
-        app.switchToUserRss();
     },
     
     openUrl: function(url) {
