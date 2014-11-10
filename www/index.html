@@ -64,10 +64,12 @@
         });
       };
 
-      $scope.LAST_TAB = 2;
-      $scope.THIS_TAB = 2;
       $scope.onTabChanged = function(idx) {
-        console.log('tc:' + idx);
+        console.log('tc:' + idx + 'tt:' + $scope.THIS_TAB);
+        if (!$scope.THIS_TAB) {
+          console.log('set!');
+          $scope.THIS_TAB = 2;
+        }
         $scope.LAST_TAB = $scope.THIS_TAB;
         $scope.THIS_TAB = ix;
         if (idx === 0) {
