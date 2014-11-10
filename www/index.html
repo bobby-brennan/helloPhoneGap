@@ -17,9 +17,6 @@
   <script src="lib/onsen/js/angular/angular.js"></script>    
   <script src="lib/onsen/js/onsenui.js"></script>    
 
-  <script src="cordova.js"></script>
-  <script src="js/app.js"></script> 
-
   <script>
     angular.module('app', ['onsen']);
 
@@ -30,9 +27,13 @@
         }, 100);
       };
 
+      $scope.subscriptions = [{topic: "foo", topicId: 23}];
+
       server.getSubscriptions(function(subs) {
+        console.log('got subs:' + subs.length);
         $scope.subscriptions = subs;
       });
+      console.log('module initialized!!!!!!!!!!_!_!_!_!_!'):
     });
   </script>
 
