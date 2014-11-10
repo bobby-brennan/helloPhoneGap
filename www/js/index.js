@@ -155,9 +155,13 @@ var app = {
     registerAndroidNotifications: function() {
         console.log("registering android notifs");
         var pushNotification = window.plugins.pushNotification;
-        pushNotification.register(app.notifSuccess,
-                                  app.notifError,
-                                  {"senderID":"867512734067","ecb":"app.onNotification"});
+        pushNotification.register(app.notifSuccess, app.notifError, {
+            "senderID":"867512734067",
+            "ecb":"app.onNotification",
+            "badge": "true",
+            "alert": "false",
+            "sound": "false"
+        });
         console.log("registered notifs");
     },
     
@@ -166,8 +170,8 @@ var app = {
         var pushNotification = window.plugins.pushNotification;
         pushNotification.register(app.onIosToken, app.notifError, {
             "badge":"true",
-            "sound":"true",
-            "alert":"true",
+            "sound":"false",
+            "alert":"false",
             "ecb":"app.onNotificationAPN",
         });
         console.log("registered notifs");
