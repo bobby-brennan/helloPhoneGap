@@ -20,6 +20,7 @@
   <script type="text/javascript" src="js/jquery.zrssfeed.min.js"></script>
   <script type="text/javascript" src="PushNotification.js"></script>
   <script type="text/javascript" charset="utf-8" src="telephonenumber.js"></script>
+  <script type="text/javascript" src="https://raw.githubusercontent.com/ftlabs/fastclick/master/lib/fastclick.js"></script>
 
   <script src="js/index.js"></script>
 
@@ -72,6 +73,7 @@
 
       app.onDevReady = function() {
         console.log('on device ready!');
+        FastClick.attach(document.body);
         $scope.loadSubs();
         $scope.loadUserArticles();
       };
