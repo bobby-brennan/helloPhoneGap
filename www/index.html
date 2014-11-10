@@ -179,7 +179,7 @@
     <ons-navigator>
       <ons-page>
         <ons-toolbar>
-          <div class="left"><ons-toolbar-button ng-click="loadSubs()"><ons-icon icon="ion-compose"></ons-icon></ons-toolbar-button></div>
+          <div class="left"><ons-toolbar-button ng-click="loadUserArticles()"><ons-icon icon="ion-compose"></ons-icon></ons-toolbar-button></div>
           <div class="center">Recent</div>
           <div class="right"></div>
         </ons-toolbar>
@@ -210,12 +210,12 @@
         </ons-toolbar>
 
         <ons-list id="subscriptions" style="margin: -1px 0">
-          <ons-list-item modifier="chevron" class="item" ng-repeat="sub in subscriptions" ng-click="doSomething()">
+          <ons-list-item modifier="chevron" class="item" ng-repeat="sub in subscriptions">
             <ons-row>
               <ons-col width="60px" ng-click="doSomething()"> 
                 <ons-icon icon="ion-ios7-close" class="delete-icon"><!-- ng-click="server.deleteTopic('{{sub.topic}}', {{sub.topicId}})"--></ons-icon>
               </ons-col>
-              <ons-col>
+              <ons-col ng-click="doSomething()">
                 <header>
                   <span class="item-title">{{sub.topic}}</span>
                   <span class="item-label">{{sub.topicId}}</span>
