@@ -89,6 +89,7 @@ var server = {
           item.url = $(this).find('link').text();
           item.date = $(this).find('pubDate').text();
           item.date = new Date(item.date);
+          item.timeMessage = getTimeMessage(item.date);
           item.category = $(this).find('category');
           if (item.category) {item.category = item.category.text()}
           if (item.title.toLowerCase() === 'no title') {
@@ -268,3 +269,26 @@ var app = {
         }
     },
 };
+
+var getTimeMessage = function(date) {
+  var mSecAgo = (new Date().getTime() - date.getTime());
+  console.log("msec ago:" + mSecAgo);
+  var timeSec = Math.floor(mSecAgo / 1000);
+  var unit = "";
+  var amt = 0;
+  if (timeSec < SEC_IN_MINUTE) {
+    unit = "s";
+    amt = timeSec;
+  } else if (timeSec < SEC_IN_HOUR) {
+    unit = "m";
+    amt = Math.floor(timeSec / SEC_IN_MINUTE);
+  } else if (timeSec < SEC_IN_DAY) {
+    unit = "h";
+    amt = Math.floor(timeSec / SEC_IN_HOUR);
+  } else {
+    unit = "d";
+    amt = Math.floor(timeSec / SEC_IN_DAY);
+  }
+
+  return amt + unit;
+}
