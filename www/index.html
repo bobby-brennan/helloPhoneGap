@@ -39,7 +39,7 @@
         var parent = icon.parent();
         icon.remove();
         parent.add(icon);
-        ons.compile(icon);
+        ons.compile(icon[0]);
       };
       $scope.openUrl = function(url) {
         app.openUrl(url);
