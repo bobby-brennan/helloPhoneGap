@@ -251,7 +251,7 @@ var PLACEHOLDERS = [
   "Heart Disease",
   "Childhood Obesity",
 ];
-var curPlaceholderIdx = Math.floor(Math.random() * PLACEHOLDERS.length);
+var curPlaceholderIdx = -1;
 var curChar = 0;
 var CURSOR_ON = false;
 var blinkCursor = function() {
@@ -268,7 +268,7 @@ var blinkCursor = function() {
 
 var updatePlaceholder = function() {
   var curPlaceholder = PLACEHOLDERS[curPlaceholderIdx];
-  if (curChar === curPlaceholder.length) {
+  if (curPlaceholderIdx === -1 || curChar === curPlaceholder.length) {
     curChar = 0;
     var oldIdx = curPlaceholderIdx;
     while (oldIdx === curPlaceholderIdx) {
