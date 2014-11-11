@@ -103,8 +103,6 @@
 
       app.onDevReady = function() {
         $scope.DEV_READY = true;
-        updatePlaceholder();
-        blinkCursor();
         $scope.loadUserArticles();
         FastClick.attach(document.body);
         $(
