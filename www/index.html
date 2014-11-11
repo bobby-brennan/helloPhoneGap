@@ -293,15 +293,15 @@
 
         <ons-list id="subscriptions" style="margin: -1px 0">
           <ons-list-item class="item">
+            <form>
               <ons-col width="60px" ng-click="$('form').submit()"> 
                 <ons-icon icon="ion-ios7-plus-outline" class="delete-icon"></ons-icon>
               </ons-col>
               <ons-col>
-                <form>
-                  <input type="text" id="topicInput" placeholder="Ukraine"></input>
-                  <input type="submit" style="display:none"></input>
-                </form>
+                <input type="text" id="topicInput" placeholder="Ukraine"></input>
+                <input type="submit" style="display:none"></input>
               </ons-col>
+            </form>
           </ons-list-item>
           <ons-list-item modifier="chevron" class="item" ng-repeat="sub in subscriptions">
             <ons-row>
