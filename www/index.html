@@ -277,7 +277,7 @@ var updatePlaceholder = function() {
     setTimeout(function(){
       $("#topicInput").attr('placeholder', CURSOR_ON ? '|' : '');
     }, 1500);
-    setTimeout(updatePlaceholder, 2000);
+    setTimeout(updatePlaceholder, 2350);
   } else {
     var addedChar = curPlaceholder.substring(curChar, curChar + 1);
     $("#topicInput").attr('placeholder', curPlaceholder.substring(0, curChar + 1) + (CURSOR_ON ? '|' : ''));
