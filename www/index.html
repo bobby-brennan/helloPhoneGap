@@ -39,6 +39,10 @@
       };
       $scope.submitForm = function() {
         ons.compile($("#add-icon").attr('id', 'add-icon').attr('icon', 'ion-loading-c')[0]);
+        ons.ready(function() {
+          console.log('ons ready!');
+         ons.compile($("#add-icon").attr('id', 'add-icon').attr('icon', 'ion-ios7-plus-outline')[0]);
+        });
         server.addTopic($("#topicInput").val(), function(){
           console.log('setting back to regular:' + $("#add-icon").length);
           ons.compile($("#add-icon").attr('id', 'add-icon').attr('icon', 'ion-ios7-plus-outline')[0]);
