@@ -39,8 +39,7 @@
       };
       $scope.deleteTopic = function(topicId) {
         server.deleteTopic(topicId, function() {
-          $("#id" + topicId).toggleClass('shrink-hide');
-          $("#id" + topicId).parent().toggleClass('shrink-hide');
+          $scope.loadSubs();
         });
       };
       $scope.loadSubs = function() {
@@ -196,14 +195,6 @@
     .item-title {
       font-size: 15px;
       font-weight: 500;
-    }
-    .shrink-hide {
-	height: 0;
-	overflow: hidden;
-
-	-webkit-transition: height 0.8s;
-	-moz-transition: height 0.8s;
-	transition: height 0.8s;
     }
     .topic-title {
       font-size: 15px;
