@@ -39,6 +39,7 @@
       };
       $scope.submitForm = function() {
         console.log("submitting form!");
+        runAnimation(-2);
         server.addTopic($("#topicInput").val(), function(){
           $("#topicInput").val('');
           $scope.loadSubs();
@@ -46,11 +47,13 @@
         return false;
       }
       $scope.deleteTopic = function(topicId) {
+        runAnimation(-2);
         server.deleteTopic(topicId, function() {
           $scope.loadSubs();
         });
       };
       $scope.loadSubs = function() {
+        runAnimation(-2);
         server.getSubscriptions(function(subs) {
           $scope.subscriptions = subs;
           $scope.$apply();
