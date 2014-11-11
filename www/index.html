@@ -34,11 +34,11 @@
           alert('tapped');
         }, 100);
       };
-      $scope.swapIcon = function(selector, icon-name) {
+      $scope.swapIcon = function(selector, iconName) {
         var icon = $(selector);
         var parent = icon.parent();
         icon.remove();
-        icon.attr('icon', icon-name);
+        icon.attr('icon', iconName);
         parent.append(icon[0]);
         ons.compile(icon[0]);
       };
