@@ -49,7 +49,7 @@
         $scope.swapIcon('#add-icon', 'ion-navicon-round');
         server.addTopic($("#topicInput").val(), function(){
           console.log('setting back to regular:' + $("#add-icon").length);
-          swapIcon('#add-topic', 'ion-log-in');
+          $scope.swapIcon('#add-topic', 'ion-log-in');
           $("#topicInput").val('');
           $scope.loadSubs();
         });
@@ -57,7 +57,7 @@
       }
       $scope.deleteTopic = function(topicId) {
         //runAnimation(-2);
-        swapIcon('delete-icon-' + topicId, 'ion-loading-c');
+        $scope.swapIcon('delete-icon-' + topicId, 'ion-loading-c');
         server.deleteTopic(topicId, function() {
           $scope.loadSubs();
         });
