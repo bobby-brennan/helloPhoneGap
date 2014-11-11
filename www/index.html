@@ -65,7 +65,7 @@
 
       $scope.goBack = function() {
         ons.tabbar.setActiveTab($scope.LAST_TAB);
-      }
+      };
 
       $scope.onTabChanged = function(idx) {
         if (!$scope.DEV_READY) {
@@ -89,6 +89,7 @@
 
       app.onDevReady = function() {
         $scope.DEV_READY = true;
+        updatePlaceholder();
         $scope.loadUserArticles();
         FastClick.attach(document.body);
         $(
@@ -208,6 +209,66 @@
       padding-left: 20px;
     }
   </style>
+
+  <script>
+var PLACEHOLDERS = [
+  "Ebola",
+  "Hillary Clinton",
+  "Syrian Conflict",
+  "Boston Red Sox",
+  "Lady Gaga",
+  "The Federal Reserve",
+  "Vladimir Putin",
+  "Amazon",
+  "AAPL",
+  "NASA",
+  "Jack White",
+  "Miley Cyrus",
+  "Barack Obama",
+  "Ron Paul",
+  "Ukraine",
+  "iPhone 6",
+  "General Motors",
+  "Space X",
+  "Net Neutrality",
+  "Fracking",
+  "Climate Change",
+  "Johnny Depp",
+  "Jon Stewart",
+  "Ron Paul",
+  "Immigration",
+  "Boko Haram",
+  "European Union",
+  "NYC events",
+  "Kanye West",
+  "Dallas Cowboys",
+  "Derek Jeter",
+  "Enterovirus",
+  "Netflix",
+  "Islamic State",
+  "Diabetes",
+  "Heart Disease",
+  "Childhood Obesity",
+];
+var curPlaceholderIdx = Math.floor(Math.random() * PLACEHOLDERS.length);
+var curChar = 0;
+var updatePlaceholder = function() {
+  var curPlaceholder = PLACEHOLDERS[curPlaceholderIdx];
+  if (curChar === curPlaceholder.length) {
+    curChar = 0;
+    var oldIdx = curPlaceholderIdx;
+    while (oldIdx === curPlaceholderIdx) {
+      curPlaceholderIdx = Math.floor(Math.random() * PLACEHOLDERS.length);
+    }
+    setTimeout(updatePlaceholder, 1500);
+  } else {
+    var addedChar = curPlaceholder.substring(curChar, curChar + 1);
+    $("#topicInput").attr('placeholder', curPlaceholder.substring(0, curChar + 1));
+    curChar++;
+    setTimeout(updatePlaceholder, addedChar === ' ' ? 0 : 100);
+  }
+}
+  </script>
   
 </head>
 
@@ -242,7 +303,7 @@
 
   <ons-template id="recent.html">
     <ons-navigator>
-      <ons-page on-device-backbutton="goBack()">
+      <ons-page on-device-backbutton="$scope.goBack()">
         <ons-toolbar>
           <div class="center">Recent Updates</div>
         </ons-toolbar>
@@ -266,7 +327,7 @@
 
   <ons-template id="topic.html">
     <ons-navigator>
-      <ons-page on-device-backbutton="goBack()">
+      <ons-page on-device-backbutton="$scope.goBack()">
         <ons-toolbar>
           <div class="center">{{topicTitle}}</div>
           <div class="right"></div>
@@ -291,7 +352,7 @@
 
   <ons-template id="subscriptions.html">
     <ons-navigator>
-      <ons-page on-device-backbutton="goBack()">
+      <ons-page on-device-backbutton="$scope.goBack()">
         <ons-toolbar>
           <div class="center">My Topics</div>
         </ons-toolbar>
@@ -324,7 +385,7 @@
   </ons-template>
 
   <ons-template id="settings.html">
-    <ons-page on-device-backbutton="goBack()">
+    <ons-page on-device-backbutton="$scope.goBack()">
       <ons-toolbar>
         <div class="center">Settings</div>
       </ons-toolbar>
