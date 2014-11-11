@@ -54,6 +54,7 @@
         server.getSubscriptions(function(subs) {
           $scope.subscriptions = subs;
           $scope.$apply();
+          runAnimation(-1);
         });
       };
       $scope.loadUserArticles = function() {
@@ -100,7 +101,7 @@
         } else if (idx === 1) {
           // Do nothing
         } else if (idx === 2) {
-          runAnimation();
+          runAnimation(-2);
           $scope.loadSubs();
         } else if (idx === 3) {
           // Do nothing
@@ -281,7 +282,10 @@ var cancelAnimation = function() {
   }
 }
 
-var runAnimation = function() {
+var runAnimation = function(startPlaceholder) {
+  if (startPlaceholder) {
+    curPlaceholderIdx = -1;
+  }
   cancelAnimation();
   updatePlaceholder();
   blinkCursor();
@@ -301,6 +305,16 @@ var blinkCursor = function() {
 
 var updatePlaceholder = function() {
   var curPlaceholder = PLACEHOLDERS[curPlaceholderIdx];
+  if (curPlaceholderIdx === -2) {
+    var curVal = $("#topicInput").attr('placeholder');
+    if (curVal == '..' || curVal === '.') {
+      curVal += '.';
+    } else {
+      curVal = '';
+    }
+    $("#topicInput").attr('placeholder', curVal);
+    PLACE_HOLDER_RUN = setTimeout(updatePlaceholder, 100);
+  }
   if (curPlaceholderIdx === -1 || curChar === curPlaceholder.length) {
     curChar = 0;
     var oldIdx = curPlaceholderIdx;
