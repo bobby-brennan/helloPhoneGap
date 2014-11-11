@@ -66,6 +66,9 @@
       };
 
       $scope.onTabChanged = function(idx) {
+        if (!$scope.DEV_READY) {
+          return setTimeout(function(){onTabChanged(idx)}, 100);
+        }
         console.log('tc:' + idx + 'tt:' + $scope.THIS_TAB);
         if (!$scope.THIS_TAB) {
           console.log('set!');
@@ -87,6 +90,7 @@
       };
 
       app.onDevReady = function() {
+        $scope.DEV_READY = true;
         $scope.loadUserArticles();
         FastClick.attach(document.body);
       };
