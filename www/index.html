@@ -38,9 +38,9 @@
         app.openUrl(url);
       };
       $scope.submitForm = function() {
-        console.log("submitting form!");
         ons.compile($("#add-icon").attr('icon', 'ion-loading-c')[0]);
         server.addTopic($("#topicInput").val(), function(){
+          console.log('setting back to regular!');
           ons.compile($("#add-icon").attr('icon', 'ion-ios7-plus-outline')[0]);
           $("#topicInput").val('');
           $scope.loadSubs();
@@ -119,7 +119,6 @@
         FastClick.attach(document.body);
         $(
           $("form").submit(function() {
-              console.log('form submit called...');
               $scope.submitForm();
           })
         );
@@ -316,7 +315,6 @@ var updatePlaceholder = function() {
     } else {
       curVal = '.';
     }
-    console.log('made ellipsis:'  + curVal);
     $("#topicInput").attr('placeholder', curVal);
     PLACE_HOLDER_RUN = setTimeout(updatePlaceholder, 200);
   } else if (curPlaceholderIdx === -1 || curChar === curPlaceholder.length) {
