@@ -52,15 +52,16 @@
         return false;
       }
       $scope.deleteTopic = function(topicId) {
-        //runAnimation(-2);
         $scope.swapIcon('#delete-icon-' + topicId, '#delete-icon-loading-' + topicId);
         server.deleteTopic(topicId, function() {
-          $scope.loadSubs(function() {
-          });
+          $scope.loadSubs();
         });
       };
       $scope.loadSubs = function(onDone) {
         server.getSubscriptions(function(subs) {
+          if (!subs || subs.length === 0) {
+            subs = [{topic='Add some topics above to start getting updates!'}]
+          }
           $scope.subscriptions = subs;
           $scope.$apply();
           if (onDone) onDone();
@@ -68,11 +69,10 @@
       };
       $scope.loadUserArticles = function() {
         server.getUserArticles(function(articles) {
-          if (articles.length == 0) {
-            $scope.userArticles = [{category: "Nothing yet..."}];
-          } else {
-            $scope.userArticles = articles;
+          if (!articles || articles.length == 0) {
+            articles = [{category: "Nothing yet..."}];
           }
+          $scope.userArticles = articles;
           $scope.$apply();
         });
       };
@@ -80,11 +80,10 @@
         $scope.topicTitle = topicName;
         ons.tabbar.setActiveTab(1);
         server.getTopicArticles(topicId, function(articles) {
-          if (articles.length == 0) {
-            $scope.topicArticles = [{category: "Nothing yet..."}];
-          } else {
-            $scope.topicArticles = articles;
+          if (!articles || articles.length == 0) {
+            articles = [{category: "Nothing yet..."}];
           }
+          $scope.topicArticles = articles;
           $scope.$apply();
         });
       };
@@ -106,12 +105,15 @@
         $scope.LAST_TAB = $scope.THIS_TAB;
         $scope.THIS_TAB = idx;
         if (idx === 0) {
-          $scope.loadUserArticles(); 
+          $scope.loadUserArticles();
         } else if (idx === 1) {
           // Do nothing
         } else if (idx === 2) {
-          //runAnimation(-2);
-          $scope.loadSubs();
+          $scope.swapIcon('#add-icon', '#add-icon-loading');
+          $scope.loadSubs(function() {
+            runAnimation();
+            $scope.swapIcon('#add-icon-loading', '#add-icon');
+          });
         } else if (idx === 3) {
           // Do nothing
         }
