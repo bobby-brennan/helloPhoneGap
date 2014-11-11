@@ -44,10 +44,10 @@
       $scope.submitForm = function() {
         $scope.swapIcon('#add-icon', '#add-icon-loading');
         server.addTopic($("#topicInput").val(), function(){
-          console.log('setting back to regular:' + $("#add-icon").length);
-          $scope.swapIcon('#add-icon-loading', '#add-icon');
           $("#topicInput").val('');
-          $scope.loadSubs();
+          $scope.loadSubs(function() {
+            $scope.swapIcon('#add-icon-loading', '#add-icon');
+          });
         });
         return false;
       }
@@ -55,15 +55,15 @@
         //runAnimation(-2);
         $scope.swapIcon('#delete-icon-' + topicId, '#delete-icon-loading-' + topicId);
         server.deleteTopic(topicId, function() {
-          $scope.loadSubs();
+          $scope.loadSubs(function() {
+          });
         });
       };
-      $scope.loadSubs = function() {
-        //runAnimation(-2);
+      $scope.loadSubs = function(onDone) {
         server.getSubscriptions(function(subs) {
           $scope.subscriptions = subs;
           $scope.$apply();
-          //runAnimation(-1);
+          if (onDone) onDone();
         });
       };
       $scope.loadUserArticles = function() {
@@ -444,7 +444,7 @@ var updatePlaceholder = function() {
             <ons-row id="id{{sub.id}}">
               <ons-col width="60px" ng-click="deleteTopic(sub.id)"> 
                 <ons-icon icon="ion-ios7-minus-outline" id="delete-icon-{{sub.id}}" class="delete-icon"></ons-icon>
-                <ons-icon icon="ion-looping" id="delete-icon-loading{{sub.id}}" class="delete-icon" style="display:none"></ons-icon>
+                <ons-icon icon="ion-looping" id="delete-icon-loading-{{sub.id}}" class="delete-icon" style="display:none"></ons-icon>
               </ons-col>
               <ons-col ng-click="loadTopicArticles(sub.topic, sub.id)">
                   <p class="topic-title item-title">{{sub.topic}}</p>
