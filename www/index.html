@@ -40,7 +40,7 @@
       $scope.submitForm = function() {
         console.log("submitting form!");
         server.addTopic($("#topicInput").val(), function(){
-          $("#topicInput").val();
+          $("#topicInput").val('');
           $scope.loadSubs();
         });
         return false;
