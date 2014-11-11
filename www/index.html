@@ -48,19 +48,18 @@
         return false;
       }
       $scope.deleteTopic = function(topicId) {
-        runAnimation(-2);
+        //runAnimation(-2);
         ons.compile($("#delete-icon-" + topicId).attr('icon', 'ion-loading-c')[0]);
         server.deleteTopic(topicId, function() {
-          ons.compile($("#add-icon").attr('icon', 'ion-ios7-minus-outline')[0]);
           $scope.loadSubs();
         });
       };
       $scope.loadSubs = function() {
-        runAnimation(-2);
+        //runAnimation(-2);
         server.getSubscriptions(function(subs) {
           $scope.subscriptions = subs;
           $scope.$apply();
-          runAnimation(-1);
+          //runAnimation(-1);
         });
       };
       $scope.loadUserArticles = function() {
@@ -107,7 +106,7 @@
         } else if (idx === 1) {
           // Do nothing
         } else if (idx === 2) {
-          runAnimation(-2);
+          //runAnimation(-2);
           $scope.loadSubs();
         } else if (idx === 3) {
           // Do nothing
@@ -312,7 +311,6 @@ var updatePlaceholder = function() {
   var curPlaceholder = PLACEHOLDERS[curPlaceholderIdx];
   if (curPlaceholderIdx === -2) {
     var curVal = $("#topicInput").attr('placeholder');
-    console.log('making ellipsis:'  + curVal);
     if (curVal == '..' || curVal === '.') {
       curVal += '.';
     } else {
