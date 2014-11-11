@@ -51,7 +51,8 @@
       $scope.loadUserArticles = function() {
         $scope.recentTitle = "Recent";
         server.getUserArticles(function(articles) {
-          $scope.articles = articles;
+          console.log('got articles');
+          $scope.userArticles = articles;
           $scope.$apply();
         });
       };
@@ -59,7 +60,7 @@
         $scope.recentTitle = topicName;
         ons.tabbar.setActiveTab(1);
         server.getTopicArticles(topicId, function(articles) {
-          $scope.articles = articles;
+          $scope.topicArticles = articles;
           $scope.$apply();
         });
       };
@@ -72,6 +73,7 @@
         }
         $scope.LAST_TAB = $scope.THIS_TAB;
         $scope.THIS_TAB = idx;
+        console.log('last:' + $scope.LAST_TAB + ' this:' + $scope.THIS_TAB);
         if (idx === 0) {
           $scope.loadUserArticles(); 
         } else if (idx === 1) {
@@ -228,7 +230,7 @@
         </ons-toolbar>
 
         <ons-list id="subscriptions" style="margin: -1px 0">
-          <ons-list-item modifier="chevron" class="item" ng-repeat="item in articles">
+          <ons-list-item modifier="chevron" class="item" ng-repeat="item in userArticles">
             <ons-row ng-click="openUrl(item.url)">
               <ons-col>
                 <header>
