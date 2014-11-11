@@ -221,7 +221,7 @@
 
   <ons-template id="recent.html">
     <ons-navigator>
-      <ons-page on-device-backbutton="ons.tabbar.setActiveTab(0)">
+      <ons-page on-device-backbutton="ons.tabbar.setActiveTab(LAST_TAB)">
         <ons-toolbar>
           <div class="center">Recent</div>
           <div class="right"></div>
@@ -246,7 +246,7 @@
 
   <ons-template id="topic.html">
     <ons-navigator>
-      <ons-page on-device-backbutton="ons.tabbar.setActiveTab(0)">
+      <ons-page on-device-backbutton="ons.tabbar.setActiveTab(LAST_TAB)">
         <ons-toolbar>
           <div class="center">{{topicTitle}}</div>
           <div class="right"></div>
@@ -271,7 +271,7 @@
 
   <ons-template id="subscriptions.html">
     <ons-navigator>
-      <ons-page on-device-backbutton="ons.tabbar.setActiveTab(0)">
+      <ons-page on-device-backbutton="ons.tabbar.setActiveTab(LAST_TAB)">
         <ons-toolbar>
           <div class="left"><ons-toolbar-button ng-click="loadSubs()"><ons-icon icon="ion-compose"></ons-icon></ons-toolbar-button></div>
           <div class="center">My Topics</div>
@@ -295,7 +295,7 @@
   </ons-template>
 
   <ons-template id="settings.html">
-    <ons-page on-device-backbutton="ons.tabbar.setActiveTab(0)">
+    <ons-page on-device-backbutton="ons.tabbar.setActiveTab(LAST_TAB)">
       <ons-toolbar>
         <div class="center">Settings</div>
       </ons-toolbar>
