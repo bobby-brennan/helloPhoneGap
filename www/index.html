@@ -34,18 +34,21 @@
           alert('tapped');
         }, 100);
       };
+      $scope.swapIcon = function(selector, icon) {
+        var icon = $(selector);
+        var parent = icon.parent();
+        icon.remove();
+        parent.add(icon);
+        ons.compile(icon);
+      };
       $scope.openUrl = function(url) {
         app.openUrl(url);
       };
       $scope.submitForm = function() {
-        ons.compile($("#add-icon").attr('icon', 'ion-navicon-round')[0]);
-        ons.ready(function() {
-          console.log('ons ready!');
-         ons.compile($("#add-icon").attr('icon', 'ion-checkmark-round')[0]);
-        });
+        $scope.swapIcon('#add-icon', 'ion-navicon-round');
         server.addTopic($("#topicInput").val(), function(){
           console.log('setting back to regular:' + $("#add-icon").length);
-          ons.compile($("#add-icon").attr('id', 'add-icon').attr('icon', 'ion-log-in')[0]);
+          swapIcon(addTopic, 'ion-log-in');
           $("#topicInput").val('');
           $scope.loadSubs();
         });
