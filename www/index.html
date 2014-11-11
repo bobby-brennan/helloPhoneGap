@@ -39,7 +39,7 @@
       };
       $scope.deleteTopic = function(topicId) {
         server.deleteTopic(topicId, function() {
-          $scope.loadSubs();
+          $(".id" + topicId).toggleClass('shrink-hide');
         });
       };
       $scope.loadSubs = function() {
@@ -182,6 +182,14 @@
     .item-title {
       font-size: 15px;
       font-weight: 500;
+    }
+    .shrink-hide {
+	max-height: 0;
+	overflow: hidden;
+
+	-webkit-transition: max-height 0.8s;
+	-moz-transition: max-height 0.8s;
+	transition: max-height 0.8s;
     }
     .topic-title {
       font-size: 15px;
@@ -388,7 +396,7 @@ var updatePlaceholder = function() {
             </form>
           </ons-list-item>
           <ons-list-item modifier="chevron" class="item" ng-repeat="sub in subscriptions">
-            <ons-row>
+            <ons-row id="id{{sub.id}}">
               <ons-col width="60px" ng-click="deleteTopic(sub.id)"> 
                 <ons-icon icon="ion-ios7-minus-outline" class="delete-icon"></ons-icon>
               </ons-col>
