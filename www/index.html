@@ -263,7 +263,7 @@ var blinkCursor = function() {
     $("#topicInput").attr('placeholder', curVal + '|');
   }
   CURSOR_ON = !CURSOR_ON;
-  setTimeout(blinkCursor, 300);
+  setTimeout(blinkCursor, 400);
 }
 
 var updatePlaceholder = function() {
@@ -276,8 +276,8 @@ var updatePlaceholder = function() {
     }
     setTimeout(function(){
       $("#topicInput").attr('placeholder', CURSOR_ON ? '|' : '');
-      setTimeout(updatePlaceholder, 1300);
-    }, 1300);
+      setTimeout(updatePlaceholder, 1650);
+    }, 1650);
   } else {
     var addedChar = curPlaceholder.substring(curChar, curChar + 1);
     $("#topicInput").attr('placeholder', curPlaceholder.substring(0, curChar + 1) + (CURSOR_ON ? '|' : ''));
