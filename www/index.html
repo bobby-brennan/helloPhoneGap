@@ -297,8 +297,10 @@
                 <ons-icon icon="ion-ios7-plus-outline" class="delete-icon"></ons-icon>
               </ons-col>
               <ons-col>
-                <form action="">
-                <input type="text" placeholder="Ukraine"></input>
+                <form>
+                  <input type="text" id="topicInput" placeholder="Ukraine"></input>
+                  <input type="submit" style="display:none"></input>
+                </form>
               </ons-col>
           </ons-list-item>
           <ons-list-item modifier="chevron" class="item" ng-repeat="sub in subscriptions">
