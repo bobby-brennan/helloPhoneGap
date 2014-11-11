@@ -81,7 +81,7 @@
         if (!$scope.DEV_READY) {
           return setTimeout(function(){$scope.onTabChanged(idx)}, 100);
         }
-        if (!$scope.THIS_TAB && scope.THIS_TAB !== 0) {
+        if (!$scope.THIS_TAB && $scope.THIS_TAB !== 0) {
           $scope.THIS_TAB = 2;
         }
         $scope.LAST_TAB = $scope.THIS_TAB;
