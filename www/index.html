@@ -310,7 +310,7 @@ var updatePlaceholder = function() {
   var curPlaceholder = PLACEHOLDERS[curPlaceholderIdx];
   if (curPlaceholderIdx === -2) {
     var curVal = $("#topicInput").attr('placeholder');
-    if (curVal == '..' || curVal === '.') {
+    if (curVal == '..' || curVal === '.' || !curVal) {
       curVal += '.';
     } else {
       curVal = '';
