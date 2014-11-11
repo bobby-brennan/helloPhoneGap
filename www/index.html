@@ -91,6 +91,15 @@
         $scope.DEV_READY = true;
         $scope.loadUserArticles();
         FastClick.attach(document.body);
+        $(
+          $("form").submit(function() {
+              console.log("submitting!");
+              server.addTopic($("#topicInput").val(), function(){
+                loadSubs();
+              });
+              return false;
+          })
+        );
       };
     });
   </script>
@@ -174,7 +183,7 @@
     }
     .topic-title {
       font-size: 20px;
-      line-height: 1.3;
+      line-height: 1.5;
       margin: 4px 0 0 0;
       padding: 0 30px 0 0;
     }
@@ -230,8 +239,7 @@
     <ons-navigator>
       <ons-page on-device-backbutton="goBack()">
         <ons-toolbar>
-          <div class="center">Posted - Recent Updates</div>
-          <div class="right"></div>
+          <div class="center">Recent Updates</div>
         </ons-toolbar>
 
         <ons-list id="subscriptions" style="margin: -1px 0">
@@ -280,8 +288,7 @@
     <ons-navigator>
       <ons-page on-device-backbutton="goBack()">
         <ons-toolbar>
-          <div class="center">Posted - My Topics</div>
-          <div class="right"></div>
+          <div class="center">My Topics</div>
         </ons-toolbar>
 
         <ons-list id="subscriptions" style="margin: -1px 0">
@@ -290,7 +297,8 @@
                 <ons-icon icon="ion-ios7-plus-outline" class="delete-icon"></ons-icon>
               </ons-col>
               <ons-col>
-                <ons-text-input style="width:100%" placeholder="Ukraine"></ons-text-input>
+                <form action="">
+                <input type="text" placeholder="Ukraine"></input>
               </ons-col>
           </ons-list-item>
           <ons-list-item modifier="chevron" class="item" ng-repeat="sub in subscriptions">
