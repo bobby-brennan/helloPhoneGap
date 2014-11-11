@@ -255,6 +255,7 @@ var curPlaceholderIdx = Math.floor(Math.random() * PLACEHOLDERS.length);
 var curChar = 0;
 var CURSOR_ON = false;
 var blinkCursor = function() {
+  console.log('blink');
   var curVal = $("#topicInput").attr('placeholder');
   if (CURSOR_ON) {
     $("#topicInput").attr('placeholder', curVal.substring(0, curVal.length - 1));
@@ -262,7 +263,7 @@ var blinkCursor = function() {
     $("#topicInput").attr('placeholder', curVal + '|');
   }
   CURSOR_ON = !CURSOR_ON;
-  setTimeout(blinkCursor(100));
+  setTimeout(blinkCursor(111));
 }
 
 var updatePlaceholder = function() {
@@ -276,7 +277,7 @@ var updatePlaceholder = function() {
     setTimeout(updatePlaceholder, 1500);
   } else {
     var addedChar = curPlaceholder.substring(curChar, curChar + 1);
-    $("#topicInput").attr('placeholder', curPlaceholder.substring(0, curChar + 1));
+    $("#topicInput").attr('placeholder', curPlaceholder.substring(0, curChar + 1) + CURSOR_ON ? '|' : '');
     curChar++;
     setTimeout(updatePlaceholder, addedChar === ' ' ? 0 : 100);
   }
