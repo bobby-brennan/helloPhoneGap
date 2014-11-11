@@ -48,6 +48,7 @@
       }
       $scope.deleteTopic = function(topicId) {
         runAnimation(-2);
+        $("delete-icon").attr('icon', 'ion-loading-c');
         server.deleteTopic(topicId, function() {
           $scope.loadSubs();
         });
@@ -428,7 +429,7 @@ var updatePlaceholder = function() {
           <ons-list-item class="item" ng-click="$('#topicInput').focus()">
             <form style="display:inline">
               <ons-col width="60px" ng-click="submitForm()" style="display:inline">
-                <ons-icon icon="ion-ios7-plus-outline" class="delete-icon"></ons-icon>
+                <ons-icon icon="ion-ios7-plus-outline" class="add-icon"></ons-icon>
               </ons-col>
               <ons-col width="100%" style="display:inline">
                 <input type="text" id="topicInput" class="topic-title item-title" placeholder=""></input>
@@ -439,7 +440,7 @@ var updatePlaceholder = function() {
           <ons-list-item modifier="chevron" class="item" ng-repeat="sub in subscriptions">
             <ons-row id="id{{sub.id}}">
               <ons-col width="60px" ng-click="deleteTopic(sub.id)"> 
-                <ons-icon icon="ion-ios7-minus-outline" class="delete-icon"></ons-icon>
+                <ons-icon icon="ion-ios7-minus-outline" id="icon{{sub.id}}" class="delete-icon"></ons-icon>
               </ons-col>
               <ons-col ng-click="loadTopicArticles(sub.topic, sub.id)">
                   <p class="topic-title item-title">{{sub.topic}}</p>
