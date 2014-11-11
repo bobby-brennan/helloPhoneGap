@@ -270,6 +270,9 @@ var app = {
     },
 };
 
+var SEC_IN_MINUTE = 60;
+var SEC_IN_HOUR = SEC_IN_MINUTE * 60;
+var SEC_IN_DAY = SEC_IN_HOUR * 24;
 var getTimeMessage = function(date) {
   var mSecAgo = (new Date().getTime() - date.getTime());
   console.log("msec ago:" + mSecAgo);

@@ -191,8 +191,7 @@
 
 <body ng-controller="AppController">    
   
-  <ons-tabbar animation="slide"
-              on-active-tab-changed="onTabChanged($index)">
+  <ons-tabbar animation="fade" on-active-tab-changed="onTabChanged($index)">
 
     <ons-tabbar-item page="recent.html">
       <div class="tab">
@@ -279,10 +278,18 @@
         </ons-toolbar>
 
         <ons-list id="subscriptions" style="margin: -1px 0">
+          <ons-list-item class="item">
+              <ons-col width="60px" ng-click="deleteTopic(sub.id)"> 
+                <ons-icon icon="ion-ios7-plus-outline" class="delete-icon"></ons-icon>
+              </ons-col>
+              <ons-col>
+                <ons-text-input placeholder="Ukraine"></ons-text-input>
+              </ons-col>
+          </ons-list-item>
           <ons-list-item modifier="chevron" class="item" ng-repeat="sub in subscriptions">
             <ons-row>
               <ons-col width="60px" ng-click="deleteTopic(sub.id)"> 
-                <ons-icon icon="ion-ios7-close" class="delete-icon"></ons-icon>
+                <ons-icon icon="ion-ios7-minus-outline" class="delete-icon"></ons-icon>
               </ons-col>
               <ons-col ng-click="loadTopicArticles(sub.topic, sub.id)">
                   <p class="topic-title item-title">{{sub.topic}}</p>
