@@ -39,7 +39,7 @@
       };
       $scope.deleteTopic = function(topicId) {
         server.deleteTopic(topicId, function() {
-          $(".id" + topicId).toggleClass('shrink-hide');
+          $("#id" + topicId).toggleClass('shrink-hide');
         });
       };
       $scope.loadSubs = function() {
