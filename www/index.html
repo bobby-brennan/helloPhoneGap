@@ -50,7 +50,11 @@
       };
       $scope.loadUserArticles = function() {
         server.getUserArticles(function(articles) {
-          $scope.userArticles = articles;
+          if (articles.length == 0) {
+            $scope.userArticles = [{category: "Nothing yet..."}];
+          } else {
+            $scope.userArticles = articles;
+          }
           $scope.$apply();
         });
       };
@@ -58,7 +62,11 @@
         $scope.topicTitle = topicName;
         ons.tabbar.setActiveTab(1);
         server.getTopicArticles(topicId, function(articles) {
-          $scope.topicArticles = articles;
+          if (articles.length == 0) {
+            $scope.topicArticles = [{category: "Nothing yet..."}];
+          } else {
+            $scope.topicArticles = articles;
+          }
           $scope.$apply();
         });
       };
