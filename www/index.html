@@ -308,11 +308,12 @@ var blinkCursor = function() {
 var updatePlaceholder = function() {
   var curPlaceholder = PLACEHOLDERS[curPlaceholderIdx];
   if (curPlaceholderIdx === -2) {
+    console.log('making ellipsis');
     var curVal = $("#topicInput").attr('placeholder');
-    if (curVal == '..' || curVal === '.' || !curVal) {
+    if (curVal == '..' || curVal === '.') {
       curVal += '.';
     } else {
-      curVal = '';
+      curVal = '.';
     }
     $("#topicInput").attr('placeholder', curVal);
     PLACE_HOLDER_RUN = setTimeout(updatePlaceholder, 100);
