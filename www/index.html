@@ -64,6 +64,8 @@
       };
 
       $scope.goBack = function() {
+        if (BLINK_RUN) clearTimeout(BLINK_RUN);
+        if (PLACE_HOLDER_RUN) clearTimeout(PLACE_HOLDER_RUN);
         ons.tabbar.setActiveTab($scope.LAST_TAB);
       };
 
@@ -261,6 +263,7 @@ var PLACEHOLDERS = [
 var curPlaceholderIdx = -1;
 var curChar = 0;
 var CURSOR_ON = false;
+var BLINK_RUN, PLACE_HOLDER_RUN;
 var blinkCursor = function() {
   var curVal = $("#topicInput").attr('placeholder');
   if (!curVal) {curVal = '';}
@@ -270,7 +273,7 @@ var blinkCursor = function() {
     $("#topicInput").attr('placeholder', curVal + '|');
   }
   CURSOR_ON = !CURSOR_ON;
-  setTimeout(blinkCursor, 400);
+  BLINK_RUN = setTimeout(blinkCursor, 400);
 }
 
 var updatePlaceholder = function() {
@@ -281,15 +284,15 @@ var updatePlaceholder = function() {
     while (oldIdx === curPlaceholderIdx) {
       curPlaceholderIdx = Math.floor(Math.random() * PLACEHOLDERS.length);
     }
-    setTimeout(function(){
+    PLACE_HOLDER_RUN = setTimeout(function(){
       $("#topicInput").attr('placeholder', CURSOR_ON ? '|' : '');
-      setTimeout(updatePlaceholder, 1650);
+      PLACE_HOLDER_RUN = setTimeout(updatePlaceholder, 1650);
     }, 1650);
   } else {
     var addedChar = curPlaceholder.substring(curChar, curChar + 1);
     $("#topicInput").attr('placeholder', curPlaceholder.substring(0, curChar + 1) + (CURSOR_ON ? '|' : ''));
     curChar++;
-    setTimeout(updatePlaceholder, addedChar === ' ' ? 0 : 100);
+    PLACE_HOLDER_RUN = setTimeout(updatePlaceholder, addedChar === ' ' ? 0 : 100);
   }
 }
   </script>
