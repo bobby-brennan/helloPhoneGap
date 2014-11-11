@@ -63,6 +63,10 @@
         });
       };
 
+      $scope.goBack = function() {
+        ons.tabbar.setActiveTab($scope.LAST_TAB);
+      }
+
       $scope.onTabChanged = function(idx) {
         if (!$scope.DEV_READY) {
           return setTimeout(function(){$scope.onTabChanged(idx)}, 100);
@@ -223,7 +227,7 @@
 
   <ons-template id="recent.html">
     <ons-navigator>
-      <ons-page on-device-backbutton="ons.tabbar.setActiveTab($scope.LAST_TAB)">
+      <ons-page on-device-backbutton="goBack()">
         <ons-toolbar>
           <div class="center">Recent</div>
           <div class="right"></div>
@@ -248,7 +252,7 @@
 
   <ons-template id="topic.html">
     <ons-navigator>
-      <ons-page on-device-backbutton="ons.tabbar.setActiveTab($scope.LAST_TAB)">
+      <ons-page on-device-backbutton="goBack()">
         <ons-toolbar>
           <div class="center">{{topicTitle}}</div>
           <div class="right"></div>
@@ -273,7 +277,7 @@
 
   <ons-template id="subscriptions.html">
     <ons-navigator>
-      <ons-page on-device-backbutton="ons.tabbar.setActiveTab($scope.LAST_TAB)">
+      <ons-page on-device-backbutton="goBack()">
         <ons-toolbar>
           <div class="center">My Topics</div>
           <div class="right"></div>
@@ -304,7 +308,7 @@
   </ons-template>
 
   <ons-template id="settings.html">
-    <ons-page on-device-backbutton="ons.tabbar.setActiveTab($scope.LAST_TAB)">
+    <ons-page on-device-backbutton="goBack()">
       <ons-toolbar>
         <div class="center">Settings</div>
       </ons-toolbar>
