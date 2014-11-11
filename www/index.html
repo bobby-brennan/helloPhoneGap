@@ -113,6 +113,7 @@
         FastClick.attach(document.body);
         $(
           $("form").submit(function() {
+              console.log('form submit called...');
               submitForm();
           })
         );
@@ -408,7 +409,7 @@ var updatePlaceholder = function() {
 
         <ons-list id="subscriptions" style="margin: -1px 0">
           <ons-list-item class="item" ng-click="$('#topicInput').focus()">
-            <form id="addTopicForm" style="display:inline">
+            <form style="display:inline">
               <ons-col width="60px" ng-click="submitForm()" style="display:inline">
                 <ons-icon icon="ion-ios7-plus-outline" class="delete-icon"></ons-icon>
               </ons-col>
