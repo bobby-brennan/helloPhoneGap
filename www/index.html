@@ -274,7 +274,10 @@ var updatePlaceholder = function() {
     while (oldIdx === curPlaceholderIdx) {
       curPlaceholderIdx = Math.floor(Math.random() * PLACEHOLDERS.length);
     }
-    setTimeout(updatePlaceholder, 1500);
+    setTimeout(function(){
+      $("#topicInput").attr('placeholder', CURSOR_ON ? '|' : '');
+    }, 1500);
+    setTimeout(updatePlaceholder, 2000);
   } else {
     var addedChar = curPlaceholder.substring(curChar, curChar + 1);
     $("#topicInput").attr('placeholder', curPlaceholder.substring(0, curChar + 1) + (CURSOR_ON ? '|' : ''));
