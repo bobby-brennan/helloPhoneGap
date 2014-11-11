@@ -37,6 +37,10 @@
       $scope.openUrl = function(url) {
         app.openUrl(url);
       };
+      $scope.submitForm = function() {
+        console.log("submitting form!");
+        $('addTopicForm').submit();
+      }
       $scope.deleteTopic = function(topicId) {
         server.deleteTopic(topicId, function() {
           $scope.loadSubs();
@@ -404,8 +408,8 @@ var updatePlaceholder = function() {
 
         <ons-list id="subscriptions" style="margin: -1px 0">
           <ons-list-item class="item" ng-click="$('#topicInput').focus()">
-            <form style="display:inline">
-              <ons-col width="60px" ng-click="$('form').submit()" style="display:inline">
+            <form id="addTopicForm" style="display:inline">
+              <ons-col width="60px" ng-click="submitForm()" style="display:inline">
                 <ons-icon icon="ion-ios7-plus-outline" class="delete-icon"></ons-icon>
               </ons-col>
               <ons-col width="100%" style="display:inline">
