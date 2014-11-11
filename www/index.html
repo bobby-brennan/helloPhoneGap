@@ -297,12 +297,11 @@ var runAnimation = function(startPlaceholder) {
 var blinkCursor = function() {
   var curVal = $("#topicInput").attr('placeholder');
   if (!curVal) {curVal = '';}
-  if (CURSOR_ON && curVal.indexOf('|') === curVal.length - 1 && curVal.length > 0) {
-    $("#topicInput").attr('placeholder', curVal.substring(0, curVal.length - 1));
-  } else if (!CURSOR_ON && curVal.indexOf('|') === -1) {
-    $("#topicInput").attr('placeholder', curVal + '|');
+  if (curVal === '|') {
+    $("#topicInput").attr('placeholder', ''); 
+  } else if (curVal === '') {
+    $("#topicInput").attr('placeholder', '|');
   }
-  CURSOR_ON = !CURSOR_ON;
   BLINK_RUN = setTimeout(blinkCursor, 400);
 }
 
