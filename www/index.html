@@ -257,9 +257,9 @@ var CURSOR_ON = false;
 var blinkCursor = function() {
   console.log('blink');
   var curVal = $("#topicInput").attr('placeholder');
-  if (CURSOR_ON) {
+  if (CURSOR_ON && curVal.indexOf('|') === curVal.length - 1 && curVal.length > 0) {
     $("#topicInput").attr('placeholder', curVal.substring(0, curVal.length - 1));
-  } else {
+  } else if (!CURSOR_ON && curVal.indexOf('|') === -1) {
     $("#topicInput").attr('placeholder', curVal + '|');
   }
   CURSOR_ON = !CURSOR_ON;
