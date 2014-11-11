@@ -90,6 +90,7 @@
       app.onDevReady = function() {
         $scope.DEV_READY = true;
         updatePlaceholder();
+        blinkCursor();
         $scope.loadUserArticles();
         FastClick.attach(document.body);
         $(
@@ -252,6 +253,18 @@ var PLACEHOLDERS = [
 ];
 var curPlaceholderIdx = Math.floor(Math.random() * PLACEHOLDERS.length);
 var curChar = 0;
+var CURSOR_ON = false;
+var blinkCursor = function() {
+  var curVal = $("#topicInput").attr('placeholder');
+  if (CURSOR_ON) {
+    $("#topicInput").attr('placeholder', curVal.substring(0, curVal.length - 1));
+  } else {
+    $("#topicInput").attr('placeholder', curVal + '|');
+  }
+  CURSOR_ON = !CURSOR_ON;
+  setTimeout(blinkCursor(100));
+}
+
 var updatePlaceholder = function() {
   var curPlaceholder = PLACEHOLDERS[curPlaceholderIdx];
   if (curChar === curPlaceholder.length) {
