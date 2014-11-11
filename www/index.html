@@ -38,6 +38,7 @@
         var icon = $(selector);
         var parent = icon.parent();
         icon.remove();
+        icon.attr('icon', icon);
         parent.add(icon);
         ons.compile(icon[0]);
       };
