@@ -63,7 +63,7 @@
         });
       };
 
-      var goBack = function() {
+      $scope.goBack = function() {
         ons.tabbar.setActiveTab($scope.LAST_TAB);
       };
 
@@ -95,7 +95,6 @@
         FastClick.attach(document.body);
         $(
           $("form").submit(function() {
-              console.log("submitting!");
               server.addTopic($("#topicInput").val(), function(){
                 $scope.loadSubs();
               });
@@ -263,7 +262,6 @@ var curPlaceholderIdx = -1;
 var curChar = 0;
 var CURSOR_ON = false;
 var blinkCursor = function() {
-  console.log('blink');
   var curVal = $("#topicInput").attr('placeholder');
   if (!curVal) {curVal = '';}
   if (CURSOR_ON && curVal.indexOf('|') === curVal.length - 1 && curVal.length > 0) {
@@ -329,7 +327,7 @@ var updatePlaceholder = function() {
 
   <ons-template id="recent.html">
     <ons-navigator>
-      <ons-page on-device-backbutton="goBack()">
+      <ons-page ng-device-backbutton="goBack()">
         <ons-toolbar>
           <div class="center">Recent Updates</div>
         </ons-toolbar>
@@ -353,7 +351,7 @@ var updatePlaceholder = function() {
 
   <ons-template id="topic.html">
     <ons-navigator>
-      <ons-page on-device-backbutton="goBack()">
+      <ons-page ng-device-backbutton="goBack()">
         <ons-toolbar>
           <div class="center">{{topicTitle}}</div>
           <div class="right"></div>
@@ -378,7 +376,7 @@ var updatePlaceholder = function() {
 
   <ons-template id="subscriptions.html">
     <ons-navigator>
-      <ons-page on-device-backbutton="goBack()">
+      <ons-page ng-device-backbutton="goBack()">
         <ons-toolbar>
           <div class="center">My Topics</div>
         </ons-toolbar>
@@ -411,7 +409,7 @@ var updatePlaceholder = function() {
   </ons-template>
 
   <ons-template id="settings.html">
-    <ons-page on-device-backbutton="goBack()">
+    <ons-page ng-device-backbutton="goBack()">
       <ons-toolbar>
         <div class="center">Settings</div>
       </ons-toolbar>
