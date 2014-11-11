@@ -67,7 +67,7 @@
 
       $scope.onTabChanged = function(idx) {
         if (!$scope.DEV_READY) {
-          return setTimeout(function(){onTabChanged(idx)}, 100);
+          return setTimeout(function(){$scope.onTabChanged(idx)}, 100);
         }
         console.log('tc:' + idx + 'tt:' + $scope.THIS_TAB);
         if (!$scope.THIS_TAB) {
