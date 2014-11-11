@@ -35,12 +35,17 @@
         }, 100);
       };
       $scope.swapIcon = function(selector, iconName) {
+        console.log('swap');
         var icon = $(selector);
+        console.log('got icon:' + icon.length);
         var parent = icon.parent();
+        console.log('removing');
         icon.remove();
+        console.log('removed');
         icon.attr('icon', iconName);
         parent.append(icon[0]);
         ons.compile(icon[0]);
+        console.log('compiled');
       };
       $scope.openUrl = function(url) {
         app.openUrl(url);
@@ -49,7 +54,7 @@
         $scope.swapIcon('#add-icon', 'ion-navicon-round');
         server.addTopic($("#topicInput").val(), function(){
           console.log('setting back to regular:' + $("#add-icon").length);
-          $scope.swapIcon('#add-topic', 'ion-log-in');
+          $scope.swapIcon('#add-icon', 'ion-log-in');
           $("#topicInput").val('');
           $scope.loadSubs();
         });
