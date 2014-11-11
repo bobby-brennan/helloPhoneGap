@@ -73,8 +73,7 @@
 
       $scope.goBack = function() {
         if ($scope.LAST_TAB && $scope.LAST_TAB !== 2) {
-          if (BLINK_RUN) clearTimeout(BLINK_RUN);
-          if (PLACE_HOLDER_RUN) clearTimeout(PLACE_HOLDER_RUN);
+          cancelAnimation();
         }
         ons.tabbar.setActiveTab($scope.LAST_TAB);
       };
@@ -93,8 +92,7 @@
         } else if (idx === 1) {
           // Do nothing
         } else if (idx === 2) {
-          blinkCursor();
-          updatePlaceholder();
+          runAnimation();
           $scope.loadSubs();
         } else if (idx === 3) {
           // Do nothing
@@ -267,6 +265,23 @@ var curPlaceholderIdx = -1;
 var curChar = 0;
 var CURSOR_ON = false;
 var BLINK_RUN, PLACE_HOLDER_RUN;
+
+var cancelAnimation = function() {
+  if (BLINK_RUN) {
+    clearTimeout(BLINK_RUN);
+    BLINK_RUN = null;
+  }
+  if (PLACE_HOLDER_RUN) {
+    clearTimeout(PLACE_HOLDER_RUN);
+  }
+}
+
+var runAnimation = function() {
+  cancelAnimation();
+  updatePlaceholder();
+  blinkCursor();
+}
+
 var blinkCursor = function() {
   var curVal = $("#topicInput").attr('placeholder');
   if (!curVal) {curVal = '';}
