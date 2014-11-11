@@ -185,6 +185,9 @@
       color: #999;
       float: right;
     }
+    .article {
+      min-height: 50px;
+    }
   </style>
   
 </head>
@@ -228,7 +231,7 @@
 
         <ons-list id="subscriptions" style="margin: -1px 0">
           <ons-list-item modifier="chevron" class="item" ng-repeat="item in userArticles">
-            <ons-row ng-click="openUrl(item.url)">
+            <ons-row class="article" ng-click="openUrl(item.url)">
               <ons-col>
                 <header>
                   <span class="item-title">{{item.category}}</span>
@@ -253,7 +256,7 @@
 
         <ons-list id="subscriptions" style="margin: -1px 0">
           <ons-list-item modifier="chevron" class="item" ng-repeat="item in topicArticles">
-            <ons-row ng-click="openUrl(item.url)">
+            <ons-row class="article" ng-click="openUrl(item.url)">
               <ons-col>
                 <header>
                   <span class="item-title">{{item.category}}</span>
@@ -272,7 +275,6 @@
     <ons-navigator>
       <ons-page on-device-backbutton="ons.tabbar.setActiveTab($scope.LAST_TAB)">
         <ons-toolbar>
-          <div class="left"><ons-toolbar-button ng-click="loadSubs()"><ons-icon icon="ion-compose"></ons-icon></ons-toolbar-button></div>
           <div class="center">My Topics</div>
           <div class="right"></div>
         </ons-toolbar>
