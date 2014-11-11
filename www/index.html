@@ -317,8 +317,7 @@ var updatePlaceholder = function() {
     }
     $("#topicInput").attr('placeholder', curVal);
     PLACE_HOLDER_RUN = setTimeout(updatePlaceholder, 100);
-  }
-  if (curPlaceholderIdx === -1 || curChar === curPlaceholder.length) {
+  } else if (curPlaceholderIdx === -1 || curChar === curPlaceholder.length) {
     curChar = 0;
     var oldIdx = curPlaceholderIdx;
     while (oldIdx === curPlaceholderIdx) {
