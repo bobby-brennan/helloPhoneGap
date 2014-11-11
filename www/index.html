@@ -60,7 +60,7 @@
       $scope.loadSubs = function(onDone) {
         server.getSubscriptions(function(subs) {
           if (!subs || subs.length === 0) {
-            subs = [{topic='Add some topics above to start getting updates!'}]
+            subs = [{topic: 'Add some topics above to start getting updates!'}]
           }
           $scope.subscriptions = subs;
           $scope.$apply();
