@@ -39,7 +39,11 @@
       };
       $scope.submitForm = function() {
         console.log("submitting form!");
-        $('addTopicForm').submit();
+        server.addTopic($("#topicInput").val(), function(){
+          $("#topicInput").val();
+          $scope.loadSubs();
+        });
+        return false;
       }
       $scope.deleteTopic = function(topicId) {
         server.deleteTopic(topicId, function() {
@@ -109,11 +113,7 @@
         FastClick.attach(document.body);
         $(
           $("form").submit(function() {
-              server.addTopic($("#topicInput").val(), function(){
-                $("#topicInput").val();
-                $scope.loadSubs();
-              });
-              return false;
+              submitForm();
           })
         );
       };
