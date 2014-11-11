@@ -329,7 +329,7 @@ var updatePlaceholder = function() {
 
   <ons-template id="recent.html">
     <ons-navigator>
-      <ons-page on-device-backbutton="$scope.goBack()">
+      <ons-page on-device-backbutton="goBack()">
         <ons-toolbar>
           <div class="center">Recent Updates</div>
         </ons-toolbar>
@@ -353,7 +353,7 @@ var updatePlaceholder = function() {
 
   <ons-template id="topic.html">
     <ons-navigator>
-      <ons-page on-device-backbutton="$scope.goBack()">
+      <ons-page on-device-backbutton="goBack()">
         <ons-toolbar>
           <div class="center">{{topicTitle}}</div>
           <div class="right"></div>
@@ -378,7 +378,7 @@ var updatePlaceholder = function() {
 
   <ons-template id="subscriptions.html">
     <ons-navigator>
-      <ons-page on-device-backbutton="$scope.goBack()">
+      <ons-page on-device-backbutton="goBack()">
         <ons-toolbar>
           <div class="center">My Topics</div>
         </ons-toolbar>
@@ -411,7 +411,7 @@ var updatePlaceholder = function() {
   </ons-template>
 
   <ons-template id="settings.html">
-    <ons-page on-device-backbutton="$scope.goBack()">
+    <ons-page on-device-backbutton="goBack()">
       <ons-toolbar>
         <div class="center">Settings</div>
       </ons-toolbar>
