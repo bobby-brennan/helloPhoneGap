@@ -73,8 +73,10 @@
       };
 
       $scope.goBack = function() {
-        if (BLINK_RUN) clearTimeout(BLINK_RUN);
-        if (PLACE_HOLDER_RUN) clearTimeout(PLACE_HOLDER_RUN);
+        if ($scope.LAST_TAB && $scope.LAST_TAB !== 2) {
+          if (BLINK_RUN) clearTimeout(BLINK_RUN);
+          if (PLACE_HOLDER_RUN) clearTimeout(PLACE_HOLDER_RUN);
+        }
         ons.tabbar.setActiveTab($scope.LAST_TAB);
       };
 
@@ -92,6 +94,8 @@
         } else if (idx === 1) {
           // Do nothing
         } else if (idx === 2) {
+          blinkCursor();
+          updatePlaceholder();
           $scope.loadSubs();
         } else if (idx === 3) {
           // Do nothing
